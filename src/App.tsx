@@ -28,7 +28,7 @@ function OffCanvasExample({ ...props }) {
 
   return (
     <div className="App">
-      <Button variant="primary" onClick={toggleShow} className="me-2 rounded-0">
+      <Button variant="primary" onClick={toggleShow} className="position-fixed me-2 rounded-0">
         <Icon iconName="List" color="white" size={32} className="align-top" />
       </Button>
       <Offcanvas show={show} onHide={handleClose} {...props}>

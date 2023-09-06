@@ -1,12 +1,12 @@
 import { Icon } from "./icon.component";
 
 export const PedidoComponent = ({ ...props }) => {
-  let test = new Date(props.pedido?.horaDespacho);
+  let despacho = new Date(props.pedido?.horaDespacho);
   return (
     <>
       <div className="card border-primary">
         <div className="card-body">
-          <h5 className="card-title">{props.pedido?.cliente.nome} <Icon iconName="Clock" color="white" size={24} className="align-middle" /> {test.toLocaleTimeString()}</h5>
+          <h5 className="card-title">{props.pedido?.cliente.nome} <Icon iconName="Clock" color="white" size={24} className="align-middle" /> {despacho.toLocaleDateString()} às {despacho.toLocaleTimeString()}</h5>
           <p className="card-text">{props.pedido.status}</p>
           <ul className="list-group">
             {props.pedido.items.length > 0 &&

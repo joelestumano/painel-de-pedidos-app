@@ -37,7 +37,7 @@ export const PedidoCard = ({ ...props }) => {
               <ul className="list-group list-group-horizontal mt-auto">
                 {props.pedido.items.map((item: any, index: number) =>
                   <li className="list-group-item border-0 bg-transparent p-0 me-2" key={index}>
-                    <img src={item.bannerUrl} className="img-fluid_ rounded" width={64} height={64} alt="item" />
+                    <img src={item.bannerUrl} className="img-fluid_ rounded" width={56} height={56} alt="item" />
                   </li>
                 ).slice(1)}
               </ul>

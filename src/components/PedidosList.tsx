@@ -48,37 +48,35 @@ const PedidosList: React.FC = () => {
 
     if (pedidos?.length > 0) {
         return (
-            <div className="container">
 
-                <div className="d-flex flex-column p-4">
+            <div className="d-flex flex-column p-4">
 
-                    <div className="row row-cols-1 row-cols-lg-1">
-                        <p className="fw-bold mb-1">Pedido {getPedido(0).codigo}</p>
+                <div className="row row-cols-1 row-cols-lg-1">
+                    <p className="fw-bold mb-1">Pedido {getPedido(0).codigo}</p>
+                </div>
+                <div className="row row-cols-1 row-cols-lg-1 principal">
+                    <div className="col">
+                        <PedidoCard isPrincipal={true} pedido={getPedido(0)}></PedidoCard>
                     </div>
-                    <div className="row row-cols-1 row-cols-lg-1 principal">
-                        <div className="col">
-                            <PedidoCard isPrincipal={true} pedido={getPedido(0)}></PedidoCard>
-                        </div>
-                    </div>
-                    
-                    <div className="row row-cols-1 row-cols-lg-1 mt-4">
-                        <p className="fw-bold mb-1">Próximos pedidos</p>
-                    </div>
-                    <div className="row row-cols-3 row-cols-lg-3">
-                        {pedidos
-                            .map((pedido: Pedido, index) => (
-                                <div className="col" key={index}>
-                                    <PedidoCard pedido={pedido}></PedidoCard>
-                                </div>
-                            )).slice(1)}
-                    </div>
+                </div>
 
+                <div className="row row-cols-1 row-cols-lg-1 mt-4">
+                    <p className="fw-bold mb-1">Próximos pedidos</p>
+                </div>
+                <div className="row row-cols-3 row-cols-lg-3">
+                    {pedidos
+                        .map((pedido: Pedido, index) => (
+                            <div className="col" key={index}>
+                                <PedidoCard pedido={pedido}></PedidoCard>
+                            </div>
+                        )).slice(1)}
                 </div>
 
             </div>
+
         );
     } else {
-        return <div className="container p-2 shadow">
+        return <div className="p-2 shadow">
             <p className="bg-warning fw-bold text-center m-auto p-2">Nada por aqui!</p>
         </div>;
     }

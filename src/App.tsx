@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { Icon } from "./components/Icon";
 import PedidosList from "./components/PedidosList";
+import { UseDocumentTitle } from "./hooks/UseDocumentTitle.hook";
 
 function Index({ ...props }) {
   const [show, setShow] = useState(false);
@@ -29,6 +30,7 @@ function Index({ ...props }) {
 }
 
 function App() {
+  const [document_title, setDoucmentTitle] = UseDocumentTitle("Painel de pedidos");
   const props = {
     scroll: true,
     backdrop: true,

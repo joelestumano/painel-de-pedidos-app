@@ -53,7 +53,10 @@ const PedidosList: React.FC = () => {
 
                 <div className="row mt-2">
                     <div className="col">
-                        <h4 className="fw-semibold">Pedido {getPedido(0).codigo}</h4>
+                        <div className="d-flex  justify-content-between">
+                            <h4 className="fw-semibold">Pedido {getPedido(0).codigo}</h4>
+                            <p className="fw-semibold bg-warning bg-opacity-75 px-2 rounded">{pedidos?.length} pedidos até aqui</p>
+                        </div>
                     </div>
                 </div>
                 <div className="row">

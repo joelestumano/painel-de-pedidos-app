@@ -15,8 +15,10 @@ const PedidosList: React.FC = () => {
             `http://localhost:3000/v1/app/changed-collection`
         );
         eventSource.onmessage = function (event) {
-            console.log("sse: ", event);
-            carregarDadosPedidos();
+            const eventName = (JSON.parse(event.data)).event.eventName;
+            if (eventName === 'changed-collection-pedidos') {
+                carregarDadosPedidos();
+            }
         };
         return () => {
             eventSource.close();

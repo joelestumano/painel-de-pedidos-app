@@ -8,14 +8,13 @@ function Index({ ...props }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const toggleShow = () => setShow((s) => !s);
-
   return (
-    <div>
-      <Button variant="primary" onClick={toggleShow} className="position-fixed me-2 rounded-0">
+    <div className="container-fluid min-vh-100">
+      <Button type="button" title="offcanvas" variant="primary" onClick={toggleShow} className="position-fixed rounded-top-0 rounded-bottom-3 shadow">
         <Icon iconName="List" color="white" size={32} className="align-top" />
       </Button>
       <Offcanvas show={show} onHide={handleClose} {...props}>
-        <Offcanvas.Header closeButton closeVariant="white">
+        <Offcanvas.Header closeButton>
           <Offcanvas.Title>Offcanvas</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
@@ -24,8 +23,7 @@ function Index({ ...props }) {
         </Offcanvas.Body>
       </Offcanvas>
 
-      <PedidosList/>
-      
+      <PedidosList />
     </div>
   );
 }

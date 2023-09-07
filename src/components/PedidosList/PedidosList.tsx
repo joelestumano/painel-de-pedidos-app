@@ -1,8 +1,7 @@
+import "./PedidosList.scss";
 import React, { useState, useEffect } from "react";
-import { Pedido } from "../types/Pedido.type";
-import { PedidoCard } from "./PedidoCard";
-
-import "./pedidosList.scss";
+import { Pedido } from "../../types/Pedido.type";
+import { PedidoCard } from "../PedidoCard/PedidoCard";
 
 const PedidosList: React.FC = () => {
     const [pedidos, setPedidos] = useState<Pedido[]>([]);
@@ -15,8 +14,8 @@ const PedidosList: React.FC = () => {
             `http://localhost:3000/v1/app/changed-collection`
         );
         eventSource.onmessage = function (event) {
-            const eventName = (JSON.parse(event.data)).event.eventName;
-            if (eventName === 'changed-collection-pedidos') {
+            const eventName = JSON.parse(event.data).event.eventName;
+            if (eventName === "changed-collection-pedidos") {
                 carregarDadosPedidos();
             }
         };
@@ -50,37 +49,42 @@ const PedidosList: React.FC = () => {
 
     if (pedidos?.length > 0) {
         return (
+            <div className="p-2">
 
-            <div className="d-flex flex-column p-4">
-
-                <div className="row row-cols-1 row-cols-lg-1">
-                    <p className="fw-bold mb-1">Pedido {getPedido(0).codigo}</p>
+                <div className="row mt-2">
+                    <div className="col">
+                        <h4 className="fw-semibold">Pedido {getPedido(0).codigo}</h4>
+                    </div>
                 </div>
-                <div className="row row-cols-1 row-cols-lg-1 principal">
+                <div className="row">
                     <div className="col">
                         <PedidoCard isPrincipal={true} pedido={getPedido(0)}></PedidoCard>
                     </div>
                 </div>
 
-                <div className="row row-cols-1 row-cols-lg-1 mt-4">
-                    <p className="fw-bold mb-1">Próximos pedidos</p>
+                <div className="row mt-4">
+                    <div className="col">
+                        <h4 className="fw-semibold">Próximos pedidos</h4>
+                    </div>
                 </div>
-                <div className="row row-cols-3 row-cols-lg-3">
-                    {pedidos
-                        .map((pedido: Pedido, index) => (
-                            <div className="col" key={index}>
-                                <PedidoCard pedido={pedido}></PedidoCard>
-                            </div>
-                        )).slice(1)}
+                <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+                    {pedidos.map((pedido: Pedido, index) => (
+                        <div className="col" key={index}>
+                            <PedidoCard pedido={pedido}></PedidoCard>
+                        </div>
+                    )).slice(1)}
                 </div>
 
             </div>
-
         );
     } else {
-        return <div className="p-2 shadow">
-            <p className="bg-warning fw-bold text-center m-auto p-2">Nada por aqui!</p>
-        </div>;
+        return (
+            <div className="p-2 shadow">
+                <p className="bg-warning fw-bold text-center m-auto p-2">
+                    Nada por aqui!
+                </p>
+            </div>
+        );
     }
 };
 

@@ -2,8 +2,8 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { Icon } from "./components/Icon";
-import PedidosList from "./components/PedidosList";
 import { UseDocumentTitle } from "./hooks/UseDocumentTitle.hook";
+import PedidosList from "./components/PedidosList/PedidosList";
 
 function Index({ ...props }) {
   const [show, setShow] = useState(false);

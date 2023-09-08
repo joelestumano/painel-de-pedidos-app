@@ -5,7 +5,8 @@ export function ImageGallery({ ...props }) {
   const molduraStyle = {
     display: "grid",
     gridTemplateColumns: `repeat(${columns}, 1fr)`,
-    gap: "10px"
+    gap: "10px",
+    height: '100%'
   };
 
   return (
@@ -18,7 +19,8 @@ export function ImageGallery({ ...props }) {
           style={{
             maxWidth: "100%",
             maxHeight: "100%",
-            objectFit: "cover"
+            objectFit: "cover",
+            height: "inherit"
           }}
         />
       ))}

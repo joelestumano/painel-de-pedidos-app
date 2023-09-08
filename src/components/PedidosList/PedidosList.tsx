@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Pedido } from "../../types/Pedido.type";
 import { Paginate } from "../../types/Paginate.type";
 import { PedidoCard } from "../PedidoCard/PedidoCard";
+import { NumeroPedido } from "../NumeroPedido/NumeroPedido";
 
 const PedidosList: React.FC = () => {
     const [pedidos, setPedidos] = useState<Pedido[]>([]);
@@ -60,7 +61,7 @@ const PedidosList: React.FC = () => {
                 <div className="row mt-2">
                     <div className="col">
                         <div className="d-flex  justify-content-between">
-                            <h4 className="fw-semibold">Pedido {getPedido(0).codigo}</h4>
+                            <NumeroPedido isPrincipal={true} value={getPedido(0).codigo}/>
                             <p className="fw-semibold bg-warning bg-opacity-75 px-2 rounded">{paginate?.totalDocumentos} pedidos até aqui</p>
                         </div>
                     </div>

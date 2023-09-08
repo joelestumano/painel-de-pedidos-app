@@ -2,6 +2,7 @@ import "./PedidoCard.scss";
 import { Icon } from "../Icon";
 import { ImageGallery } from "../ImageGallery/ImageGallery";
 import { Pedido } from "../../types/Pedido.type";
+import { NumeroPedido } from "../NumeroPedido/NumeroPedido";
 
 const Section = ({ ...props }) => {
   return <span className="card-text p-1 px-3 fs-5 fw-bold rounded-2 bg-primary bg-opacity-25">
@@ -25,6 +26,8 @@ export const PedidoCard = ({ ...props }) => {
 
         <div className="col-md-6 p-2">
           <div className="card-body p-0 d-flex flex-column">
+
+          <NumeroPedido value={props.pedido.codigo}/>
 
             {props.isPrincipal ? <div className="d-flex align-items-center">
               <Section cliente={props.pedido.cliente.nome} /><Icon iconName="Clock" size={24} className="align-middle ms-2 me-1" />

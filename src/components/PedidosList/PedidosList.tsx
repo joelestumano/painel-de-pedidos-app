@@ -60,8 +60,8 @@ const PedidosList: React.FC = () => {
         return (
             <Container fluid={true}>
                 <Row style={{ height: '60vh' }}>
-                    <Col>
-                        <PedidoCard isPrincipal={true} pedido={getPedido(0)}></PedidoCard>
+                    <Col className="col-6">
+                        <CardPedido isPrincipal={true} pedido={getPedido(0)}/>
                     </Col>
                 </Row>
                 <Row style={{ height: '40vh' }} className="row-cols-3">

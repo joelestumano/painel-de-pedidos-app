@@ -1,4 +1,4 @@
-import "./PedidoCard.scss";
+import "./CardPedidoPrincipal.scss";
 import { Icon } from "../Icon";
 import { ImageGallery } from "../ImageGallery/ImageGallery";
 import { Pedido } from "../../types/Pedido.type";
@@ -17,17 +17,17 @@ export const PedidoCard = ({ ...props }) => {
   }
   return (
 
-    <div className={`card card-item w-100 border-0 p-3 ${props.isPrincipal ? "card-principal shadow" : "h-100 bg-primary bg-opacity-25"}`}>
+    <div className={`card card-item w-100 border-0 p-2 ${props.isPrincipal ? "card-principal shadow" : "h-100 bg-primary bg-opacity-25"}`}>
       <div className="row p-0 m-0">
 
         <div className="col-md-6 p-2">
-          <ImageGallery images={getImgs(props.pedido)} />
+          {/*   <ImageGallery images={getImgs(props.pedido)} /> */}
         </div>
 
         <div className="col-md-6 p-2">
           <div className="card-body p-0 d-flex flex-column">
 
-          <NumeroPedido value={props.pedido.codigo}/>
+            <NumeroPedido value={props.pedido.codigo} />
 
             {props.isPrincipal ? <div className="d-flex align-items-center">
               <Section cliente={props.pedido.cliente.nome} /><Icon iconName="Clock" size={24} className="align-middle ms-2 me-1" />

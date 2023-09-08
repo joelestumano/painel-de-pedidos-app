@@ -2,8 +2,10 @@ import "./PedidosList.scss";
 import React, { useState, useEffect } from "react";
 import { Pedido } from "../../types/Pedido.type";
 import { Paginate } from "../../types/Paginate.type";
-import { PedidoCard } from "../PedidoCard/PedidoCard";
-import { NumeroPedido } from "../NumeroPedido/NumeroPedido";
+import { PedidoCard } from "../CardPedidoPrincipal/CardPedidoPrincipal";
+import { Row, Col, Container } from "react-bootstrap";
+import { Loading } from "../Loading/Loading";
+import { CardPedido } from "../CardPedido/CardPedido";
 
 const PedidosList: React.FC = () => {
     const [pedidos, setPedidos] = useState<Pedido[]>([]);
@@ -56,45 +58,25 @@ const PedidosList: React.FC = () => {
 
     if (pedidos?.length > 0) {
         return (
-            <div className="p-2">
-
-                <div className="row mt-2">
-                    <div className="col">
-                        <div className="d-flex  justify-content-between">
-                            <NumeroPedido isPrincipal={true} value={getPedido(0).codigo}/>
-                            <p className="fw-semibold bg-warning bg-opacity-75 px-2 rounded">{paginate?.totalDocumentos} pedidos até aqui</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col">
+            <Container fluid={true}>
+                <Row style={{ height: '60vh' }}>
+                    <Col>
                         <PedidoCard isPrincipal={true} pedido={getPedido(0)}></PedidoCard>
-                    </div>
-                </div>
-
-                <div className="row mt-4">
-                    <div className="col">
-                        <h4 className="fw-semibold">Próximos pedidos</h4>
-                    </div>
-                </div>
-                <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+                    </Col>
+                </Row>
+                <Row style={{ height: '40vh' }} className="row-cols-3">
                     {pedidos.map((pedido: Pedido, index) => (
-                        <div className="col" key={index}>
-                            <PedidoCard pedido={pedido}></PedidoCard>
-                        </div>
+                        <Col key={index}>
+                            <CardPedido pedido={pedido} />
+                        </Col>
                     )).slice(1)}
-                </div>
-
-            </div>
+                </Row>
+            </Container>
         );
     } else {
         return (
-            <div className="p-2 shadow">
-                <p className="bg-warning fw-bold text-center m-auto p-2">
-                    Nada por aqui!
-                </p>
-            </div>
-        );
+            <Loading />
+        )
     }
 };
 

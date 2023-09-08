@@ -21,7 +21,7 @@ export const CardPedido = ({ ...props }) => {
 
     return (
         <Card className="h-100 border-0 p-2 bg-transparent">
-            <Row className={`h-100 rounded ${props.isPrincipal ? "bg-white bg-opacity-50 shadow" : "bg-primary bg-opacity-10"}`}>
+            <Row className={`h-100  ${props.isPrincipal ? "bg-white bg-opacity-50 shadow rounded-start" : "bg-primary bg-opacity-10 rounded"}`}>
                 <Col className="col-md-6 p-3">
                     <ImageGallery images={getImgs(props.pedido)} />
                 </Col>

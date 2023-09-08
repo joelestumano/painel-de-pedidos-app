@@ -15,7 +15,7 @@ function Index({ ...props }) {
         type="button"
         title="offcanvas"
         variant="primary"
-        style={{ zIndex: 1 }}
+        style={{ zIndex: 2 }}
         onClick={toggleShow}
         className="position-fixed top-0 end-0 rounded-end-0 rounded-start-3 mt-5 px-2 shadow"
       >
@@ -23,11 +23,13 @@ function Index({ ...props }) {
       </Button>
       <Offcanvas placement="end" show={show} onHide={handleClose} {...props}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+          <Offcanvas.Title>
+            <Icon iconName="Gear" size={32} className="align-middle me-1" />
+          </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          Some text as placeholder. In real life you can have the elements you
-          have chosen. Like, text, images, lists, etc.
+          {/* Some text as placeholder. In real life you can have the elements you
+          have chosen. Like, text, images, lists, etc. */}
         </Offcanvas.Body>
       </Offcanvas>
       <PedidosList />

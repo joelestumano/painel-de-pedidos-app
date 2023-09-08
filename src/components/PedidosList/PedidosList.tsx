@@ -2,10 +2,11 @@ import "./PedidosList.scss";
 import React, { useState, useEffect } from "react";
 import { Pedido } from "../../types/Pedido.type";
 import { Paginate } from "../../types/Paginate.type";
-import { PedidoCard } from "../CardPedidoPrincipal/CardPedidoPrincipal";
 import { Row, Col, Container } from "react-bootstrap";
 import { Loading } from "../Loading/Loading";
 import { CardPedido } from "../CardPedido/CardPedido";
+import { Detalhes } from "../Detalhes/Detalhes";
+import { CardSistema } from "../CardSistema/CardSistema";
 
 const PedidosList: React.FC = () => {
     const [pedidos, setPedidos] = useState<Pedido[]>([]);
@@ -60,8 +61,14 @@ const PedidosList: React.FC = () => {
         return (
             <Container fluid={true}>
                 <Row style={{ height: '60vh' }}>
-                    <Col className="col-6">
-                        <CardPedido isPrincipal={true} pedido={getPedido(0)}/>
+                    <Col className="col-6 pe-1">
+                        <CardPedido isPrincipal={true} pedido={getPedido(0)} />
+                    </Col>
+                    <Col className="col-3 ps-1">
+                        <Detalhes pedido={getPedido(0)} />
+                    </Col>
+                    <Col className="col-3 position-fixed top-0 end-0" style={{ height: 'inherit' ,zIndex: 1}}>
+                        <CardSistema paginate={paginate} />
                     </Col>
                 </Row>
                 <Row style={{ height: '40vh' }} className="row-cols-3">

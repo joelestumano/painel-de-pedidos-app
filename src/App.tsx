@@ -31,7 +31,8 @@ function Index({ ...props }) {
 }
 
 function App() {
-  const [document_title, setDoucmentTitle] = UseDocumentTitle("Painel de pedidos");
+  /* const [document_title, setDoucmentTitle] = UseDocumentTitle("Painel de pedidos"); */
+  UseDocumentTitle("Painel de pedidos");
   const props = {
     scroll: true,
     backdrop: true,

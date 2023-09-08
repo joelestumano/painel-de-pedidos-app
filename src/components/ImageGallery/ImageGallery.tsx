@@ -14,7 +14,7 @@ export function ImageGallery({ ...props }) {
         <img className="rounded"
           key={index}
           src={url}
-          alt={`Image ${index + 1}`}
+          alt={`img_${index + 1}`}
           style={{
             maxWidth: "100%",
             maxHeight: "100%",

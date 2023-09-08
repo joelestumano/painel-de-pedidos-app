@@ -1,10 +1,12 @@
 import "./PedidosList.scss";
 import React, { useState, useEffect } from "react";
 import { Pedido } from "../../types/Pedido.type";
+import { Paginate } from "../../types/Paginate.type";
 import { PedidoCard } from "../PedidoCard/PedidoCard";
 
 const PedidosList: React.FC = () => {
     const [pedidos, setPedidos] = useState<Pedido[]>([]);
+    const [paginate, setPaginate] = useState<Paginate>();
     const limit: number = 4;
     const status: string = "pendente";
 
@@ -36,6 +38,7 @@ const PedidosList: React.FC = () => {
         )
             .then((resp) => resp.json())
             .then((resp) => {
+                setPaginate(resp);
                 setPedidos(resp.documentos);
             })
             .catch((err) => {
@@ -55,7 +58,7 @@ const PedidosList: React.FC = () => {
                     <div className="col">
                         <div className="d-flex  justify-content-between">
                             <h4 className="fw-semibold">Pedido {getPedido(0).codigo}</h4>
-                            <p className="fw-semibold bg-warning bg-opacity-75 px-2 rounded">{pedidos?.length} pedidos até aqui</p>
+                            <p className="fw-semibold bg-warning bg-opacity-75 px-2 rounded">{paginate?.totalDocumentos} pedidos até aqui</p>
                         </div>
                     </div>
                 </div>

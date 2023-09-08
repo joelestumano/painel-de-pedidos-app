@@ -10,10 +10,13 @@ const PedidosList: React.FC = () => {
     const limit: number = 4;
     const status: string = "pendente";
 
+    /* const apiBaseUrl = 'http://localhost:3000/' */
+    const apiBaseUrl = 'https://sg-api-b7fl.onrender.com/'
+
     useEffect(() => {
         carregarDadosPedidos();
         const eventSource = new EventSource(
-            `http://localhost:3000/v1/app/changed-collection`
+            `${apiBaseUrl}v1/app/changed-collection`
         );
         eventSource.onmessage = function (event) {
             const eventName = JSON.parse(event.data).event.eventName;
@@ -28,7 +31,7 @@ const PedidosList: React.FC = () => {
 
     function carregarDadosPedidos() {
         fetch(
-            `http://localhost:3000/v1/pedidos/paginate?ativarPaginacao=true&pagina=1&limite=${limit}&status=${status}`,
+            `${apiBaseUrl}v1/pedidos/paginate?ativarPaginacao=true&pagina=1&limite=${limit}&status=${status}`,
             {
                 method: "GET",
                 headers: {

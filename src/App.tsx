@@ -15,7 +15,7 @@ function Index({ ...props }) {
         type="button"
         title="offcanvas"
         variant="primary"
-        style={{ zIndex: 2 }}
+        style={{ zIndex: 100 }}
         onClick={toggleShow}
         className="position-fixed top-0 end-0 rounded-end-0 rounded-start-3 mt-5 px-2 shadow"
       >

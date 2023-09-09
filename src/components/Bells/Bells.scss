@@ -1,0 +1,47 @@
+.bell {
+    /* Adicione outros estilos de acordo com a sua necessidade */
+
+    font-size: 48px;
+}
+
+.animate {
+    animation-name: swing;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.bell-container {
+    width: fit-content;
+    margin: auto;
+    float: left;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+@keyframes swing {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(20deg);
+    }
+
+    40% {
+        transform: rotate(-15deg);
+    }
+
+    60% {
+        transform: rotate(10deg);
+    }
+
+    80% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}

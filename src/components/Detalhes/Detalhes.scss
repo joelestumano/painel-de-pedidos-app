@@ -1,0 +1,7 @@
+.rounded-chat-start {
+    --radius: calc(var(--bs-border-radius) + 24px);
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: var(--radius);
+}

@@ -5,7 +5,6 @@ import { Paginate } from "../../types/Paginate.type";
 import { Row, Col, Container } from "react-bootstrap";
 import { Loading } from "../Loading/Loading";
 import { CardPedido } from "../CardPedido/CardPedido";
-import { Detalhes } from "../Detalhes/Detalhes";
 import { CardSistema } from "../CardSistema/CardSistema";
 
 const PedidosList: React.FC = () => {
@@ -60,20 +59,17 @@ const PedidosList: React.FC = () => {
     if (pedidos?.length > 0) {
         return (
             <Container fluid={true}>
-                <Row style={{ height: '60vh' }}>
-                    <Col className="col-6 pe-1">
-                        <CardPedido isPrincipal={true} pedido={getPedido(0)} />
-                    </Col>
-                    <Col className="col-3 ps-1">
-                        <Detalhes pedido={getPedido(0)} />
-                    </Col>
-                    <Col className="col-3 position-fixed top-0 end-0" style={{ height: 'inherit' ,zIndex: 1}}>
+                <Row className="flex-md-row-reverse" style={{ minHeight: '60vh' }}>
+                    <Col className="col-12 col-md-4">
                         <CardSistema paginate={paginate} />
                     </Col>
+                    <Col className="col-12 col-md-8">
+                        <CardPedido isPrincipal={true} pedido={getPedido(0)} />
+                    </Col>
                 </Row>
-                <Row style={{ height: '40vh' }} className="row-cols-3">
+                <Row className="flex-grow-1">
                     {pedidos.map((pedido: Pedido, index) => (
-                        <Col key={index}>
+                        <Col className="col-12 col-md-6 col-lg-4" key={index}>
                             <CardPedido pedido={pedido} />
                         </Col>
                     )).slice(1)}

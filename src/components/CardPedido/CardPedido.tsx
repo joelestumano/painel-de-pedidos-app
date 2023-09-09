@@ -22,10 +22,10 @@ export const CardPedido = ({ ...props }) => {
     return (
         <Card className="h-100 border-0 p-2 bg-transparent">
             <Row className={`h-100  ${props.isPrincipal ? "bg-white bg-opacity-50 shadow rounded-start" : "bg-primary bg-opacity-10 rounded"}`}>
-                <Col className="col-md-6 p-3">
+                <Col className="col-12 col-md-6 p-3">
                     <ImageGallery images={getImgs(props.pedido)} />
                 </Col>
-                <Col className="col-md-6 p-3 ps-0">
+                <Col className="col-12 col-md-6 p-3 ps-md-0">
                     {props.isPrincipal ? (
                         <div className="d-flex align-items-center mb-3">
                             <Section cliente={props.pedido.cliente.nome} />

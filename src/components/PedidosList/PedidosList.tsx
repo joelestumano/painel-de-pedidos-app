@@ -5,7 +5,6 @@ import { Paginate } from "../../types/Paginate.type";
 import { Row, Col, Container } from "react-bootstrap";
 import { Loading } from "../Loading/Loading";
 import { CardPedido } from "../CardPedido/CardPedido";
-import { Detalhes } from "../Detalhes/Detalhes";
 import { CardSistema } from "../CardSistema/CardSistema";
 
 const PedidosList: React.FC = () => {

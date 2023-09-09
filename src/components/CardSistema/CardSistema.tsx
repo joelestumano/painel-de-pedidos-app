@@ -4,7 +4,7 @@ export const CardSistema = ({ ...props }) => {
 
     return (
         <Card className="h-100 border-0 p-2 bg-transparent">
-            <Row className={`h-100 bg-primary bg-opacity-25 rounded`}>
+            <Row className={`h-100 bg-primary bg-opacity-25 shadow rounded`}>
                 <Col className="col-md-12 p-3">
                     <p className="">Área para notificações do sistema...</p>
                     <label className="position-relative w-auto bg-white rounded px-2 py-1 fw-semibold">

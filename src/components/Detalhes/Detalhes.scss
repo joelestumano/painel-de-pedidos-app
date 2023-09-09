@@ -4,4 +4,14 @@
     border-top-right-radius: var(--radius);
     border-bottom-left-radius: 0;
     border-bottom-right-radius: var(--radius);
+
+    &:before {
+        content: "";
+        position: absolute;
+        border-left: 0px solid rgba(var(--bs-primary-rgb), 0.1);
+        border-right: 12px solid rgba(var(--bs-primary-rgb), 0.1);
+        border-top: 12px solid transparent;
+        bottom: 0px;
+        left: -16px;
+    }
 }

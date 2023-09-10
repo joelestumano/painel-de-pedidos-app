@@ -7,13 +7,19 @@ import { Loading } from "../Loading/Loading";
 import { CardPedido } from "../CardPedido/CardPedido";
 import { CardSistema } from "../CardSistema/CardSistema";
 import { NadaPorAqui } from "../NadaPorAqui/NadaPorAqui";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const PedidosList: React.FC = () => {
-    const [pedidos, setPedidos] = useState<Pedido[]>([]);
-    const [paginate, setPaginate] = useState<Paginate>();
-    const [loading, setLoading] = useState(true);
+
+    const nodeRef = React.useRef(null);
+
     const limit: number = 4;
     const status: string = "pendente";
+
+    const [paginate, setPaginate] = useState<Paginate>();
+    const [loading, setLoading] = useState(true);
+
+    const [onUpdate, setOnUpdate] = useState(false);
 
     /* const apiBaseUrl = 'http://localhost:3000/' */
     const apiBaseUrl = "https://sg-api-b7fl.onrender.com/";
@@ -47,16 +53,16 @@ const PedidosList: React.FC = () => {
             .then((resp) => resp.json())
             .then((resp) => {
                 setPaginate(resp);
-                setPedidos(resp.documentos);
                 setLoading(false);
+                /*  */
+                setOnUpdate(true);
+                setTimeout(() => {
+                    setOnUpdate(false);
+                }, 1000);
             })
             .catch((err) => {
                 console.error(err);
             });
-    }
-
-    function getPedido(index: number): Pedido {
-        return pedidos[index];
     }
 
     return (
@@ -65,25 +71,31 @@ const PedidosList: React.FC = () => {
                 <Loading />
             ) : (
                 <>
-                    {pedidos?.length > 0 ? (
+                    {paginate && paginate.documentos?.length > 0 ? (
                         <Container fluid={true}>
                             <Row className="flex-md-row-reverse" style={{ minHeight: "60vh" }}>
                                 <Col className="col-12 col-md-4">
-                                    <CardSistema paginate={paginate} />
+                                    <CardSistema onUpdate={onUpdate} paginate={paginate} />
                                 </Col>
                                 <Col className="col-12 col-md-8">
-                                    <CardPedido isPrincipal={true} pedido={getPedido(0)} />
+                                    <CardPedido isPrincipal={true} pedido={paginate.documentos[0] as Pedido} />
                                 </Col>
                             </Row>
-                            <Row className="flex-grow-1">
-                                {pedidos
-                                    .map((pedido: Pedido, index) => (
-                                        <Col className="col-12 col-md-6 col-lg-4" key={index}>
+                            <TransitionGroup component={Row} className="flex-grow-1">
+                                {paginate.documentos.map((pedido: Pedido, index) => (
+                                    <CSSTransition
+                                        key={index}
+                                        classNames="fade"
+                                        timeout={500}
+                                        appear
+                                        nodeRef={nodeRef}
+                                    >
+                                        <Col className="col-12 col-md-6 col-lg-4">
                                             <CardPedido pedido={pedido} />
                                         </Col>
-                                    ))
-                                    .slice(1)}
-                            </Row>
+                                    </CSSTransition>
+                                )).slice(1)}
+                            </TransitionGroup>
                         </Container>
                     ) : (
                         <NadaPorAqui titulo={'Nada por aqui!'} />

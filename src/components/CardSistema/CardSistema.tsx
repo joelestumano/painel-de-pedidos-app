@@ -1,14 +1,15 @@
 import { Card, Col, Row } from "react-bootstrap";
 import { Bells } from "../Bells/Bells";
+import { Paginate } from "../../types/Paginate.type";
 
-export const CardSistema = ({ ...props }) => {
+export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = ({ onUpdate, paginate }) => {
     return (
         <Card className="h-100 border-0 p-2 bg-transparent">
             <Row className={`h-100 bg-primary bg-opacity-25 shadow rounded`}>
                 <Col className="col-md-6 p-3">
                     <Row>
                         <Col>
-                            <Bells></Bells>
+                            <Bells ring={onUpdate}></Bells>
                         </Col>
                     </Row>
                     <Row className="mt-2">
@@ -16,9 +17,9 @@ export const CardSistema = ({ ...props }) => {
                             <label className="position-relative w-auto bg-white rounded px-2 py-1 fw-semibold">
                                 Pedidos pendentes
                                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success fs-5">
-                                    {props.paginate.totalDocumentos}
+                                    {paginate.totalDocumentos}
                                     <span className="visually-hidden">
-                                        {props.paginate.totalDocumentos}
+                                        {paginate.totalDocumentos}
                                     </span>
                                 </span>
                             </label>
@@ -26,7 +27,7 @@ export const CardSistema = ({ ...props }) => {
                     </Row>
                 </Col>
                 <Col className="col-md-6 p-3">
-                    
+
                 </Col>
             </Row>
         </Card>

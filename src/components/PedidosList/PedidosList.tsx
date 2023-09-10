@@ -11,6 +11,8 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const PedidosList: React.FC = () => {
 
+    const nodeRef = React.useRef(null);
+
     const limit: number = 4;
     const status: string = "pendente";
 
@@ -86,6 +88,7 @@ const PedidosList: React.FC = () => {
                                         classNames="fade"
                                         timeout={500}
                                         appear
+                                        nodeRef={nodeRef}
                                     >
                                         <Col className="col-12 col-md-6 col-lg-4">
                                             <CardPedido pedido={pedido} />

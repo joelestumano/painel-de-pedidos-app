@@ -7,6 +7,7 @@ import { Loading } from "../Loading/Loading";
 import { CardPedido } from "../CardPedido/CardPedido";
 import { CardSistema } from "../CardSistema/CardSistema";
 import { NadaPorAqui } from "../NadaPorAqui/NadaPorAqui";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const PedidosList: React.FC = () => {
     const [pedidos, setPedidos] = useState<Pedido[]>([]);
@@ -75,15 +76,20 @@ const PedidosList: React.FC = () => {
                                     <CardPedido isPrincipal={true} pedido={getPedido(0)} />
                                 </Col>
                             </Row>
-                            <Row className="flex-grow-1">
-                                {pedidos
-                                    .map((pedido: Pedido, index) => (
-                                        <Col className="col-12 col-md-6 col-lg-4" key={index}>
-                                            <CardPedido pedido={pedido} />
+                            <TransitionGroup component={Row} className="flex-grow-1">
+                                {pedidos.map((item, index) => (
+                                    <CSSTransition
+                                        key={index}
+                                        classNames="fade"
+                                        timeout={500}
+                                        appear
+                                    >
+                                        <Col className="col-12 col-md-6 col-lg-4">
+                                            <CardPedido pedido={item} />
                                         </Col>
-                                    ))
-                                    .slice(1)}
-                            </Row>
+                                    </CSSTransition>
+                                )).slice(1)}
+                            </TransitionGroup>
                         </Container>
                     ) : (
                         <NadaPorAqui titulo={'Nada por aqui!'} />

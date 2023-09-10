@@ -81,14 +81,13 @@ const PedidosList: React.FC = () => {
                                     <CardPedido isPrincipal={true} pedido={paginate.documentos[0] as Pedido} />
                                 </Col>
                             </Row>
-                            <TransitionGroup component={Row} className="flex-grow-1">
+                            <TransitionGroup component={Row} className="flex-grow-1" nodeRef={nodeRef}>
                                 {paginate.documentos.map((pedido: Pedido, index) => (
                                     <CSSTransition
                                         key={index}
                                         classNames="fade"
                                         timeout={500}
                                         appear
-                                        nodeRef={nodeRef}
                                     >
                                         <Col className="col-12 col-md-6 col-lg-4">
                                             <CardPedido pedido={pedido} />

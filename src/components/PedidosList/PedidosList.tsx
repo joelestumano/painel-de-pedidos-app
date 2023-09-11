@@ -21,7 +21,7 @@ const PedidosList: React.FC = () => {
 
     const [onUpdate, setOnUpdate] = useState(false);
 
-    /* const apiBaseUrl = 'http://localhost:3000/' */
+    //const apiBaseUrl = 'http://localhost:3000/'
     const apiBaseUrl = "https://sg-api-b7fl.onrender.com/";
 
     useEffect(() => {

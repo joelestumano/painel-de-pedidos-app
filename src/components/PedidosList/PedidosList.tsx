@@ -74,28 +74,32 @@ const PedidosList: React.FC = () => {
                 <>
                     {paginate && paginate.documentos?.length > 0 ? (
                         <Container fluid={true}>
-                            <Row className="flex-md-row-reverse" style={{ minHeight: "60vh" }}>
+                            <Row className="flex-md-row-reverse">
                                 <Col className="col-12 col-md-4">
                                     <CardSistema onUpdate={onUpdate} paginate={paginate} />
                                 </Col>
                                 <Col className="col-12 col-md-8">
-                                    <CardPedido isPrincipal={true} pedido={paginate.documentos[0] as Pedido} />
+                                    <Row style={{ minHeight: "60vh" }}>
+                                        <Col className="col-12 col-md-12">
+                                            <CardPedido isPrincipal={true} pedido={paginate.documentos[0] as Pedido} />
+                                        </Col>
+                                    </Row>
+                                    <TransitionGroup component={Row} className="flex-grow-1" nodeRef={nodeRef}>
+                                        {paginate.documentos.slice(1, limiteVisivel).map((pedido: Pedido, index) => (
+                                            <CSSTransition
+                                                key={index}
+                                                classNames="fade"
+                                                timeout={500}
+                                                appear
+                                            >
+                                                <Col className="col-12 col-md-6 col-lg-6">
+                                                    <CardPedido pedido={pedido} />
+                                                </Col>
+                                            </CSSTransition>
+                                        ))}
+                                    </TransitionGroup>
                                 </Col>
                             </Row>
-                            <TransitionGroup component={Row} className="flex-grow-1" nodeRef={nodeRef}>
-                                {paginate.documentos.slice(1, limiteVisivel).map((pedido: Pedido, index) => (
-                                    <CSSTransition
-                                        key={index}
-                                        classNames="fade"
-                                        timeout={500}
-                                        appear
-                                    >
-                                        <Col className="col-12 col-md-6 col-lg-4">
-                                            <CardPedido pedido={pedido} />
-                                        </Col>
-                                    </CSSTransition>
-                                ))}
-                            </TransitionGroup>
                         </Container>
                     ) : (
                         <NadaPorAqui titulo={'Nada por aqui!'} />

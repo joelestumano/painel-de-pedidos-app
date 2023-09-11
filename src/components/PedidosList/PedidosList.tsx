@@ -13,8 +13,9 @@ const PedidosList: React.FC = () => {
 
     const nodeRef = React.useRef(null);
 
-    const limit: number = 4;
+    const limit: number = 1000;
     const status: string = "pendente";
+    const limiteVisivel = 3;
 
     const [paginate, setPaginate] = useState<Paginate>();
     const [loading, setLoading] = useState(true);
@@ -82,7 +83,7 @@ const PedidosList: React.FC = () => {
                                 </Col>
                             </Row>
                             <TransitionGroup component={Row} className="flex-grow-1" nodeRef={nodeRef}>
-                                {paginate.documentos.map((pedido: Pedido, index) => (
+                                {paginate.documentos.slice(1, limiteVisivel).map((pedido: Pedido, index) => (
                                     <CSSTransition
                                         key={index}
                                         classNames="fade"
@@ -93,7 +94,7 @@ const PedidosList: React.FC = () => {
                                             <CardPedido pedido={pedido} />
                                         </Col>
                                     </CSSTransition>
-                                )).slice(1)}
+                                ))}
                             </TransitionGroup>
                         </Container>
                     ) : (

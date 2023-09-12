@@ -9,8 +9,9 @@ import { CardSistema } from "../CardSistema/CardSistema";
 import { NadaPorAqui } from "../NadaPorAqui/NadaPorAqui";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-const PedidosList: React.FC = () => {
+const PedidosList: React.FC<{}> = () => {
 
+    const OnlineStatusContext = React.createContext(false);
     const nodeRef = React.useRef(null)
 
     const limit: number = 1000;
@@ -40,6 +41,32 @@ const PedidosList: React.FC = () => {
             eventSource.close();
         };
     }, []);
+
+    const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+    useEffect(() => {
+        const handleOnline = () => {
+            setIsOnline(true);
+        };
+
+        const handleOffline = () => {
+            setIsOnline(false);
+        };
+
+        window.addEventListener('online', handleOnline);
+        window.addEventListener('offline', handleOffline);
+
+        return () => {
+            window.removeEventListener('online', handleOnline);
+            window.removeEventListener('offline', handleOffline);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (isOnline) {
+            carregarDadosPedidos();
+        }
+    }, [isOnline]);
 
     function carregarDadosPedidos() {
         fetch(
@@ -71,9 +98,9 @@ const PedidosList: React.FC = () => {
             {loading ? (
                 <Loading />
             ) : (
-                <>
+                <OnlineStatusContext.Provider value={isOnline}>
                     {paginate && paginate.documentos?.length > 0 ? (
-                        <Container fluid={true}>
+                        <Container fluid={true} className={`${isOnline ? '' : 'bg-danger bg-opacity-25'}`}>
                             <Row>
                                 <Col className="col-12 col-md-8">
                                     <Row style={{ minHeight: "60vh" }}>
@@ -104,7 +131,7 @@ const PedidosList: React.FC = () => {
                     ) : (
                         <NadaPorAqui titulo={'Nada por aqui!'} />
                     )}
-                </>
+                </OnlineStatusContext.Provider>
             )}
         </>
     );

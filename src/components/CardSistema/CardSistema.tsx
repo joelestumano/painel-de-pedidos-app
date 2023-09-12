@@ -19,7 +19,7 @@ export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = 
     return (
         <Card className="h-100_ border-0 p-2 bg-transparent" style={{ height: '100vh' }}>
             <Row className={`h-auto bg-primary bg-opacity-25 shadow rounded`}>
-                <Col className="col-md-6 p-3">
+                <Col className="col-8 col-md-8 p-3">
 
                     <Row className="mt-2">
                         <Col>
@@ -35,7 +35,7 @@ export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = 
                         </Col>
                     </Row>
                 </Col>
-                <Col className="col-md-6 p-3">
+                <Col className="col-4 col-md-4 p-3">
                     <Row>
                         <Col className="d-flex justify-content-center">
                             <Bells ring={onUpdate}></Bells>

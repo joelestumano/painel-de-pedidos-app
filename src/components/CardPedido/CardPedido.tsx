@@ -5,7 +5,7 @@ import { ImageGallery } from "../ImageGallery/ImageGallery";
 import { NumeroPedido } from "../NumeroPedido/NumeroPedido";
 import { Icon } from "../Icon";
 import { Detalhes } from "../Detalhes/Detalhes";
-import { Progressbar } from "../Progressbar/Progressbar";
+import { ProgressbarPedido } from "../ProgressbarPedido/ProgressbarPedido";
 
 const TextTitle = ({ ...props }) => {
     return (
@@ -84,7 +84,7 @@ export const CardPedido = ({ ...props }) => {
                     </Row>
                 </Col>
                 <Col className="col-12 col-md-12">
-                    <Progressbar targetDateTime={(despacho).toISOString()} />
+                    <ProgressbarPedido targetDateTime={(despacho).toISOString()} />
                 </Col>
             </Row>
         </Card>

@@ -1,8 +1,3 @@
-.scroll-group {
-    overflow-y: auto;
-    max-height: 71vh;
-}
-
 .fade-enter {
     opacity: 0;
 }
@@ -20,3 +15,12 @@
     opacity: 0;
     transition: opacity 500ms ease-in;
 }
+
+@mixin scrollGroup {
+   /*  height: 30vh; */ // Define a altura do elemento como 100% da altura da viewport
+    overflow-y: auto; // Adiciona a barra de rolagem vertical somente quando necessário
+  }
+  
+  .scroll-group {
+    @include scrollGroup; // Aplica o mixin scrollGroup à classe .scroll-group
+  }

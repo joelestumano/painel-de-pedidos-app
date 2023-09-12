@@ -63,19 +63,12 @@ export const CardPedido = ({ ...props }) => {
                             ) : null}
                             <NumeroPedido isPrincipal={props.isPrincipal} value={props.pedido.codigo} />
                             <p className="font-size-custom fw-semibold mb-2">
-                                <Icon
-                                    iconName="Clock"
-                                    /*  size={16} */
-                                    className="align-middle me-1"
-                                />
+                                <Icon iconName="Clock" className="align-middle me-1"/>
                                 {despacho.toLocaleTimeString()}
                             </p>
                             <ul className="list-group">
                                 {props.pedido.items.map((item: any, index: number) => (
-                                    <li
-                                        className="list-group-item border-0 bg-transparent p-0"
-                                        key={index}
-                                    >
+                                    <li className="list-group-item border-0 bg-transparent p-0" key={index}>
                                         <TextTitle cliente={`${item.descricao} R$: ${item.valor.toFixed(2).replace(".", ",")}`} />
                                     </li>
                                 ))}

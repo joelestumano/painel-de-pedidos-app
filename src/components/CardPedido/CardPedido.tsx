@@ -5,6 +5,7 @@ import { ImageGallery } from "../ImageGallery/ImageGallery";
 import { NumeroPedido } from "../NumeroPedido/NumeroPedido";
 import { Icon } from "../Icon";
 import { Detalhes } from "../Detalhes/Detalhes";
+import { Progressbar } from "../Progressbar/Progressbar";
 
 const TextTitle = ({ ...props }) => {
     return (
@@ -15,11 +16,34 @@ const TextTitle = ({ ...props }) => {
 };
 
 export const CardPedido = ({ ...props }) => {
+
     function getImgs(pedido: Pedido): string[] {
         return pedido.items.map((item: any, index: number) => item.bannerUrl);
     }
 
-    let despacho = new Date(props.pedido?.horaDespacho);
+
+    function subtractTenMinutes(dateTimeString: string): string {
+
+        const [date, time] = dateTimeString.split(" ");
+        const [year, month, day] = date.split("-");
+        const [hours, minutes, seconds] = time.split(":");
+
+        const dateTime = new Date(Number(year), Number(month) - 1, Number(day), Number(hours), Number(minutes), Number(seconds));
+
+        dateTime.setMinutes(dateTime.getMinutes() - 10);
+
+        return `${dateTime.getFullYear()}-${(dateTime.getMonth() + 1)
+            .toString()
+            .padStart(2, "0")}-${dateTime.getDate().toString().padStart(2, "0")} ${dateTime
+                .getHours()
+                .toString()
+                .padStart(2, "0")}:${dateTime.getMinutes().toString().padStart(2, "0")}:${dateTime
+                    .getSeconds()
+                    .toString()
+                    .padStart(2, "0")}.${dateTime.getMilliseconds()}`;
+    }
+
+    let despacho = new Date(subtractTenMinutes(props.pedido?.horaDespacho));
 
     return (
         <Card className="h-100 border-0 p-2 bg-transparent">
@@ -40,19 +64,12 @@ export const CardPedido = ({ ...props }) => {
                             ) : null}
                             <NumeroPedido isPrincipal={props.isPrincipal} value={props.pedido.codigo} />
                             <p className="font-size-custom fw-semibold mb-2">
-                                <Icon
-                                    iconName="Clock"
-                                    /*  size={16} */
-                                    className="align-middle me-1"
-                                />
+                                <Icon iconName="Clock" className="align-middle me-1" />
                                 {despacho.toLocaleTimeString()}
                             </p>
                             <ul className="list-group">
                                 {props.pedido.items.map((item: any, index: number) => (
-                                    <li
-                                        className="list-group-item border-0 bg-transparent p-0"
-                                        key={index}
-                                    >
+                                    <li className="list-group-item border-0 bg-transparent p-0" key={index}>
                                         <TextTitle cliente={`${item.descricao} R$: ${item.valor.toFixed(2).replace(".", ",")}`} />
                                     </li>
                                 ))}
@@ -65,6 +82,9 @@ export const CardPedido = ({ ...props }) => {
                             </Col>
                         ) : null}
                     </Row>
+                </Col>
+                <Col className="col-12 col-md-12">
+                    <Progressbar targetDateTime={(despacho).toISOString()} />
                 </Col>
             </Row>
         </Card>

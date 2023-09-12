@@ -5,6 +5,7 @@ import { ImageGallery } from "../ImageGallery/ImageGallery";
 import { NumeroPedido } from "../NumeroPedido/NumeroPedido";
 import { Icon } from "../Icon";
 import { Detalhes } from "../Detalhes/Detalhes";
+import { Progressbar } from "../Progressbar/Progressbar";
 
 const TextTitle = ({ ...props }) => {
     return (
@@ -63,7 +64,7 @@ export const CardPedido = ({ ...props }) => {
                             ) : null}
                             <NumeroPedido isPrincipal={props.isPrincipal} value={props.pedido.codigo} />
                             <p className="font-size-custom fw-semibold mb-2">
-                                <Icon iconName="Clock" className="align-middle me-1"/>
+                                <Icon iconName="Clock" className="align-middle me-1" />
                                 {despacho.toLocaleTimeString()}
                             </p>
                             <ul className="list-group">
@@ -81,6 +82,9 @@ export const CardPedido = ({ ...props }) => {
                             </Col>
                         ) : null}
                     </Row>
+                </Col>
+                <Col className="col-12 col-md-12">
+                    <Progressbar targetDateTime={(despacho).toISOString()} />
                 </Col>
             </Row>
         </Card>

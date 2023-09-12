@@ -4,6 +4,7 @@ import { ProgressBar } from "react-bootstrap";
 export const Progressbar: React.FC<{ targetDateTime: string }> = ({ targetDateTime }) => {
 
     const [progress, setProgress] = useState(0);
+    const [restante, setRestante] = useState(0);
     const minAnt = 30;
 
     useEffect(() => {
@@ -12,6 +13,8 @@ export const Progressbar: React.FC<{ targetDateTime: string }> = ({ targetDateTi
             const targetDateTimeObj = new Date(targetDateTime);
             const diffMilliseconds = targetDateTimeObj.getTime() - currentDateTime.getTime();
             const diffMinutes = Math.floor(diffMilliseconds / (1000 * 60));
+
+            setRestante(diffMinutes + 1);
 
             if (diffMinutes <= minAnt && diffMinutes >= 0) {
                 const percentage = Math.round(((minAnt - diffMinutes) / minAnt) * 100);
@@ -43,11 +46,10 @@ export const Progressbar: React.FC<{ targetDateTime: string }> = ({ targetDateTi
                 className="mt-1"
                 style={barStyle}
             />
-
             {progress === 100 ? (
-                <span className="fw-semibold px-1 mt-2 text-danger">Concluído</span>
+                <span className="fw-semibold px-1 mt-2 text-danger">Tempo esgotado!</span>
             ) : (
-                <span className="fw-semibold px-1 mt-2">{`${progress}%`}</span>
+                <span className="fw-semibold px-1 mt-2">{restante > 1 ? `${restante} min restantes` : `${restante} min restante`}</span>
             )}
         </div>
     );

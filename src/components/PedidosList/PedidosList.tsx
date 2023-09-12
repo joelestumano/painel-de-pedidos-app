@@ -11,7 +11,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const PedidosList: React.FC = () => {
 
-    const nodeRef = React.useRef(null);
+    const nodeRef = React.useRef(null)
 
     const limit: number = 1000;
     const status: string = "pendente";
@@ -74,23 +74,20 @@ const PedidosList: React.FC = () => {
                 <>
                     {paginate && paginate.documentos?.length > 0 ? (
                         <Container fluid={true}>
-                            <Row className="flex-md-row-reverse">
-                                <Col className="col-12 col-md-4">
-                                    <CardSistema onUpdate={onUpdate} paginate={paginate} />
-                                </Col>
+                            <Row>
                                 <Col className="col-12 col-md-8">
                                     <Row style={{ minHeight: "60vh" }}>
                                         <Col className="col-12 col-md-12">
                                             <CardPedido isPrincipal={true} pedido={paginate.documentos[0] as Pedido} />
                                         </Col>
                                     </Row>
-                                    <TransitionGroup component={Row} className="flex-grow-1" nodeRef={nodeRef}>
+                                    <TransitionGroup component={Row} className="flex-grow-1" noderef={nodeRef}>
                                         {paginate.documentos.slice(1, limiteVisivel).map((pedido: Pedido, index) => (
                                             <CSSTransition
                                                 key={index}
                                                 classNames="fade"
                                                 timeout={500}
-                                                appear
+                                                ref={nodeRef}
                                             >
                                                 <Col className="col-12 col-md-6 col-lg-6">
                                                     <CardPedido pedido={pedido} />
@@ -98,6 +95,9 @@ const PedidosList: React.FC = () => {
                                             </CSSTransition>
                                         ))}
                                     </TransitionGroup>
+                                </Col>
+                                <Col className="col-12 col-md-4">
+                                    <CardSistema onUpdate={onUpdate} paginate={paginate} />
                                 </Col>
                             </Row>
                         </Container>

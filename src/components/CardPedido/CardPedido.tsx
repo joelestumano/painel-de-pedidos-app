@@ -24,8 +24,8 @@ export const CardPedido = ({ ...props }) => {
         <Card className="h-100 border-0 p-2 bg-transparent">
             <Row
                 className={`h-100 rounded ${props.isPrincipal
-                        ? "bg-white bg-opacity-50 shadow"
-                        : "bg-primary bg-opacity-10"
+                    ? "bg-white bg-opacity-50 shadow"
+                    : "bg-primary bg-opacity-10"
                     }`}
             >
                 <Col className="col-12 col-md-6 p-3">

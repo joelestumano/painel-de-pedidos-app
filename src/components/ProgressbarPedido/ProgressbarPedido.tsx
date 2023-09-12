@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ProgressBar } from "react-bootstrap";
 
-export const Progressbar: React.FC<{ targetDateTime: string }> = ({ targetDateTime }) => {
+export const ProgressbarPedido: React.FC<{ targetDateTime: string }> = ({ targetDateTime }) => {
 
     const [progress, setProgress] = useState(0);
     const [restante, setRestante] = useState(0);
@@ -38,6 +38,20 @@ export const Progressbar: React.FC<{ targetDateTime: string }> = ({ targetDateTi
         backgroundColor: "white",
     };
 
+    function transformarEmHorasMinutos(numero: number) {
+        const horas = Math.floor(numero / 60);
+        const minutos = numero % 60;
+        let resultado = '';
+        if (horas > 0) {
+            resultado += horas === 1 ? '1 hora' : `${horas} horas`;
+        }
+        if (minutos > 0) {
+            resultado += horas > 0 ? ' e ' : '';
+            resultado += minutos === 1 ? '1 minuto' : `${minutos} minutos`;
+        }
+        return resultado === '' ? '0 minutos' : resultado + ' restante';
+    }
+
     return (
         <div>
             <ProgressBar
@@ -49,12 +63,9 @@ export const Progressbar: React.FC<{ targetDateTime: string }> = ({ targetDateTi
             {progress === 100 ? (
                 <span className="fw-semibold px-1 mt-2 text-danger">Tempo esgotado!</span>
             ) : (
-                <span className="fw-semibold px-1 mt-2">{restante > 1 ? `${restante} min restantes` : `${restante} min restante`}</span>
+                <span className="fw-semibold px-1 mt-2">{transformarEmHorasMinutos(restante)}</span>
             )}
         </div>
     );
-
-
-
 }
 

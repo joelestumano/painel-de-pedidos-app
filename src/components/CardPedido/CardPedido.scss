@@ -1,0 +1,22 @@
+.width-fit-content {
+    width: fit-content;
+}
+
+@mixin changeFontSize($screen-size, $font-size) {
+    @media screen and (min-width: $screen-size) {
+        .font-size-custom {
+            font-size: $font-size;
+        }
+
+        .custom-p {
+            font-size: $font-size;
+        }
+    }
+}
+
+@include changeFontSize(1600px, 24px); // Defina o tamanho da tela maior que xl do Bootstrap e o tamanho da fonte personalizada//
+
+// Exemplo de uso da classe
+.custom-p {
+    @include changeFontSize(1600px, 40px); // Defina um tamanho de fonte personalizada específico para a tela maior que lg do Bootstrap
+}

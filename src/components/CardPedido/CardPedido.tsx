@@ -39,14 +39,14 @@ export const CardPedido = ({ ...props }) => {
                                 <TextTitle cliente={props.pedido.cliente.nome} />
                             ) : null}
                             <NumeroPedido isPrincipal={props.isPrincipal} value={props.pedido.codigo} />
-                            <h4>
+                            <p className="font-size-custom fw-semibold mb-2">
                                 <Icon
                                     iconName="Clock"
                                     /*  size={16} */
                                     className="align-middle me-1"
                                 />
                                 {despacho.toLocaleTimeString()}
-                            </h4>
+                            </p>
                             <ul className="list-group">
                                 {props.pedido.items.map((item: any, index: number) => (
                                     <li

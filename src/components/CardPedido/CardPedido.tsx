@@ -24,8 +24,8 @@ export const CardPedido = ({ ...props }) => {
         <Card className="h-100 border-0 p-2 bg-transparent">
             <Row
                 className={`h-100 rounded ${props.isPrincipal
-                        ? "bg-white bg-opacity-50 shadow"
-                        : "bg-primary bg-opacity-10"
+                    ? "bg-white bg-opacity-50 shadow"
+                    : "bg-primary bg-opacity-10"
                     }`}
             >
                 <Col className="col-12 col-md-6 p-3">
@@ -39,14 +39,13 @@ export const CardPedido = ({ ...props }) => {
                                     <Section cliente={props.pedido.cliente.nome} />
                                 </div>
                             ) : null}
-                            <NumeroPedido value={props.pedido.codigo} />
+                            <NumeroPedido isPrincipal={props.isPrincipal} value={props.pedido.codigo} />
                             <h6>
                                 <Icon
                                     iconName="Clock"
                                     size={16}
                                     className="align-middle me-1"
                                 />
-                                {despacho.toLocaleDateString()} às{" "}
                                 {despacho.toLocaleTimeString()}
                             </h6>
                             <ul className="list-group">
@@ -55,7 +54,7 @@ export const CardPedido = ({ ...props }) => {
                                         className="list-group-item border-0 bg-transparent p-0 my-1"
                                         key={index}
                                     >
-                                        <span className="card-text p-1 px-2 rounded-2 bg-primary bg-opacity-25">
+                                        <span className="card-text p-1 px-2 rounded-2 bg-primary bg-opacity-25 fw-bold">
                                             <small className="">
                                                 {item.descricao} R${" "}
                                                 {item.valor.toFixed(2).replace(".", ",")}

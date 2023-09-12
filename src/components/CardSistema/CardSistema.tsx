@@ -17,7 +17,7 @@ export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = 
     const isNext = (paginate.totalDocumentos - limiteVisivel) > 0
 
     return (
-        <Card className="h-auto border-0 p-2 bg-transparent">
+        <Card className="h-100_ border-0 p-2 bg-transparent" style={{ height: '100vh' }}>
             <Row className={`h-auto bg-primary bg-opacity-25 shadow rounded`}>
                 <Col className="col-md-6 p-3">
 
@@ -44,19 +44,20 @@ export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = 
 
                 </Col>
             </Row>
-            <TransitionGroup component={Row} className="flex-grow-1 scroll-group" noderef={nodeRef}>
-                {paginate.documentos.slice(limiteVisivel, limit).map((pedido: Pedido, index) => (
+            <TransitionGroup component={Row} className="h-100 overflow-auto" noderef={nodeRef}>
+                <Col className="col-12 col-md-12"> {paginate.documentos.slice(limiteVisivel, limit).map((pedido: Pedido, index) => (
                     <CSSTransition
                         key={index}
                         classNames="fade"
                         timeout={500}
                         ref={nodeRef}
                     >
-                        <Col className="col-12 col-md-12">
+                        <div>
                             <CardPedido pedido={pedido} />
-                        </Col>
+                        </div>
                     </CSSTransition>
                 ))}
+                </Col>
             </TransitionGroup>
         </Card>
     );

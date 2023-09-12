@@ -1,3 +1,4 @@
+import "./CardPedido.scss";
 import { Card, Col, Row } from "react-bootstrap";
 import { Pedido } from "../../types/Pedido.type";
 import { ImageGallery } from "../ImageGallery/ImageGallery";
@@ -5,11 +6,11 @@ import { NumeroPedido } from "../NumeroPedido/NumeroPedido";
 import { Icon } from "../Icon";
 import { Detalhes } from "../Detalhes/Detalhes";
 
-const Section = ({ ...props }) => {
+const TextTitle = ({ ...props }) => {
     return (
-        <span className="card-text p-1 px-3 fs-5 fw-bold rounded-2 bg-primary bg-opacity-25">
-            <small className="">{props.cliente}</small>
-        </span>
+        <p className="p-1 px-2 fw-bold rounded-2 bg-primary bg-opacity-25 width-fit-content font-size-custom mb-2">
+            {props.cliente}
+        </p>
     );
 };
 
@@ -35,31 +36,24 @@ export const CardPedido = ({ ...props }) => {
                     <Row>
                         <Col>
                             {props.isPrincipal ? (
-                                <div className="d-flex align-items-center mb-3">
-                                    <Section cliente={props.pedido.cliente.nome} />
-                                </div>
+                                <TextTitle cliente={props.pedido.cliente.nome} />
                             ) : null}
                             <NumeroPedido isPrincipal={props.isPrincipal} value={props.pedido.codigo} />
-                            <h6>
+                            <p className="font-size-custom fw-semibold mb-2">
                                 <Icon
                                     iconName="Clock"
-                                    size={16}
+                                    /*  size={16} */
                                     className="align-middle me-1"
                                 />
                                 {despacho.toLocaleTimeString()}
-                            </h6>
+                            </p>
                             <ul className="list-group">
                                 {props.pedido.items.map((item: any, index: number) => (
                                     <li
-                                        className="list-group-item border-0 bg-transparent p-0 my-1"
+                                        className="list-group-item border-0 bg-transparent p-0"
                                         key={index}
                                     >
-                                        <span className="card-text p-1 px-2 rounded-2 bg-primary bg-opacity-25 fw-bold">
-                                            <small className="">
-                                                {item.descricao} R${" "}
-                                                {item.valor.toFixed(2).replace(".", ",")}
-                                            </small>
-                                        </span>
+                                        <TextTitle cliente={`${item.descricao} R$: ${item.valor.toFixed(2).replace(".", ",")}`} />
                                     </li>
                                 ))}
                             </ul>

@@ -12,7 +12,6 @@ import { PedidosService } from "../../services/Pedidos.service";
 
 const PedidosList: React.FC<{}> = () => {
 
-    const OnlineStatusContext = React.createContext(false);
     const nodeRef = React.useRef(null)
 
     const limiteVisivel = 3;
@@ -85,7 +84,7 @@ const PedidosList: React.FC<{}> = () => {
             {loading ? (
                 <Loading />
             ) : (
-                <OnlineStatusContext.Provider value={isOnline}>
+                <>
                     {paginate && paginate.documentos?.length > 0 ? (
                         <Container fluid={true} className={`${isOnline ? '' : 'bg-danger bg-opacity-25'}`}>
                             <Row>
@@ -118,7 +117,7 @@ const PedidosList: React.FC<{}> = () => {
                     ) : (
                         <NadaPorAqui titulo={'Nada por aqui!'} />
                     )}
-                </OnlineStatusContext.Provider>
+                </>
             )}
         </>
     );

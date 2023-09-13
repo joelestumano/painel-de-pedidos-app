@@ -1,6 +1,6 @@
 import "./PedidosList.scss";
 import React, { useState, useEffect } from "react";
-import { Pedido } from "../../app/modules/pedidos/types/Pedido.type";
+import { PedidoType } from "../../app/modules/pedidos/types/Pedido.type";
 import { Paginate } from "../../app/shared/types/Paginate.type";
 import { Row, Col, Container } from "react-bootstrap";
 import { Loading } from "../../app/shared/components/Loading/Loading";
@@ -8,7 +8,7 @@ import { CardPedido } from "../CardPedido/CardPedido";
 import { CardSistema } from "../CardSistema/CardSistema";
 import { NadaPorAqui } from "../NadaPorAqui/NadaPorAqui";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { PedidosService } from "../../app/modules/pedidos/services/PedidosService";
+import { PedidosService } from "../../app/modules/pedidos/services/Pedidos.service";
 
 const PedidosList: React.FC<{}> = () => {
 
@@ -92,11 +92,11 @@ const PedidosList: React.FC<{}> = () => {
                                 <Col className="col-12 col-md-8">
                                     <Row style={{ minHeight: "60vh" }}>
                                         <Col className="col-12 col-md-12">
-                                            <CardPedido isPrincipal={true} pedido={paginate.documentos[0] as Pedido} />
+                                            <CardPedido isPrincipal={true} pedido={paginate.documentos[0] as PedidoType} />
                                         </Col>
                                     </Row>
                                     <TransitionGroup component={Row} className="flex-grow-1" noderef={nodeRef}>
-                                        {paginate.documentos.slice(1, limiteVisivel).map((pedido: Pedido, index) => (
+                                        {paginate.documentos.slice(1, limiteVisivel).map((pedido: PedidoType, index) => (
                                             <CSSTransition
                                                 key={index}
                                                 classNames="fade"

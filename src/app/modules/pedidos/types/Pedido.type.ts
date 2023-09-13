@@ -1,6 +1,6 @@
-import { ItemPedido } from "./ItemPedido";
+import { ItemPedidoType } from "./ItemPedido.type";
 
-export type Pedido = {
+export type PedidoType = {
   cliente: {
     nome: string;
     whatsapp: string;
@@ -10,7 +10,7 @@ export type Pedido = {
   horaDespacho: string;
   isDeleted: boolean;
   isDeliver: boolean;
-  items: ItemPedido[];
+  items: ItemPedidoType[];
   obs: string;
   pagamento: { cartao: Number; dinheiro: Number; pix: number };
   status: string;

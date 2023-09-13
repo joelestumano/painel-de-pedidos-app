@@ -3,7 +3,7 @@ import { Card, Col, Row } from "react-bootstrap";
 import { Bells } from "../Bells/Bells";
 import { Paginate } from "../../app/shared/types/Paginate.type";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { Pedido } from "../../app/modules/pedidos/types/Pedido.type";
+import { PedidoType } from "../../app/modules/pedidos/types/Pedido.type";
 import { CardPedido } from "../CardPedido/CardPedido";
 import React from "react";
 
@@ -45,7 +45,7 @@ export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = 
                 </Col>
             </Row>
             <TransitionGroup component={Row} className="h-100 overflow-auto" noderef={nodeRef}>
-                <Col className="col-12 col-md-12"> {paginate.documentos.slice(limiteVisivel, limit).map((pedido: Pedido, index) => (
+                <Col className="col-12 col-md-12"> {paginate.documentos.slice(limiteVisivel, limit).map((pedido: PedidoType, index) => (
                     <CSSTransition
                         key={index}
                         classNames="fade"

@@ -17,6 +17,6 @@ const getPaginate = async (): Promise<Paginate> => {
     return data;
 };
 
-export const PedidosService = {
+export const PedidosApiService = {
     getPaginate
 }

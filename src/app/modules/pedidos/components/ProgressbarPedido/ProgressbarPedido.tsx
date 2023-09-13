@@ -1,26 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { ProgressBar } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 
 export const ProgressbarPedido: React.FC<{ targetDateTime: string }> = ({ targetDateTime }) => {
+
+    const dispatch = useDispatch();
 
     const [progress, setProgress] = useState(0);
     const [restante, setRestante] = useState(0);
     const minAnt = 30;
 
     useEffect(() => {
+        let change = false;
         const interval = setInterval(() => {
             const currentDateTime = new Date();
             const targetDateTimeObj = new Date(targetDateTime);
             const diffMilliseconds = targetDateTimeObj.getTime() - currentDateTime.getTime();
             const diffMinutes = Math.floor(diffMilliseconds / (1000 * 60));
 
-            setRestante(diffMinutes + 1);
+            setRestante(diffMinutes);
+
+            if (diffMinutes < 1) {
+                setProgress(100);
+                if (!change) {
+                    change = true;
+                    dispatch({
+                        type: "PEDIDO_ATRASADO",
+                        payload: 1
+                    })
+                }
+            }
 
             if (diffMinutes <= minAnt && diffMinutes >= 0) {
                 const percentage = Math.round(((minAnt - diffMinutes) / minAnt) * 100);
                 setProgress(percentage);
             } else if (diffMinutes < 0) {
-                setProgress(100);
                 clearInterval(interval);
             } else {
                 setProgress(0);
@@ -30,7 +44,7 @@ export const ProgressbarPedido: React.FC<{ targetDateTime: string }> = ({ target
         return () => {
             clearInterval(interval);
         };
-    }, [targetDateTime]);
+    }, [targetDateTime, dispatch]);
 
     const variant = progress > 50 ? "danger" : "info";
     const barStyle = {

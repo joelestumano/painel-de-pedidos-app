@@ -6,6 +6,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { PedidoType } from "../../types/Pedido.type";
 import { CardPedido } from "../CardPedido/CardPedido";
 import React from "react";
+import { PedidosTimeService } from "../../services/PedidosTime.service";
 
 export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = ({ onUpdate, paginate }) => {
 
@@ -16,23 +17,57 @@ export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = 
 
     const isNext = (paginate.totalDocumentos - limiteVisivel) > 0
 
+    function getProximosPedidos(): PedidoType[] {
+        return paginate.documentos.slice(limiteVisivel, limit);
+    }
+
+    function lateAccount(): number {
+        let count = 0;
+        getProximosPedidos().forEach((pedido: PedidoType) => {
+            let time = new Date();
+            let despacho = new Date(PedidosTimeService.subtractTenMinutes(pedido.horaDespacho));
+            if (time > despacho) {
+                count++
+            }
+        });
+        return count;
+    }
+
     return (
         <Card className="h-100_ border-0 p-2 bg-transparent" style={{ height: '100vh' }}>
             <Row className={`h-auto bg-primary bg-opacity-25 shadow rounded`}>
                 <Col className="col-8 col-md-8 p-3">
-
-                    <Row className="mt-2">
-                        <Col>
-                            {isNext ? <label className="position-relative w-auto bg-white rounded px-2 py-1 fw-semibold">
-                                Próximos pedidos
-                                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success fs-5">
-                                    {paginate.totalDocumentos - limiteVisivel}
-                                    <span className="visually-hidden">
-                                        {paginate.totalDocumentos - limiteVisivel}
-                                    </span>
-                                </span>
-                            </label> : null}
-                        </Col>
+                    <Row>
+                        {isNext ?
+                            <Col>
+                                <ul className="list-group">
+                                    <li className="list-group-item bg-transparent px-0 py-1 border-0">
+                                        <label className="position-relative w-auto bg-white rounded px-2 py-1 fw-semibold">
+                                            Próximos pedidos
+                                            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success fs-5">
+                                                {paginate.totalDocumentos - limiteVisivel}
+                                                <span className="visually-hidden">
+                                                    {paginate.totalDocumentos - limiteVisivel}
+                                                </span>
+                                            </span>
+                                        </label>
+                                    </li>
+                                    {lateAccount() > 0 ?
+                                        <li className="list-group-item bg-transparent px-0 py-1 border-0">
+                                            <label className="position-relative w-auto bg-white rounded px-2 py-1 fw-semibold">
+                                                Em atraso
+                                                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger fs-5">
+                                                    {lateAccount()}
+                                                    <span className="visually-hidden">
+                                                        {lateAccount()}
+                                                    </span>
+                                                </span>
+                                            </label>
+                                        </li>
+                                        : null}
+                                </ul>
+                            </Col>
+                            : null}
                     </Row>
                 </Col>
                 <Col className="col-4 col-md-4 p-3">
@@ -45,7 +80,7 @@ export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = 
                 </Col>
             </Row>
             <TransitionGroup component={Row} className="h-100 d-block overflow-auto" noderef={nodeRef}>
-                {paginate.documentos.slice(limiteVisivel, limit).map((pedido: PedidoType, index) => (
+                {getProximosPedidos().map((pedido: PedidoType, index) => (
                     <CSSTransition
                         key={index}
                         classNames="fade"

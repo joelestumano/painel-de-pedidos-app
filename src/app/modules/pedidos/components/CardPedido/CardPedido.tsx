@@ -6,6 +6,7 @@ import { NumeroPedido } from "../NumeroPedido/NumeroPedido";
 import { BsIcon } from "../../../../shared/components/BsIcon/BsIcon";
 import { Detalhes } from "../Detalhes/Detalhes";
 import { ProgressbarPedido } from "../ProgressbarPedido/ProgressbarPedido";
+import { PedidosTimeService } from "../../services/PedidosTime.service";
 
 const TextTitle = ({ ...props }) => {
     return (
@@ -21,29 +22,7 @@ export const CardPedido = ({ ...props }) => {
         return pedido.items.map((item: any, index: number) => item.bannerUrl);
     }
 
-
-    function subtractTenMinutes(dateTimeString: string): string {
-
-        const [date, time] = dateTimeString.split(" ");
-        const [year, month, day] = date.split("-");
-        const [hours, minutes, seconds] = time.split(":");
-
-        const dateTime = new Date(Number(year), Number(month) - 1, Number(day), Number(hours), Number(minutes), Number(seconds));
-
-        dateTime.setMinutes(dateTime.getMinutes() - 10);
-
-        return `${dateTime.getFullYear()}-${(dateTime.getMonth() + 1)
-            .toString()
-            .padStart(2, "0")}-${dateTime.getDate().toString().padStart(2, "0")} ${dateTime
-                .getHours()
-                .toString()
-                .padStart(2, "0")}:${dateTime.getMinutes().toString().padStart(2, "0")}:${dateTime
-                    .getSeconds()
-                    .toString()
-                    .padStart(2, "0")}.${dateTime.getMilliseconds()}`;
-    }
-
-    let despacho = new Date(subtractTenMinutes(props.pedido?.horaDespacho));
+    let despacho = new Date(PedidosTimeService.subtractTenMinutes(props.pedido?.horaDespacho));
 
     return (
         <Card className="h-100 border-0 p-2 bg-transparent">

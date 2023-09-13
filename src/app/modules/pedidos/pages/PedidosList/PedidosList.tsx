@@ -8,7 +8,7 @@ import { CardPedido } from "../../components/CardPedido/CardPedido";
 import { CardSistema } from "../../components/CardSistema/CardSistema";
 import { NadaPorAqui } from "../../components/NadaPorAqui/NadaPorAqui";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { PedidosService } from "../../services/Pedidos.service";
+import { PedidosApiService } from "../../services/PedidosApi.service";
 
 const PedidosList: React.FC<{}> = () => {
 
@@ -65,7 +65,7 @@ const PedidosList: React.FC<{}> = () => {
     }, [isOnline]);
 
     function carregarDadosPedidos() {
-        PedidosService.getPaginate()
+        PedidosApiService.getPaginate()
             .then((resp) => {
                 setPaginate(resp);
                 setLoading(false);

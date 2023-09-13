@@ -1,3 +1,5 @@
+import { ItemPedido } from "./ItemPedido";
+
 export type Pedido = {
   cliente: {
     nome: string;
@@ -8,8 +10,10 @@ export type Pedido = {
   horaDespacho: string;
   isDeleted: boolean;
   isDeliver: boolean;
-  items: { bannerUrl: string; descricao: string; valor: number }[];
+  items: ItemPedido[];
   obs: string;
   pagamento: { cartao: Number; dinheiro: Number; pix: number };
   status: string;
 };
+
+

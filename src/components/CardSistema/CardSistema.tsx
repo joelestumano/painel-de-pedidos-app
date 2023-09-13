@@ -1,9 +1,9 @@
 import "./CardSistema.scss";
 import { Card, Col, Row } from "react-bootstrap";
 import { Bells } from "../Bells/Bells";
-import { Paginate } from "../../types/Paginate.type";
+import { Paginate } from "../../app/shared/types/Paginate.type";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { Pedido } from "../../types/Pedido.type";
+import { Pedido } from "../../app/modules/pedidos/types/Pedido.type";
 import { CardPedido } from "../CardPedido/CardPedido";
 import React from "react";
 

@@ -1,10 +1,10 @@
 import "./Bells.scss";
-import { Icon } from "../Icon";
+import { BsIcon } from "../../app/shared/components/BsIcon/BsIcon";
 
 export const Bells: React.FC<{ ring: boolean }> = ({ ring, ...props }) => {
     return (
         <div className="bell-container">
-            <Icon iconName="Bell" color="var(--bs-white)" size={48} className={`align-top ${ring ? "bell animate" : "bell"}`} />
+            <BsIcon iconName="Bell" color="var(--bs-white)" size={48} className={`align-top ${ring ? "bell animate" : "bell"}`} />
         </div>
     );
 }

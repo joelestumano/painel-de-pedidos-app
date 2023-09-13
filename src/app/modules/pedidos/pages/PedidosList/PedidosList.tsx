@@ -12,7 +12,6 @@ import { PedidosService } from "../../services/Pedidos.service";
 
 const PedidosList: React.FC<{}> = () => {
 
-    const OnlineStatusContext = React.createContext(false);
     const nodeRef = React.useRef(null)
 
     const limiteVisivel = 3;

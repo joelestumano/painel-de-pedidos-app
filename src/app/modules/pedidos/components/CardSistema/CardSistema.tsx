@@ -45,16 +45,14 @@ export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = 
                 </Col>
             </Row>
             <TransitionGroup component={Row} className="h-100 overflow-auto" noderef={nodeRef}>
-                <Col className="col-12 col-md-12"> {paginate.documentos.slice(limiteVisivel, limit).map((pedido: PedidoType, index) => (
+                <Col className="col-12 col-md-12 d-table"> {paginate.documentos.slice(limiteVisivel, limit).map((pedido: PedidoType, index) => (
                     <CSSTransition
                         key={index}
                         classNames="fade"
                         timeout={500}
                         ref={nodeRef}
                     >
-                        <div>
-                            <CardPedido pedido={pedido} />
-                        </div>
+                        <CardPedido pedido={pedido} />
                     </CSSTransition>
                 ))}
                 </Col>

@@ -6,9 +6,11 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { PedidoType } from "../../types/Pedido.type";
 import { CardPedido } from "../CardPedido/CardPedido";
 import React from "react";
-import { PedidosTimeService } from "../../services/PedidosTime.service";
+import { useSelector } from "react-redux";
 
 export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = ({ onUpdate, paginate }) => {
+
+    const { pedidosAtrasados } = useSelector((rootReducer: any) => rootReducer.PedidosReducer);
 
     const nodeRef = React.useRef(null);
 
@@ -19,18 +21,6 @@ export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = 
 
     function getProximosPedidos(): PedidoType[] {
         return paginate.documentos.slice(limiteVisivel, limit);
-    }
-
-    function lateAccount(): number {
-        let count = 0;
-        getProximosPedidos().forEach((pedido: PedidoType) => {
-            let time = new Date();
-            let despacho = new Date(PedidosTimeService.subtractTenMinutes(pedido.horaDespacho));
-            if (time > despacho) {
-                count++
-            }
-        });
-        return count;
     }
 
     return (
@@ -52,14 +42,14 @@ export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = 
                                             </span>
                                         </label>
                                     </li>
-                                    {lateAccount() > 0 ?
+                                    {(pedidosAtrasados - limiteVisivel) > 0 ?
                                         <li className="list-group-item bg-transparent px-0 py-1 border-0">
                                             <label className="position-relative w-auto bg-white rounded px-2 py-1 fw-semibold">
                                                 Em atraso
                                                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger fs-5">
-                                                    {lateAccount()}
+                                                    {(pedidosAtrasados - limiteVisivel)}
                                                     <span className="visually-hidden">
-                                                        {lateAccount()}
+                                                        {(pedidosAtrasados - limiteVisivel)}
                                                     </span>
                                                 </span>
                                             </label>

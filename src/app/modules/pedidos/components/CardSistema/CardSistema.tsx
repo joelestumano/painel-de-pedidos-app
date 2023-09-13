@@ -7,8 +7,13 @@ import { PedidoType } from "../../types/Pedido.type";
 import { CardPedido } from "../CardPedido/CardPedido";
 import React from "react";
 import { PedidosTimeService } from "../../services/PedidosTime.service";
+import { useSelector } from "react-redux";
 
 export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = ({ onUpdate, paginate }) => {
+
+    const {pedidosAtrasados} = useSelector((rootReducer: any) => rootReducer.PedidosReducer);
+
+    console.log(pedidosAtrasados)
 
     const nodeRef = React.useRef(null);
 
@@ -21,7 +26,7 @@ export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = 
         return paginate.documentos.slice(limiteVisivel, limit);
     }
 
-    function lateAccount(): number {
+   /*  function lateAccount(): number {
         let count = 0;
         getProximosPedidos().forEach((pedido: PedidoType) => {
             let time = new Date();
@@ -31,7 +36,7 @@ export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = 
             }
         });
         return count;
-    }
+    } */
 
     return (
         <Card className="h-100_ border-0 p-2 bg-transparent" style={{ height: '100vh' }}>
@@ -52,19 +57,19 @@ export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = 
                                             </span>
                                         </label>
                                     </li>
-                                    {lateAccount() > 0 ?
+                                   {/*  {pedidosAtrasados > 0 ?
                                         <li className="list-group-item bg-transparent px-0 py-1 border-0">
                                             <label className="position-relative w-auto bg-white rounded px-2 py-1 fw-semibold">
                                                 Em atraso
                                                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger fs-5">
-                                                    {lateAccount()}
+                                                    {pedidosAtrasados}
                                                     <span className="visually-hidden">
-                                                        {lateAccount()}
+                                                        {pedidosAtrasados}
                                                     </span>
                                                 </span>
                                             </label>
                                         </li>
-                                        : null}
+                                        : null} */}
                                 </ul>
                             </Col>
                             : null}

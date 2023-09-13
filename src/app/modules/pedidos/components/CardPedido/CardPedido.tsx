@@ -1,9 +1,9 @@
 import "./CardPedido.scss";
 import { Card, Col, Row } from "react-bootstrap";
-import { Pedido } from "../../app/modules/pedidos/types/Pedido.type";
-import { ImageGallery } from "../../app/shared/components/ImageGallery/ImageGallery";
+import { PedidoType } from "../../types/Pedido.type";
+import { ImageGallery } from "../../../../shared/components/ImageGallery/ImageGallery";
 import { NumeroPedido } from "../NumeroPedido/NumeroPedido";
-import { BsIcon } from "../../app/shared/components/BsIcon/BsIcon";
+import { BsIcon } from "../../../../shared/components/BsIcon/BsIcon";
 import { Detalhes } from "../Detalhes/Detalhes";
 import { ProgressbarPedido } from "../ProgressbarPedido/ProgressbarPedido";
 
@@ -17,7 +17,7 @@ const TextTitle = ({ ...props }) => {
 
 export const CardPedido = ({ ...props }) => {
 
-    function getImgs(pedido: Pedido): string[] {
+    function getImgs(pedido: PedidoType): string[] {
         return pedido.items.map((item: any, index: number) => item.bannerUrl);
     }
 

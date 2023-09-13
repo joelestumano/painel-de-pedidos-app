@@ -1,14 +1,14 @@
 import "./PedidosList.scss";
 import React, { useState, useEffect } from "react";
-import { PedidoType } from "../../app/modules/pedidos/types/Pedido.type";
-import { Paginate } from "../../app/shared/types/Paginate.type";
+import { PedidoType } from "../../types/Pedido.type";
+import { Paginate } from "../../../../shared/types/Paginate.type";
 import { Row, Col, Container } from "react-bootstrap";
-import { Loading } from "../../app/shared/components/Loading/Loading";
-import { CardPedido } from "../CardPedido/CardPedido";
-import { CardSistema } from "../CardSistema/CardSistema";
-import { NadaPorAqui } from "../NadaPorAqui/NadaPorAqui";
+import { Loading } from "../../../../shared/components/Loading/Loading";
+import { CardPedido } from "../../components/CardPedido/CardPedido";
+import { CardSistema } from "../../components/CardSistema/CardSistema";
+import { NadaPorAqui } from "../../components/NadaPorAqui/NadaPorAqui";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { PedidosService } from "../../app/modules/pedidos/services/Pedidos.service";
+import { PedidosService } from "../../services/Pedidos.service";
 
 const PedidosList: React.FC<{}> = () => {
 

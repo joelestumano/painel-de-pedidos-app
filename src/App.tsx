@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { BsIcon } from "./app/shared/components/BsIcon/BsIcon";
 import { UseDocumentTitle } from "./app/shared/hooks/UseDocumentTitle.hook";
-import PedidosList from "./components/PedidosList/PedidosList";
+import PedidosList from "./app/modules/pedidos/pages/PedidosList/PedidosList";
 
 function Index({ ...props }) {
   const [show, setShow] = useState(false);

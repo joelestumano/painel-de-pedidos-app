@@ -1,7 +1,5 @@
-import { Pedido } from "./Pedido.type";
-
 export type Paginate = {
-    documentos: Pedido[];
+    documentos: any[];
     limite: number;
     pagina: number;
     paginaAnterior: number;

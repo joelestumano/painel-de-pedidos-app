@@ -1,9 +1,9 @@
 import "./CardPedido.scss";
 import { Card, Col, Row } from "react-bootstrap";
-import { Pedido } from "../../types/Pedido.type";
-import { ImageGallery } from "../ImageGallery/ImageGallery";
+import { Pedido } from "../../app/modules/pedidos/types/Pedido.type";
+import { ImageGallery } from "../../app/shared/components/ImageGallery/ImageGallery";
 import { NumeroPedido } from "../NumeroPedido/NumeroPedido";
-import { Icon } from "../Icon";
+import { BsIcon } from "../../app/shared/components/BsIcon/BsIcon";
 import { Detalhes } from "../Detalhes/Detalhes";
 import { ProgressbarPedido } from "../ProgressbarPedido/ProgressbarPedido";
 
@@ -64,7 +64,7 @@ export const CardPedido = ({ ...props }) => {
                             ) : null}
                             <NumeroPedido isPrincipal={props.isPrincipal} value={props.pedido.codigo} />
                             <p className="font-size-custom fw-semibold mb-2">
-                                <Icon iconName="Clock" className="align-middle me-1" />
+                                <BsIcon iconName="Clock" className="align-middle me-1" />
                                 {despacho.toLocaleTimeString()}
                             </p>
                             <ul className="list-group">

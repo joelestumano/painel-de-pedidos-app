@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { Icon } from "./components/Icon";
-import { UseDocumentTitle } from "./hooks/UseDocumentTitle.hook";
+import { BsIcon } from "./app/shared/components/BsIcon/BsIcon";
+import { UseDocumentTitle } from "./app/shared/hooks/UseDocumentTitle.hook";
 import PedidosList from "./components/PedidosList/PedidosList";
 
 function Index({ ...props }) {
@@ -19,12 +19,12 @@ function Index({ ...props }) {
         onClick={toggleShow}
         className="position-fixed top-0 end-0 rounded-end-0 rounded-start-3 mt-5 px-2 shadow"
       >
-        <Icon iconName="List" color="white" size={32} className="align-top" />
+        <BsIcon iconName="List" color="white" size={32} className="align-top" />
       </Button>
       <Offcanvas placement="end" show={show} onHide={handleClose} {...props}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
-            <Icon iconName="Gear" size={32} className="align-middle me-1" />
+            <BsIcon iconName="Gear" size={32} className="align-middle me-1" />
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>

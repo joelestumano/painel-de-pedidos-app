@@ -1,29 +1,26 @@
 import "./PedidosList.scss";
 import React, { useState, useEffect } from "react";
-import { Pedido } from "../../types/Pedido.type";
-import { Paginate } from "../../types/Paginate.type";
+import { Pedido } from "../../app/modules/pedidos/types/Pedido.type";
+import { Paginate } from "../../app/shared/types/Paginate.type";
 import { Row, Col, Container } from "react-bootstrap";
-import { Loading } from "../Loading/Loading";
+import { Loading } from "../../app/shared/components/Loading/Loading";
 import { CardPedido } from "../CardPedido/CardPedido";
 import { CardSistema } from "../CardSistema/CardSistema";
 import { NadaPorAqui } from "../NadaPorAqui/NadaPorAqui";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { PedidosService } from "../../app/modules/pedidos/services/PedidosService";
 
 const PedidosList: React.FC<{}> = () => {
 
     const OnlineStatusContext = React.createContext(false);
     const nodeRef = React.useRef(null)
 
-    const limit: number = 1000;
-    const status: string = "pendente";
     const limiteVisivel = 3;
 
     const [paginate, setPaginate] = useState<Paginate>();
     const [loading, setLoading] = useState(true);
-
     const [onUpdate, setOnUpdate] = useState(false);
 
-    //const apiBaseUrl = 'http://localhost:3000/'
     const apiBaseUrl = "https://sg-api-b7fl.onrender.com/";
 
     useEffect(() => {
@@ -69,20 +66,10 @@ const PedidosList: React.FC<{}> = () => {
     }, [isOnline]);
 
     function carregarDadosPedidos() {
-        fetch(
-            `${apiBaseUrl}v1/pedidos/paginate?ativarPaginacao=true&pagina=1&limite=${limit}&status=${status}`,
-            {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-        )
-            .then((resp) => resp.json())
+        PedidosService.getPaginate()
             .then((resp) => {
                 setPaginate(resp);
                 setLoading(false);
-                /*  */
                 setOnUpdate(true);
                 setTimeout(() => {
                     setOnUpdate(false);

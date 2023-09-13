@@ -1,5 +1,5 @@
 export function ImageGallery({ ...props }) {
-    const imageCount = props.images.length;
+  const imageCount = props.images.length;
   const columns = Math.ceil(Math.sqrt(imageCount));
 
   const molduraStyle = {
@@ -11,7 +11,7 @@ export function ImageGallery({ ...props }) {
 
   return (
     <div className="moldura" style={molduraStyle}>
-      {props.images.map((url:string, index: number) => (
+      {props.images.map((url: string, index: number) => (
         <img className="rounded"
           key={index}
           src={url}
@@ -27,5 +27,3 @@ export function ImageGallery({ ...props }) {
     </div>
   );
 }
-
-

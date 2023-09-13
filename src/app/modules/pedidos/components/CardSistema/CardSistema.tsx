@@ -6,14 +6,11 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { PedidoType } from "../../types/Pedido.type";
 import { CardPedido } from "../CardPedido/CardPedido";
 import React from "react";
-import { PedidosTimeService } from "../../services/PedidosTime.service";
 import { useSelector } from "react-redux";
 
 export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = ({ onUpdate, paginate }) => {
 
-    const {pedidosAtrasados} = useSelector((rootReducer: any) => rootReducer.PedidosReducer);
-
-    console.log(pedidosAtrasados)
+    const { pedidosAtrasados } = useSelector((rootReducer: any) => rootReducer.PedidosReducer);
 
     const nodeRef = React.useRef(null);
 
@@ -25,18 +22,6 @@ export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = 
     function getProximosPedidos(): PedidoType[] {
         return paginate.documentos.slice(limiteVisivel, limit);
     }
-
-   /*  function lateAccount(): number {
-        let count = 0;
-        getProximosPedidos().forEach((pedido: PedidoType) => {
-            let time = new Date();
-            let despacho = new Date(PedidosTimeService.subtractTenMinutes(pedido.horaDespacho));
-            if (time > despacho) {
-                count++
-            }
-        });
-        return count;
-    } */
 
     return (
         <Card className="h-100_ border-0 p-2 bg-transparent" style={{ height: '100vh' }}>
@@ -57,7 +42,7 @@ export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = 
                                             </span>
                                         </label>
                                     </li>
-                                   {/*  {pedidosAtrasados > 0 ?
+                                    {pedidosAtrasados > 0 ?
                                         <li className="list-group-item bg-transparent px-0 py-1 border-0">
                                             <label className="position-relative w-auto bg-white rounded px-2 py-1 fw-semibold">
                                                 Em atraso
@@ -69,7 +54,7 @@ export const CardSistema: React.FC<{ onUpdate: boolean, paginate: Paginate }> = 
                                                 </span>
                                             </label>
                                         </li>
-                                        : null} */}
+                                        : null}
                                 </ul>
                             </Col>
                             : null}

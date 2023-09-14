@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { ProgressBar } from "react-bootstrap";
-import { useDispatch } from "react-redux";
 import { PedidoType } from "../../types/Pedido.type";
 import { PedidosTimeService } from "../../services/PedidosTime.service";
 
@@ -9,14 +8,11 @@ export const ProgressbarPedido: React.FC<{ pedido: PedidoType }> = ({ pedido }) 
     let despacho = new Date(PedidosTimeService.subtractTenMinutes(pedido.horaDespacho));
     const targetDateTime = (despacho).toISOString();
 
-    const dispatch = useDispatch();
-
     const [progress, setProgress] = useState(0);
     const [restante, setRestante] = useState(0);
     const minAnt = 30;
 
     useEffect(() => {
-        let change = false;
         const interval = setInterval(() => {
             const currentDateTime = new Date();
             const targetDateTimeObj = new Date(targetDateTime);
@@ -24,17 +20,6 @@ export const ProgressbarPedido: React.FC<{ pedido: PedidoType }> = ({ pedido }) 
             const diffMinutes = Math.floor(diffMilliseconds / (1000 * 60));
 
             setRestante(diffMinutes);
-
-            if (diffMinutes < 1) {
-                setProgress(100);
-                if (!change) {
-                    change = true;
-                    dispatch({
-                        type: "PEDIDO_ATRASADO",
-                        payload: 1
-                    })
-                }
-            }
 
             if (diffMinutes <= minAnt && diffMinutes >= 0) {
                 const percentage = Math.round(((minAnt - diffMinutes) / minAnt) * 100);
@@ -49,7 +34,7 @@ export const ProgressbarPedido: React.FC<{ pedido: PedidoType }> = ({ pedido }) 
         return () => {
             clearInterval(interval);
         };
-    }, [targetDateTime, dispatch]);
+    }, [targetDateTime]);
 
     const variant = progress > 50 ? "danger" : "info";
     const barStyle = {

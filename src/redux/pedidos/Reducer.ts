@@ -1,8 +1,5 @@
 import { PedidoType } from "../../app/modules/pedidos/types/Pedido.type";
-
-export enum ACTION_TYPE {
-    LISTAR_PEDIDOS = 'LISTAR_PEDIDOS'
-}
+import { ACTION_TYPE } from "./ActionType.enum";
 
 const initialState: { pedidos: PedidoType[], pedidosAtrasados: number } = {
     pedidos: [],

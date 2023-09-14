@@ -1,7 +1,6 @@
 import "./PedidosList.scss";
 import React, { useState, useEffect } from "react";
 import { PedidoType } from "../../types/Pedido.type";
-import { Paginate } from "../../../../shared/types/Paginate.type";
 import { Row, Col, Container } from "react-bootstrap";
 import { Loading } from "../../../../shared/components/Loading/Loading";
 import { CardPedido } from "../../components/CardPedido/CardPedido";
@@ -9,21 +8,28 @@ import { CardSistema } from "../../components/CardSistema/CardSistema";
 import { NadaPorAqui } from "../../components/NadaPorAqui/NadaPorAqui";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { PedidosApiService } from "../../services/PedidosApi.service";
+import { useDispatch, useSelector } from "react-redux";
+import { ACTION_TYPE } from "../../../../../redux/pedidos/ActionType.enum";
+import { PaginateType } from "../../../../shared/types/Paginate.type";
 
 const PedidosList: React.FC<{}> = () => {
+
+    const dispache = useDispatch();
+
+    const { pedidos } = useSelector((rootReducer: any) => rootReducer.PedidosReducer);
+    console.log('PedidosApiService -> pedidos: ', pedidos)
 
     const nodeRef = React.useRef(null)
 
     const limiteVisivel = 3;
 
-    const [paginate, setPaginate] = useState<Paginate>();
     const [loading, setLoading] = useState(true);
     const [onUpdate, setOnUpdate] = useState(false);
 
     const apiBaseUrl = "https://sg-api-b7fl.onrender.com/";
 
     useEffect(() => {
-        carregarDadosPedidos();
+        //carregarDadosPedidos();
         const eventSource = new EventSource(
             `${apiBaseUrl}v1/app/changed-collection`
         );
@@ -64,10 +70,15 @@ const PedidosList: React.FC<{}> = () => {
         }
     }, [isOnline]);
 
-    function carregarDadosPedidos() {
+    const carregarDadosPedidos = () => {
         PedidosApiService.getPaginate()
-            .then((resp) => {
-                setPaginate(resp);
+            .then((resp: PaginateType) => {
+                /*  */
+                dispache({
+                    type: ACTION_TYPE.LISTAR_PEDIDOS,
+                    payload: resp.documentos
+                })
+                /*  */
                 setLoading(false);
                 setOnUpdate(true);
                 setTimeout(() => {
@@ -85,17 +96,17 @@ const PedidosList: React.FC<{}> = () => {
                 <Loading />
             ) : (
                 <>
-                    {paginate && paginate.documentos?.length > 0 ? (
+                    {pedidos && pedidos.length > 0 ? (
                         <Container fluid={true} className={`${isOnline ? '' : 'bg-danger bg-opacity-25'}`}>
                             <Row>
                                 <Col className="col-12 col-md-8">
                                     <Row style={{ minHeight: "60vh" }}>
                                         <Col className="col-12 col-md-12">
-                                            <CardPedido isPrincipal={true} pedido={paginate.documentos[0] as PedidoType} />
+                                            <CardPedido isPrincipal={true} pedido={pedidos[0] as PedidoType} />
                                         </Col>
                                     </Row>
                                     <TransitionGroup component={Row} className="flex-grow-1" noderef={nodeRef}>
-                                        {paginate.documentos.slice(1, limiteVisivel).map((pedido: PedidoType, index) => (
+                                        {pedidos.slice(1, limiteVisivel).map((pedido: PedidoType, index: number) => (
                                             <CSSTransition
                                                 key={index}
                                                 classNames="fade"
@@ -110,7 +121,7 @@ const PedidosList: React.FC<{}> = () => {
                                     </TransitionGroup>
                                 </Col>
                                 <Col className="col-12 col-md-4">
-                                    <CardSistema onUpdate={onUpdate} paginate={paginate} />
+                                    <CardSistema onUpdate={onUpdate} />
                                 </Col>
                             </Row>
                         </Container>

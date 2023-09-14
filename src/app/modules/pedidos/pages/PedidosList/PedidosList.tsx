@@ -15,10 +15,8 @@ import { PaginateType } from "../../../../shared/types/Paginate.type";
 const PedidosList: React.FC<{}> = () => {
 
     const dispache = useDispatch();
-
     const { pedidos } = useSelector((rootReducer: any) => rootReducer.PedidosReducer);
-    console.log('PedidosApiService -> pedidos: ', pedidos)
-
+    
     const nodeRef = React.useRef(null)
 
     const limiteVisivel = 3;
@@ -68,7 +66,7 @@ const PedidosList: React.FC<{}> = () => {
 
         return () => {
             eventSource.close();
-        };        
+        };
     }, [isOnline, dispache]);
 
     useEffect(() => {

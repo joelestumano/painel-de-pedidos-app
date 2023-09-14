@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 export const CardSistema: React.FC<{ onUpdate: boolean }> = ({ onUpdate }) => {
 
-    const { pedidos } = useSelector((rootReducer: any) => rootReducer.PedidosReducer);
+    const { pedidos, pedidosAtrasados } = useSelector((rootReducer: any) => rootReducer.PedidosReducer);
 
     const nodeRef = React.useRef(null);
 
@@ -41,19 +41,19 @@ export const CardSistema: React.FC<{ onUpdate: boolean }> = ({ onUpdate }) => {
                                             </span>
                                         </label>
                                     </li>
-                                    {/*  {(pedidosAtrasados - limiteVisivel) > 0 ?
+                                     {(pedidosAtrasados > - 1 ) ?
                                         <li className="list-group-item bg-transparent px-0 py-1 border-0">
                                             <label className="position-relative w-auto bg-white rounded px-2 py-1 fw-semibold">
                                                 Em atraso
                                                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger fs-5">
-                                                    {(pedidosAtrasados - limiteVisivel)}
+                                                    {(pedidosAtrasados)}
                                                     <span className="visually-hidden">
-                                                        {(pedidosAtrasados - limiteVisivel)}
+                                                        {(pedidosAtrasados)}
                                                     </span>
                                                 </span>
                                             </label>
                                         </li>
-                                        : null}  */}
+                                        : null}  
                                 </ul>
                             </Col>
                             : null}

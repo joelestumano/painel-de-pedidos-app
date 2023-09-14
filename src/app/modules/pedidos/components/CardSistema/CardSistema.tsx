@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 export const CardSistema: React.FC<{ onUpdate: boolean }> = ({ onUpdate }) => {
 
-    const { pedidos, pedidosAtrasados } = useSelector((rootReducer: any) => rootReducer.PedidosReducer);
+    const { pedidos } = useSelector((rootReducer: any) => rootReducer.PedidosReducer);
 
     const nodeRef = React.useRef(null);
 
@@ -41,7 +41,7 @@ export const CardSistema: React.FC<{ onUpdate: boolean }> = ({ onUpdate }) => {
                                             </span>
                                         </label>
                                     </li>
-                                     {(pedidosAtrasados > - 1 ) ?
+                                    {/* {(pedidosAtrasados > - 1) ?
                                         <li className="list-group-item bg-transparent px-0 py-1 border-0">
                                             <label className="position-relative w-auto bg-white rounded px-2 py-1 fw-semibold">
                                                 Em atraso
@@ -53,7 +53,7 @@ export const CardSistema: React.FC<{ onUpdate: boolean }> = ({ onUpdate }) => {
                                                 </span>
                                             </label>
                                         </li>
-                                        : null}  
+                                        : null} */}
                                 </ul>
                             </Col>
                             : null}

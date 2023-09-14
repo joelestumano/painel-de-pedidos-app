@@ -14,9 +14,9 @@ import { PaginateType } from "../../../../shared/types/Paginate.type";
 
 const PedidosList: React.FC<{}> = () => {
 
-    const dispache = useDispatch();
+    const dispatch = useDispatch();
     const { pedidos } = useSelector((rootReducer: any) => rootReducer.PedidosReducer);
-    
+
     const nodeRef = React.useRef(null)
 
     const limiteVisivel = 3;
@@ -28,12 +28,11 @@ const PedidosList: React.FC<{}> = () => {
     const apiBaseUrl = "https://sg-api-b7fl.onrender.com/";
 
     useEffect(() => {
-
         const carregarDadosPedidos = () => {
             PedidosApiService.getPaginate()
                 .then((resp: PaginateType) => {
                     /*  */
-                    dispache({
+                    dispatch({
                         type: ACTION_TYPE.LISTAR_PEDIDOS,
                         payload: resp.documentos
                     })
@@ -67,7 +66,7 @@ const PedidosList: React.FC<{}> = () => {
         return () => {
             eventSource.close();
         };
-    }, [isOnline, dispache]);
+    }, [isOnline, dispatch]);
 
     useEffect(() => {
         const handleOnline = () => {

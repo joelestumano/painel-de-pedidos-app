@@ -25,6 +25,7 @@ export const ProgressbarPedido: React.FC<{ pedido: PedidoType }> = ({ pedido }) 
                 const percentage = Math.round(((minAnt - diffMinutes) / minAnt) * 100);
                 setProgress(percentage);
             } else if (diffMinutes < 0) {
+                setProgress(100);
                 clearInterval(interval);
             } else {
                 setProgress(0);

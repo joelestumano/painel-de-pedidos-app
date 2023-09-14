@@ -1,4 +1,4 @@
-export type Paginate = {
+export type PaginateType = {
     documentos: any[];
     limite: number;
     pagina: number;

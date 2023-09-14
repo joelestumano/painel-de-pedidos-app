@@ -1,4 +1,4 @@
-import { Paginate } from "../../../shared/types/Paginate.type";
+import { PaginateType } from "../../../shared/types/Paginate.type";
 import { ApiService } from "../../../services/Api.service";
 
 const limit: number = 1000;
@@ -12,7 +12,7 @@ const dateStart: string = start.toISOString().slice(0, 10);
 end.setDate(start.getDate() + 1)
 const dateEnd: string = end.toISOString().slice(0, 10);
 
-const getPaginate = async (): Promise<Paginate> => {
+const getPaginate = async (): Promise<PaginateType> => {
     const { data } = await ApiService().get(`${baseURL}paginate?ativarPaginacao=true&pagina=1&limite=${limit}&status=${status}&dateEnd=${dateEnd}&dateStart=${(dateStart)}`);
     return data;
 };

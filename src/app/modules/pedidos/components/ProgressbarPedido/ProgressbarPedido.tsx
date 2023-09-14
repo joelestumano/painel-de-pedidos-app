@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { ProgressBar } from "react-bootstrap";
 import { useDispatch } from "react-redux";
+import { PedidoType } from "../../types/Pedido.type";
+import { PedidosTimeService } from "../../services/PedidosTime.service";
 
-export const ProgressbarPedido: React.FC<{ targetDateTime: string }> = ({ targetDateTime }) => {
+export const ProgressbarPedido: React.FC<{ pedido: PedidoType }> = ({ pedido }) => {
+
+    let despacho = new Date(PedidosTimeService.subtractTenMinutes(pedido.horaDespacho));
+    const targetDateTime = (despacho).toISOString();
 
     const dispatch = useDispatch();
 

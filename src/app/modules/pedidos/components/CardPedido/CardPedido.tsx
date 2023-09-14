@@ -63,7 +63,7 @@ export const CardPedido = ({ ...props }) => {
                     </Row>
                 </Col>
                 <Col className="col-12 col-md-12">
-                    <ProgressbarPedido targetDateTime={(despacho).toISOString()} />
+                    <ProgressbarPedido pedido={props.pedido} />
                 </Col>
             </Row>
         </Card>

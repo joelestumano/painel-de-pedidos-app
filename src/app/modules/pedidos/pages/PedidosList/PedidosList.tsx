@@ -25,10 +25,32 @@ const PedidosList: React.FC<{}> = () => {
 
     const [loading, setLoading] = useState(true);
     const [onUpdate, setOnUpdate] = useState(false);
+    const [isOnline, setIsOnline] = useState(navigator.onLine);
 
     const apiBaseUrl = "https://sg-api-b7fl.onrender.com/";
 
     useEffect(() => {
+
+        const carregarDadosPedidos = () => {
+            PedidosApiService.getPaginate()
+                .then((resp: PaginateType) => {
+                    /*  */
+                    dispache({
+                        type: ACTION_TYPE.LISTAR_PEDIDOS,
+                        payload: resp.documentos
+                    })
+                    /*  */
+                    setLoading(false);
+                    setOnUpdate(true);
+                    setTimeout(() => {
+                        setOnUpdate(false);
+                    }, 1000);
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        }
+
         //carregarDadosPedidos();
         const eventSource = new EventSource(
             `${apiBaseUrl}v1/app/changed-collection`
@@ -39,12 +61,15 @@ const PedidosList: React.FC<{}> = () => {
                 carregarDadosPedidos();
             }
         };
+
+        if (isOnline) {
+            carregarDadosPedidos();
+        }
+
         return () => {
             eventSource.close();
-        };
-    }, []);
-
-    const [isOnline, setIsOnline] = useState(navigator.onLine);
+        };        
+    }, [isOnline, dispache]);
 
     useEffect(() => {
         const handleOnline = () => {
@@ -63,32 +88,6 @@ const PedidosList: React.FC<{}> = () => {
             window.removeEventListener('offline', handleOffline);
         };
     }, []);
-
-    useEffect(() => {
-        if (isOnline) {
-            carregarDadosPedidos();
-        }
-    }, [isOnline]);
-
-    const carregarDadosPedidos = () => {
-        PedidosApiService.getPaginate()
-            .then((resp: PaginateType) => {
-                /*  */
-                dispache({
-                    type: ACTION_TYPE.LISTAR_PEDIDOS,
-                    payload: resp.documentos
-                })
-                /*  */
-                setLoading(false);
-                setOnUpdate(true);
-                setTimeout(() => {
-                    setOnUpdate(false);
-                }, 1000);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    }
 
     return (
         <>

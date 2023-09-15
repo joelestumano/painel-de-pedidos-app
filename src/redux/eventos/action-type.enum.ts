@@ -1,0 +1,3 @@
+export enum EVENTO_ACTION_TYPE {
+    IS_ONLINE = 'IS_ONLINE'
+}

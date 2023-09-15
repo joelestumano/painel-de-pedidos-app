@@ -16,6 +16,7 @@ const PedidosList: React.FC<{}> = () => {
 
     const dispatch = useDispatch();
     const { pedidos } = useSelector((rootReducer: any) => rootReducer.PedidosReducer);
+    const { isOnline } = useSelector((rootReducer: any) => rootReducer.EventosReducer);
 
     const nodeRef = React.useRef(null)
 
@@ -23,7 +24,7 @@ const PedidosList: React.FC<{}> = () => {
 
     const [loading, setLoading] = useState(true);
     const [onUpdate, setOnUpdate] = useState(false);
-    const [isOnline, setIsOnline] = useState(navigator.onLine);
+    
 
     const apiBaseUrl = "https://sg-api-b7fl.onrender.com/";
 
@@ -67,24 +68,6 @@ const PedidosList: React.FC<{}> = () => {
             eventSource.close();
         };
     }, [isOnline, dispatch]);
-
-    useEffect(() => {
-        const handleOnline = () => {
-            setIsOnline(true);
-        };
-
-        const handleOffline = () => {
-            setIsOnline(false);
-        };
-
-        window.addEventListener('online', handleOnline);
-        window.addEventListener('offline', handleOffline);
-
-        return () => {
-            window.removeEventListener('online', handleOnline);
-            window.removeEventListener('offline', handleOffline);
-        };
-    }, []);
 
     return (
         <>

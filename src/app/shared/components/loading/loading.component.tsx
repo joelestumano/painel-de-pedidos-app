@@ -1,6 +1,6 @@
-import "./Loading.scss";
+import "./loading.component.scss";
 
-export const Loading = () => {
+export const LoadingComponent = () => {
     return (
         <div className="loading-overlay">
             <div className="loading-spinner">

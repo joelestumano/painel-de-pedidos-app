@@ -1,4 +1,4 @@
-export function ImageGallery({ ...props }) {
+export function ImageGalleryComponent({ ...props }) {
   const imageCount = props.images.length;
   const columns = Math.ceil(Math.sqrt(imageCount));
 

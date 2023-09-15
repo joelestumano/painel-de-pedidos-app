@@ -1,13 +1,13 @@
-import "./CardSistema.scss";
+import "./coluna-sistema.component.scss";
 import { Card, Col, Row } from "react-bootstrap";
-import { Bells } from "../Bells/Bells";
+import { BellsComponent } from "../bells/bells.component";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { PedidoType } from "../../types/Pedido.type";
-import { CardPedido } from "../CardPedido/CardPedido";
+import { PedidoType } from "../../types/pedido.type";
+import { CardPedidoComponent } from "../card-pedido/card-pedido.component";
 import React from "react";
 import { useSelector } from "react-redux";
 
-export const CardSistema: React.FC<{ onUpdate: boolean }> = ({ onUpdate }) => {
+export const ColunaSistemaComponent: React.FC<{ onUpdate: boolean }> = ({ onUpdate }) => {
 
     const { pedidos } = useSelector((rootReducer: any) => rootReducer.PedidosReducer);
 
@@ -62,7 +62,7 @@ export const CardSistema: React.FC<{ onUpdate: boolean }> = ({ onUpdate }) => {
                 <Col className="col-4 col-md-4 p-3">
                     <Row>
                         <Col className="d-flex justify-content-center">
-                            <Bells ring={onUpdate}></Bells>
+                            <BellsComponent ring={onUpdate}></BellsComponent>
                         </Col>
                     </Row>
 
@@ -77,7 +77,7 @@ export const CardSistema: React.FC<{ onUpdate: boolean }> = ({ onUpdate }) => {
                         ref={nodeRef}
                     >
                         <Col className="col-12">
-                            <CardPedido pedido={pedido} />
+                            <CardPedidoComponent pedido={pedido} />
                         </Col>
                     </CSSTransition>
                 ))}

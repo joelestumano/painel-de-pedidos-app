@@ -1,11 +1,11 @@
-import { UseDocumentTitle } from "./app/shared/hooks/UseDocumentTitle.hook";
+import { UseDocumentTitle } from "./app/shared/hooks/use-document-title.hook";
 import PedidosList from "./app/modules/pedidos/pages/PedidosList/PedidosList";
-import { OffCanvas } from "./app/shared/components/off-canvas/Offcanvas";
+import { OffCanvasComponent } from "./app/shared/components/off-canvas/off-canvas.component";
 
 function Index({ ...props }) {
   return (
     <>
-      <OffCanvas />
+      <OffCanvasComponent />
       <PedidosList />
     </>
   );

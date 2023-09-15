@@ -6,8 +6,17 @@ import { useDispatch } from "react-redux";
 import { EVENTO_ACTION_TYPE } from "./redux/eventos/action-type.enum";
 
 function Index({ ...props }) {
-
   const dispatch = useDispatch();
+
+  const getOnLineStatus = () =>
+    typeof navigator !== 'undefined' && typeof navigator.onLine === 'boolean'
+      ? navigator.onLine
+      : true;
+
+  dispatch({
+    type: EVENTO_ACTION_TYPE.IS_ONLINE,
+    payload: getOnLineStatus()
+  })
 
   useEffect(() => {
     const handleOnline = () => {

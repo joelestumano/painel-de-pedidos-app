@@ -1,9 +1,9 @@
-import { UseDocumentTitle } from "./app/shared/hooks/use-document-title.hook";
+import { UseDocumentTitle } from "./app/shared/hooks/UseDocumentTitleHook";
 import PedidosList from "./app/modules/pedidos/pages/PedidosList/PedidosList";
-import { OffCanvasComponent } from "./app/shared/components/off-canvas/off-canvas.component";
+import { OffCanvasComponent } from "./app/shared/components/off-canvas/OffCanvasComponent";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { EVENTO_ACTION_TYPE } from "./redux/eventos/action-type.enum";
+import { EventosActionTypeEnum } from "./redux/eventos/EventosActionTypeEnum";
 
 function Index({ ...props }) {
   const dispatch = useDispatch();
@@ -14,21 +14,21 @@ function Index({ ...props }) {
       : true;
 
   dispatch({
-    type: EVENTO_ACTION_TYPE.IS_ONLINE,
+    type: EventosActionTypeEnum.IS_ONLINE,
     payload: getOnLineStatus()
   })
 
   useEffect(() => {
     const handleOnline = () => {
       dispatch({
-        type: EVENTO_ACTION_TYPE.IS_ONLINE,
+        type: EventosActionTypeEnum.IS_ONLINE,
         payload: true
       })
     };
 
     const handleOffline = () => {
       dispatch({
-        type: EVENTO_ACTION_TYPE.IS_ONLINE,
+        type: EventosActionTypeEnum.IS_ONLINE,
         payload: false
       })
     };

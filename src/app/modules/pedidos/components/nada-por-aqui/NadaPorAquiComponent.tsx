@@ -1,5 +1,5 @@
 import { Col, Container, Row } from "react-bootstrap";
-import "./nada-por-aqui.component.scss";
+import "./NadaPorAquiComponent.scss";
 export function NadaPorAquiComponent({ ...props }) {
     return (
         <Container fluid={true} className="bg-img">

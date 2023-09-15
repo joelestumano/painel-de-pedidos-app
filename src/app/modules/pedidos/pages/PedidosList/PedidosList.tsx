@@ -1,16 +1,16 @@
 import "./PedidosList.scss";
 import React, { useState, useEffect } from "react";
 import { Row, Col, Container } from "react-bootstrap";
-import { LoadingComponent } from "../../../../shared/components/loading/loading.component";
-import { CardPedidoComponent } from "../../components/card-pedido/card-pedido.component";
-import { ColunaSistemaComponent } from "../../components/coluna-sistema/coluna-sistema.component";
-import { NadaPorAquiComponent } from "../../components/nada-por-aqui/nada-por-aqui.component";
+import { LoadingComponent } from "../../../../shared/components/loading/LoadingComponent";
+import { CardPedidoComponent } from "../../components/card-pedido/CardPedidoComponent";
+import { ColunaSistemaComponent } from "../../components/coluna-sistema/ColunaSistemaComponent";
+import { NadaPorAquiComponent } from "../../components/nada-por-aqui/NadaPorAquiComponent";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { PedidosApiService } from "../../services/pedidos-api.service";
+import { PedidosApiService } from "../../services/PedidosApiService";
 import { useDispatch, useSelector } from "react-redux";
-import { ACTION_TYPE } from "../../../../../redux/pedidos/ActionType.enum";
-import { PaginateType } from "../../../../shared/types/paginate.type";
-import { PedidoType } from "../../../../shared/types/pedido.type";
+import { PedidosActionTypeEnum } from "../../../../../redux/pedidos/PedidosActionTypeEnum";
+import { PaginateType } from "../../../../shared/types/PaginateType";
+import { PedidoType } from "../../../../shared/types/PedidoType";
 
 const PedidosList: React.FC<{}> = () => {
 
@@ -34,7 +34,7 @@ const PedidosList: React.FC<{}> = () => {
                 .then((resp: PaginateType) => {
                     /*  */
                     dispatch({
-                        type: ACTION_TYPE.LISTAR_PEDIDOS,
+                        type: PedidosActionTypeEnum.LISTAR_PEDIDOS,
                         payload: resp.documentos
                     })
                     /*  */

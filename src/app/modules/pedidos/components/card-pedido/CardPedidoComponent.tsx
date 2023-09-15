@@ -1,12 +1,12 @@
-import "./card-pedido.component.scss";
+import "./CardPedidoComponent.scss";
 import { Card, Col, Row } from "react-bootstrap";
-import { ImageGalleryComponent } from "../../../../shared/components/image-gallery/image-gallery.component";
-import { NumeroPedido } from "../numero-pedido/numero-pedido.component";
-import { InfoPedidoComponent } from "../info-pedido/info-pedido.component";
-import { ProgressbarPedidoComponent } from "../progressbar-pedido/progressbar-pedido.component";
-import { PedidosTimeService } from "../../services/pedidos-time.service";
-import { BsIconComponent } from "../../../../shared/components/bs-icon/bs-icon.component";
-import { PedidoType } from "../../../../shared/types/pedido.type";
+import { ImageGalleryComponent } from "../../../../shared/components/image-gallery/ImageGalleryComponent";
+import { NumeroPedidoComponent } from "../numero-pedido/NumeroPedidoComponent";
+import { InfoPedidoComponent } from "../info-pedido/InfoPedidoComponent";
+import { ProgressbarPedidoComponent } from "../progressbar-pedido/ProgressbarPedidoComponent";
+import { PedidosTimeService } from "../../services/PedidosTimeService";
+import { BsIconComponent } from "../../../../shared/components/bs-icon/BsIconComponent";
+import { PedidoType } from "../../../../shared/types/PedidoType";
 
 const TextTitle = ({ ...props }) => {
     return (
@@ -41,7 +41,7 @@ export const CardPedidoComponent = ({ ...props }) => {
                             {props.isPrincipal ? (
                                 <TextTitle cliente={props.pedido.cliente.nome} />
                             ) : null}
-                            <NumeroPedido isPrincipal={props.isPrincipal} value={props.pedido.codigo} />
+                            <NumeroPedidoComponent isPrincipal={props.isPrincipal} value={props.pedido.codigo} />
                             <p className="font-size-custom fw-semibold mb-2">
                                 <BsIconComponent iconName="Clock" className="align-middle me-1" />
                                 {despacho.toLocaleTimeString()}

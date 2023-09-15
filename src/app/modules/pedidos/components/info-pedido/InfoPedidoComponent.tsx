@@ -1,5 +1,5 @@
 import { Card, Col, Row } from "react-bootstrap"
-import "./info-pedido.component.scss";
+import "./InfoPedidoComponent.scss";
 
 export const InfoPedidoComponent = ({ ...props }) => {
 

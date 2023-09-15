@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const UseDocumentTitle = (title: string) => {
+const UseDocumentTitleHook = (title: string) => {
     const [document_title, setDoucmentTitle] = useState(title);
     useEffect(() => {
         document.title = document_title;
@@ -9,4 +9,4 @@ const UseDocumentTitle = (title: string) => {
     return [document_title, setDoucmentTitle];
 };
 
-export { UseDocumentTitle };
+export { UseDocumentTitleHook as UseDocumentTitle };

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import "./loading.component.scss";
+import "./LoadingComponent.scss";
 
 export const LoadingComponent = () => {
     const { isOnline } = useSelector(

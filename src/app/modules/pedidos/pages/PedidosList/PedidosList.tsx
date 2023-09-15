@@ -5,7 +5,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import { LoadingComponent } from "../../../../shared/components/loading/loading.component";
 import { CardPedidoComponent } from "../../components/card-pedido/card-pedido.component";
 import { ColunaSistemaComponent } from "../../components/coluna-sistema/coluna-sistema.component";
-import { NadaPorAqui } from "../../components/NadaPorAqui/NadaPorAqui";
+import { NadaPorAquiComponent } from "../../components/nada-por-aqui/nada-por-aqui.component";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { PedidosApiService } from "../../services/pedidos-api.service";
 import { useDispatch, useSelector } from "react-redux";
@@ -122,7 +122,7 @@ const PedidosList: React.FC<{}> = () => {
                             </Row>
                         </Container>
                     ) : (
-                        <NadaPorAqui titulo={'Nada por aqui!'} />
+                        <NadaPorAquiComponent titulo={'Nada por aqui!'} />
                     )}
                 </>
             )}

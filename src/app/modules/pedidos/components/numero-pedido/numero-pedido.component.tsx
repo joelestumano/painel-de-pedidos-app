@@ -1,4 +1,4 @@
-import "./NumeroPedido.scss";
+import "./numero-pedido.component.scss";
 export const NumeroPedido: React.FC<{ isPrincipal: boolean, value: string }> = ({ isPrincipal, value }) => {
     return (
         <p className={`fw-semibold mb-1 font-size-custom ${isPrincipal ? "" : ""}`}>

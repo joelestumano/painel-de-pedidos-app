@@ -2,9 +2,9 @@ import "./card-pedido.component.scss";
 import { Card, Col, Row } from "react-bootstrap";
 import { PedidoType } from "../../types/pedido.type";
 import { ImageGalleryComponent } from "../../../../shared/components/image-gallery/image-gallery.component";
-import { NumeroPedido } from "../NumeroPedido/NumeroPedido";
+import { NumeroPedido } from "../numero-pedido/numero-pedido.component";
 import { InfoPedidoComponent } from "../info-pedido/info-pedido.component";
-import { ProgressbarPedido } from "../ProgressbarPedido/ProgressbarPedido";
+import { ProgressbarPedidoComponent } from "../progressbar-pedido/progressbar-pedido.component";
 import { PedidosTimeService } from "../../services/pedidos-time.service";
 import { BsIconComponent } from "../../../../shared/components/bs-icon/bs-icon.component";
 
@@ -63,7 +63,7 @@ export const CardPedidoComponent = ({ ...props }) => {
                     </Row>
                 </Col>
                 <Col className="col-12 col-md-12">
-                    <ProgressbarPedido pedido={props.pedido} />
+                    <ProgressbarPedidoComponent pedido={props.pedido} />
                 </Col>
             </Row>
         </Card>

@@ -3,7 +3,7 @@ import { ProgressBar } from "react-bootstrap";
 import { PedidoType } from "../../types/pedido.type";
 import { PedidosTimeService } from "../../services/pedidos-time.service";
 
-export const ProgressbarPedido: React.FC<{ pedido: PedidoType }> = ({ pedido }) => {
+export const ProgressbarPedidoComponent: React.FC<{ pedido: PedidoType }> = ({ pedido }) => {
 
     let despacho = new Date(PedidosTimeService.subtractTenMinutes(pedido.horaDespacho));
     const targetDateTime = (despacho).toISOString();

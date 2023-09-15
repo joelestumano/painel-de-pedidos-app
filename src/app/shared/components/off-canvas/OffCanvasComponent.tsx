@@ -2,7 +2,12 @@ import { Button, Col, Offcanvas, Row } from "react-bootstrap";
 import { useState } from "react";
 import { BsIconComponent } from "../bs-icon/BsIconComponent";
 
-export const OffCanvasComponent: React.FC<{}> = ({ ...props }) => {
+export const OffCanvasComponent: React.FC<{}> = () => {
+
+    const props = {
+        scroll: true,
+        backdrop: true,
+    };
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -30,8 +35,6 @@ export const OffCanvasComponent: React.FC<{}> = ({ ...props }) => {
                     <Row>
                         <Col>
                             <h4>Área para configurações</h4>
-                        </Col>
-                        <Col>
                         </Col>
                     </Row>
                 </Offcanvas.Body>

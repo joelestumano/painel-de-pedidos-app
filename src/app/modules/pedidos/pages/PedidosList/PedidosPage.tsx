@@ -1,4 +1,4 @@
-import "./PedidosList.scss";
+import "./PedidosPage.scss";
 import React, { useState, useEffect } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import { LoadingComponent } from "../../../../shared/components/loading/LoadingComponent";
@@ -11,8 +11,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { PedidosActionTypeEnum } from "../../../../../redux/pedidos/PedidosActionTypeEnum";
 import { PaginateType } from "../../../../shared/types/PaginateType";
 import { PedidoType } from "../../../../shared/types/PedidoType";
+import { UseDocumentTitle } from "../../../../shared/hooks/UseDocumentTitleHook";
 
-const PedidosList: React.FC<{}> = () => {
+const PedidosPage: React.FC<{}> = () => {
+
+    UseDocumentTitle("SG - Pedidos");
 
     const dispatch = useDispatch();
     const { pedidos } = useSelector((rootReducer: any) => rootReducer.PedidosReducer);
@@ -24,7 +27,7 @@ const PedidosList: React.FC<{}> = () => {
 
     const [loading, setLoading] = useState(true);
     const [onUpdate, setOnUpdate] = useState(false);
-    
+
 
     const apiBaseUrl = "https://sg-api-b7fl.onrender.com/";
 
@@ -113,4 +116,4 @@ const PedidosList: React.FC<{}> = () => {
     );
 };
 
-export default PedidosList;
+export default PedidosPage;

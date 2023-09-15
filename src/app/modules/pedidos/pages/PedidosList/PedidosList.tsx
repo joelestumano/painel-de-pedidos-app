@@ -1,21 +1,22 @@
 import "./PedidosList.scss";
 import React, { useState, useEffect } from "react";
-import { PedidoType } from "../../types/Pedido.type";
+import { PedidoType } from "../../types/pedido.type";
 import { Row, Col, Container } from "react-bootstrap";
-import { Loading } from "../../../../shared/components/Loading/Loading";
-import { CardPedido } from "../../components/CardPedido/CardPedido";
-import { CardSistema } from "../../components/CardSistema/CardSistema";
-import { NadaPorAqui } from "../../components/NadaPorAqui/NadaPorAqui";
+import { LoadingComponent } from "../../../../shared/components/loading/loading.component";
+import { CardPedidoComponent } from "../../components/card-pedido/card-pedido.component";
+import { ColunaSistemaComponent } from "../../components/coluna-sistema/coluna-sistema.component";
+import { NadaPorAquiComponent } from "../../components/nada-por-aqui/nada-por-aqui.component";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { PedidosApiService } from "../../services/PedidosApi.service";
+import { PedidosApiService } from "../../services/pedidos-api.service";
 import { useDispatch, useSelector } from "react-redux";
 import { ACTION_TYPE } from "../../../../../redux/pedidos/ActionType.enum";
-import { PaginateType } from "../../../../shared/types/Paginate.type";
+import { PaginateType } from "../../../../shared/types/paginate.type";
 
 const PedidosList: React.FC<{}> = () => {
 
     const dispatch = useDispatch();
     const { pedidos } = useSelector((rootReducer: any) => rootReducer.PedidosReducer);
+    const { isOnline } = useSelector((rootReducer: any) => rootReducer.EventosReducer);
 
     const nodeRef = React.useRef(null)
 
@@ -23,7 +24,7 @@ const PedidosList: React.FC<{}> = () => {
 
     const [loading, setLoading] = useState(true);
     const [onUpdate, setOnUpdate] = useState(false);
-    const [isOnline, setIsOnline] = useState(navigator.onLine);
+    
 
     const apiBaseUrl = "https://sg-api-b7fl.onrender.com/";
 
@@ -68,28 +69,10 @@ const PedidosList: React.FC<{}> = () => {
         };
     }, [isOnline, dispatch]);
 
-    useEffect(() => {
-        const handleOnline = () => {
-            setIsOnline(true);
-        };
-
-        const handleOffline = () => {
-            setIsOnline(false);
-        };
-
-        window.addEventListener('online', handleOnline);
-        window.addEventListener('offline', handleOffline);
-
-        return () => {
-            window.removeEventListener('online', handleOnline);
-            window.removeEventListener('offline', handleOffline);
-        };
-    }, []);
-
     return (
         <>
             {loading ? (
-                <Loading />
+                <LoadingComponent />
             ) : (
                 <>
                     {pedidos && pedidos.length > 0 ? (
@@ -98,7 +81,7 @@ const PedidosList: React.FC<{}> = () => {
                                 <Col className="col-12 col-md-8">
                                     <Row style={{ minHeight: "60vh" }}>
                                         <Col className="col-12 col-md-12">
-                                            <CardPedido isPrincipal={true} pedido={pedidos[0] as PedidoType} />
+                                            <CardPedidoComponent isPrincipal={true} pedido={pedidos[0] as PedidoType} />
                                         </Col>
                                     </Row>
                                     <TransitionGroup component={Row} className="flex-grow-1" noderef={nodeRef}>
@@ -110,19 +93,19 @@ const PedidosList: React.FC<{}> = () => {
                                                 ref={nodeRef}
                                             >
                                                 <Col className="col-12 col-md-6 col-lg-6">
-                                                    <CardPedido pedido={pedido} />
+                                                    <CardPedidoComponent pedido={pedido} />
                                                 </Col>
                                             </CSSTransition>
                                         ))}
                                     </TransitionGroup>
                                 </Col>
                                 <Col className="col-12 col-md-4">
-                                    <CardSistema onUpdate={onUpdate} />
+                                    <ColunaSistemaComponent onUpdate={onUpdate} />
                                 </Col>
                             </Row>
                         </Container>
                     ) : (
-                        <NadaPorAqui titulo={'Nada por aqui!'} />
+                        <NadaPorAquiComponent titulo={'Nada por aqui!'} />
                     )}
                 </>
             )}

@@ -1,7 +1,7 @@
 import { Card, Col, Row } from "react-bootstrap"
-import "./Detalhes.scss";
+import "./info-pedido.component.scss";
 
-export const Detalhes = ({ ...props }) => {
+export const InfoPedidoComponent = ({ ...props }) => {
 
     return (
         <Card className="h-100 border-0 px-2 bg-transparent">

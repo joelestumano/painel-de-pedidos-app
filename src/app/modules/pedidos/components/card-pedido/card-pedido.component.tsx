@@ -1,12 +1,12 @@
-import "./CardPedido.scss";
+import "./card-pedido.component.scss";
 import { Card, Col, Row } from "react-bootstrap";
-import { PedidoType } from "../../types/Pedido.type";
-import { ImageGallery } from "../../../../shared/components/ImageGallery/ImageGallery";
-import { NumeroPedido } from "../NumeroPedido/NumeroPedido";
-import { BsIcon } from "../../../../shared/components/BsIcon/BsIcon";
-import { Detalhes } from "../Detalhes/Detalhes";
-import { ProgressbarPedido } from "../ProgressbarPedido/ProgressbarPedido";
-import { PedidosTimeService } from "../../services/PedidosTime.service";
+import { PedidoType } from "../../types/pedido.type";
+import { ImageGalleryComponent } from "../../../../shared/components/image-gallery/image-gallery.component";
+import { NumeroPedido } from "../numero-pedido/numero-pedido.component";
+import { InfoPedidoComponent } from "../info-pedido/info-pedido.component";
+import { ProgressbarPedidoComponent } from "../progressbar-pedido/progressbar-pedido.component";
+import { PedidosTimeService } from "../../services/pedidos-time.service";
+import { BsIconComponent } from "../../../../shared/components/bs-icon/bs-icon.component";
 
 const TextTitle = ({ ...props }) => {
     return (
@@ -16,7 +16,7 @@ const TextTitle = ({ ...props }) => {
     );
 };
 
-export const CardPedido = ({ ...props }) => {
+export const CardPedidoComponent = ({ ...props }) => {
 
     function getImgs(pedido: PedidoType): string[] {
         return pedido.items.map((item: any, index: number) => item.bannerUrl);
@@ -33,7 +33,7 @@ export const CardPedido = ({ ...props }) => {
                     }`}
             >
                 <Col className="col-12 col-md-6 p-3">
-                    <ImageGallery images={getImgs(props.pedido)} />
+                    <ImageGalleryComponent images={getImgs(props.pedido)} />
                 </Col>
                 <Col className="col-12 col-md-6 p-3 ps-md-0">
                     <Row>
@@ -43,7 +43,7 @@ export const CardPedido = ({ ...props }) => {
                             ) : null}
                             <NumeroPedido isPrincipal={props.isPrincipal} value={props.pedido.codigo} />
                             <p className="font-size-custom fw-semibold mb-2">
-                                <BsIcon iconName="Clock" className="align-middle me-1" />
+                                <BsIconComponent iconName="Clock" className="align-middle me-1" />
                                 {despacho.toLocaleTimeString()}
                             </p>
                             <ul className="list-group">
@@ -57,13 +57,13 @@ export const CardPedido = ({ ...props }) => {
 
                         {props.isPrincipal ? (
                             <Col>
-                                <Detalhes pedido={props.pedido}></Detalhes>
+                                <InfoPedidoComponent pedido={props.pedido}></InfoPedidoComponent>
                             </Col>
                         ) : null}
                     </Row>
                 </Col>
                 <Col className="col-12 col-md-12">
-                    <ProgressbarPedido pedido={props.pedido} />
+                    <ProgressbarPedidoComponent pedido={props.pedido} />
                 </Col>
             </Row>
         </Card>

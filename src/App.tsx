@@ -1,37 +1,51 @@
-import { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Offcanvas from "react-bootstrap/Offcanvas";
-import { BsIcon } from "./app/shared/components/BsIcon/BsIcon";
-import { UseDocumentTitle } from "./app/shared/hooks/UseDocumentTitle.hook";
+import { UseDocumentTitle } from "./app/shared/hooks/use-document-title.hook";
 import PedidosList from "./app/modules/pedidos/pages/PedidosList/PedidosList";
+import { OffCanvasComponent } from "./app/shared/components/off-canvas/off-canvas.component";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { EVENTO_ACTION_TYPE } from "./redux/eventos/action-type.enum";
 
 function Index({ ...props }) {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const toggleShow = () => setShow((s) => !s);
+  const dispatch = useDispatch();
+
+  const getOnLineStatus = () =>
+    typeof navigator !== 'undefined' && typeof navigator.onLine === 'boolean'
+      ? navigator.onLine
+      : true;
+
+  dispatch({
+    type: EVENTO_ACTION_TYPE.IS_ONLINE,
+    payload: getOnLineStatus()
+  })
+
+  useEffect(() => {
+    const handleOnline = () => {
+      dispatch({
+        type: EVENTO_ACTION_TYPE.IS_ONLINE,
+        payload: true
+      })
+    };
+
+    const handleOffline = () => {
+      dispatch({
+        type: EVENTO_ACTION_TYPE.IS_ONLINE,
+        payload: false
+      })
+    };
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, [dispatch]);
+
+
   return (
     <>
-      <Button
-        type="button"
-        title="offcanvas"
-        variant="primary"
-        style={{ zIndex: 100 }}
-        onClick={toggleShow}
-        className="position-fixed top-0 end-0 rounded-end-0 rounded-start-3 mt-5 px-2 shadow"
-      >
-        <BsIcon iconName="List" color="white" size={32} className="align-top" />
-      </Button>
-      <Offcanvas placement="end" show={show} onHide={handleClose} {...props}>
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>
-            <BsIcon iconName="Gear" size={32} className="align-middle me-1" />
-          </Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          {/* Some text as placeholder. In real life you can have the elements you
-          have chosen. Like, text, images, lists, etc. */}
-        </Offcanvas.Body>
-      </Offcanvas>
+      <OffCanvasComponent />
       <PedidosList />
     </>
   );

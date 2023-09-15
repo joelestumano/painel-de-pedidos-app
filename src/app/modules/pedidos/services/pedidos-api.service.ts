@@ -1,5 +1,6 @@
-import { PaginateType } from "../../../shared/types/Paginate.type";
+
 import { ApiService } from "../../../services/Api.service";
+import { PaginateType } from "../../../shared/types/paginate.type";
 
 const limit: number = 1000;
 const status: string = "pendente";

@@ -6,7 +6,7 @@ import { InfoPedidoComponent } from "../info-pedido/info-pedido.component";
 import { ProgressbarPedidoComponent } from "../progressbar-pedido/progressbar-pedido.component";
 import { PedidosTimeService } from "../../services/pedidos-time.service";
 import { BsIconComponent } from "../../../../shared/components/bs-icon/bs-icon.component";
-import { PedidoType } from "../../types/pedido.type";
+import { PedidoType } from "../../../../shared/types/pedido.type";
 
 const TextTitle = ({ ...props }) => {
     return (

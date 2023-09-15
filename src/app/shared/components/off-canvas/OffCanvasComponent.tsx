@@ -1,6 +1,6 @@
 import { Button, Col, Offcanvas, Row } from "react-bootstrap";
 import { useState } from "react";
-import { BsIconComponent } from "../bs-icon/bs-icon.component";
+import { BsIconComponent } from "../bs-icon/BsIconComponent";
 
 export const OffCanvasComponent: React.FC<{}> = ({ ...props }) => {
 

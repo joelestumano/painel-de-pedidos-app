@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ProgressBar } from "react-bootstrap";
-import { PedidosTimeService } from "../../services/pedidos-time.service";
-import { PedidoType } from "../../../../shared/types/pedido.type";
+import { PedidosTimeService } from "../../services/PedidosTimeService";
+import { PedidoType } from "../../../../shared/types/PedidoType";
 export const ProgressbarPedidoComponent: React.FC<{ pedido: PedidoType }> = ({ pedido }) => {
 
     let despacho = new Date(PedidosTimeService.subtractTenMinutes(pedido.horaDespacho));

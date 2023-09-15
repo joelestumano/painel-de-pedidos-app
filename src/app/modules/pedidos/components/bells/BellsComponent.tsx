@@ -1,5 +1,5 @@
-import "./bells.component.scss";
-import { BsIconComponent } from "../../../../shared/components/bs-icon/bs-icon.component";
+import "./BellsComponent.scss";
+import { BsIconComponent } from "../../../../shared/components/bs-icon/BsIconComponent";
 
 export const BellsComponent: React.FC<{ ring: boolean }> = ({ ring, ...props }) => {
     return (

@@ -1,4 +1,4 @@
-import { ItemPedidoType } from "./item-pedido.type";
+import { ItemPedidoType } from "./ItemPedidoType";
 
 export type PedidoType = {
   cliente: {

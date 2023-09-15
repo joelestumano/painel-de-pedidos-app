@@ -1,4 +1,4 @@
-import { EVENTO_ACTION_TYPE } from "./action-type.enum";
+import { EventosActionTypeEnum } from "./EventosActionTypeEnum";
 
 const initialState: { isOnline: boolean } = {
     isOnline: false
@@ -6,7 +6,7 @@ const initialState: { isOnline: boolean } = {
 
 const EventosReducer = (state = initialState, action: { type: string, payload: boolean }) => {
     switch (action.type) {
-        case EVENTO_ACTION_TYPE.IS_ONLINE:
+        case EventosActionTypeEnum.IS_ONLINE:
             return { ...state, isOnline: action.payload };
 
         default:

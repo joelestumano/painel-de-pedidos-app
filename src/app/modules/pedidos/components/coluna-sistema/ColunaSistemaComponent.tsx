@@ -1,12 +1,11 @@
-import "./coluna-sistema.component.scss";
+import "./ColunaSistemaComponent.scss";
 import { Card, Col, Row } from "react-bootstrap";
-import { BellsComponent } from "../bells/bells.component";
+import { BellsComponent } from "../bells/BellsComponent";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-
-import { CardPedidoComponent } from "../card-pedido/card-pedido.component";
+import { CardPedidoComponent } from "../card-pedido/CardPedidoComponent";
 import React from "react";
 import { useSelector } from "react-redux";
-import { PedidoType } from "../../../../shared/types/pedido.type";
+import { PedidoType } from "../../../../shared/types/PedidoType";
 
 export const ColunaSistemaComponent: React.FC<{ onUpdate: boolean }> = ({ onUpdate }) => {
 

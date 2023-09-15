@@ -1,11 +1,12 @@
-import { UseDocumentTitle } from "./app/shared/hooks/UseDocumentTitleHook";
-import PedidosList from "./app/modules/pedidos/pages/PedidosList/PedidosList";
 import { OffCanvasComponent } from "./app/shared/components/off-canvas/OffCanvasComponent";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { EventosActionTypeEnum } from "./redux/eventos/EventosActionTypeEnum";
+import { AppRoutes } from "./app/Routes";
+import { BrowserRouter } from "react-router-dom";
 
-function Index({ ...props }) {
+function App() {
+
   const dispatch = useDispatch();
 
   const getOnLineStatus = () =>
@@ -42,23 +43,12 @@ function Index({ ...props }) {
     };
   }, [dispatch]);
 
-
   return (
-    <>
+    <BrowserRouter>
       <OffCanvasComponent />
-      <PedidosList />
-    </>
-  );
-}
-
-function App() {
-  /* const [document_title, setDoucmentTitle] = UseDocumentTitle("Painel de pedidos"); */
-  UseDocumentTitle("Painel de pedidos");
-  const props = {
-    scroll: true,
-    backdrop: true,
-  };
-  return <Index {...props} />;
+      <AppRoutes />
+    </BrowserRouter>
+  )
 }
 
 export default App;

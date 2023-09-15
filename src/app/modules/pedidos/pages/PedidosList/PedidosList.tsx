@@ -1,6 +1,6 @@
 import "./PedidosList.scss";
 import React, { useState, useEffect } from "react";
-import { PedidoType } from "../../types/pedido.type";
+import { PedidoType } from "../../types/Pedido.type";
 import { Row, Col, Container } from "react-bootstrap";
 import { LoadingComponent } from "../../../../shared/components/loading/loading.component";
 import { CardPedidoComponent } from "../../components/card-pedido/card-pedido.component";

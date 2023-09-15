@@ -1,6 +1,6 @@
 import "./card-pedido.component.scss";
 import { Card, Col, Row } from "react-bootstrap";
-import { PedidoType } from "../../types/pedido.type";
+import { PedidoType } from "../../types/Pedido.type";
 import { ImageGalleryComponent } from "../../../../shared/components/image-gallery/image-gallery.component";
 import { NumeroPedido } from "../numero-pedido/numero-pedido.component";
 import { InfoPedidoComponent } from "../info-pedido/info-pedido.component";

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ProgressBar } from "react-bootstrap";
-import { PedidoType } from "../../types/Pedido.type";
+import { PedidoType } from "../../types/pedido.type";
 import { PedidosTimeService } from "../../services/pedidos-time.service";
 
 export const ProgressbarPedidoComponent: React.FC<{ pedido: PedidoType }> = ({ pedido }) => {

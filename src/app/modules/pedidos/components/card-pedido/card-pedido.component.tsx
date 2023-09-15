@@ -1,12 +1,12 @@
 import "./card-pedido.component.scss";
 import { Card, Col, Row } from "react-bootstrap";
-import { PedidoType } from "../../types/pedido.type";
 import { ImageGalleryComponent } from "../../../../shared/components/image-gallery/image-gallery.component";
 import { NumeroPedido } from "../numero-pedido/numero-pedido.component";
 import { InfoPedidoComponent } from "../info-pedido/info-pedido.component";
 import { ProgressbarPedidoComponent } from "../progressbar-pedido/progressbar-pedido.component";
 import { PedidosTimeService } from "../../services/pedidos-time.service";
 import { BsIconComponent } from "../../../../shared/components/bs-icon/bs-icon.component";
+import { PedidoType } from "../../types/pedido.type";
 
 const TextTitle = ({ ...props }) => {
     return (

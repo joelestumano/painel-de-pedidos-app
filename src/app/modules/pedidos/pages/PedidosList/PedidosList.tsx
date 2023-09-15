@@ -10,7 +10,7 @@ import { PedidosApiService } from "../../services/pedidos-api.service";
 import { useDispatch, useSelector } from "react-redux";
 import { ACTION_TYPE } from "../../../../../redux/pedidos/ActionType.enum";
 import { PaginateType } from "../../../../shared/types/paginate.type";
-import { PedidoType } from "../../types/pedido.type";
+import { PedidoType } from "../../../../shared/types/pedido.type";
 
 const PedidosList: React.FC<{}> = () => {
 

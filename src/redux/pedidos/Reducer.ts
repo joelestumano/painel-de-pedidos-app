@@ -1,4 +1,5 @@
-import { PedidoType } from "../../app/modules/pedidos/types/pedido.type";
+
+import { PedidoType } from "../../app/shared/types/pedido.type";
 import { ACTION_TYPE } from "./ActionType.enum";
 
 const initialState: { pedidos: PedidoType[], pedidosAtrasados: number } = {

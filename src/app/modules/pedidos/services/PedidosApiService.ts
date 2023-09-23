@@ -9,7 +9,9 @@ const baseURL: string = "v1/pedidos/"
 const start: Date = new Date();
 const end: Date = new Date();
 
-const dateStart: string = start.toISOString().slice(0, 10);
+start.setHours(start.getHours() - 3);
+
+const dateStart: string = start.toISOString();
 end.setDate(start.getDate() + 1)
 const dateEnd: string = end.toISOString().slice(0, 10);
 

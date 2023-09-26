@@ -1,13 +1,20 @@
-import axios from "axios"
+import axios, { AxiosInstance } from "axios";
 
-//const baseURL = 'http://localhost:3000/'
-const baseURL = "https://sg-api-b7fl.onrender.com/";
+const baseURL = (): string => {
+  //return "http://localhost:3000/";
+  return "https://sg-api-b7fl.onrender.com/";
+};
 
-export const ApiService = () => {
-    return axios.create({
-        baseURL: baseURL,
-        headers: {
-            "Content-Type": "application/json"
-        },
-    })
-}
+const create = (): AxiosInstance => {
+  return axios.create({
+    baseURL: baseURL(),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+};
+
+export const ApiService = {
+  baseURL,
+  create,
+};

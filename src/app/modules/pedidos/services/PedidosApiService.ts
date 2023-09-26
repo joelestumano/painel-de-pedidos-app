@@ -1,25 +1,23 @@
-
 import { ApiService } from "../../../services/ApiService";
 import { PaginateType } from "../../../shared/types/PaginateType";
 
 const limit: number = 1000;
 const status: string = "pendente";
-const baseURL: string = "v1/pedidos/"
+const baseURL: string = "v1/pedidos/";
 
-const start: Date = new Date();
-const end: Date = new Date();
+let dateStart = new Date();
+let dateEnd = new Date();
 
-start.setHours(start.getHours() - 3);
-
-const dateStart: string = start.toISOString();
-end.setDate(start.getDate() + 1)
-const dateEnd: string = end.toISOString().slice(0, 10);
+dateStart.setHours(dateStart.getHours() - 22, 0, 0, 0);
+dateEnd.setHours(dateEnd.getHours() + 8, 0, 0, 0);
 
 const getPaginate = async (): Promise<PaginateType> => {
-    const { data } = await ApiService().get(`${baseURL}paginate?ativarPaginacao=true&pagina=1&limite=${limit}&status=${status}&dateEnd=${dateEnd}&dateStart=${(dateStart)}`);
-    return data;
+  const { data } = await ApiService.create().get(
+    `${baseURL}paginate?ativarPaginacao=true&pagina=1&limite=${limit}&status=${status}&dateEnd=${dateEnd.toISOString()}&dateStart=${dateStart.toISOString()}`
+  );
+  return data;
 };
 
 export const PedidosApiService = {
-    getPaginate
-}
+  getPaginate,
+};

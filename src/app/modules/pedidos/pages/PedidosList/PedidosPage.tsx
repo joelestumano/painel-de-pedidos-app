@@ -12,6 +12,7 @@ import { PedidosActionTypeEnum } from "../../../../../redux/pedidos/PedidosActio
 import { PaginateType } from "../../../../shared/types/PaginateType";
 import { PedidoType } from "../../../../shared/types/PedidoType";
 import { UseDocumentTitle } from "../../../../shared/hooks/UseDocumentTitleHook";
+import { ApiService } from "../../../../services/ApiService";
 
 const PedidosPage: React.FC<{}> = () => {
 
@@ -27,9 +28,6 @@ const PedidosPage: React.FC<{}> = () => {
 
     const [loading, setLoading] = useState(true);
     const [onUpdate, setOnUpdate] = useState(false);
-
-
-    const apiBaseUrl = "https://sg-api-b7fl.onrender.com/";
 
     useEffect(() => {
         const carregarDadosPedidos = () => {
@@ -54,7 +52,7 @@ const PedidosPage: React.FC<{}> = () => {
 
         //carregarDadosPedidos();
         const eventSource = new EventSource(
-            `${apiBaseUrl}v1/app/changed-collection`
+            `${ApiService.baseURL()}v1/app/changed-collection`
         );
         eventSource.onmessage = function (event) {
             const eventName = JSON.parse(event.data).event.eventName;

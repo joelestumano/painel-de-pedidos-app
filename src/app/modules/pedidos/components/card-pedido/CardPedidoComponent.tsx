@@ -22,7 +22,7 @@ export const CardPedidoComponent = ({ ...props }) => {
         return pedido.items.map((item: any, index: number) => item.bannerUrl);
     }
 
-    let despacho = new Date(PedidosTimeService.subtractTenMinutes(props.pedido?.horaDespacho));
+    let despacho = new Date(PedidosTimeService.subtractMinutes(props.pedido?.horaDespacho, 10));
 
     return (
         <Card className="h-100 border-0 p-2 bg-transparent">

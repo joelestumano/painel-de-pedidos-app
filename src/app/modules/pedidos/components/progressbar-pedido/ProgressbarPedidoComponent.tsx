@@ -4,7 +4,7 @@ import { PedidosTimeService } from "../../services/PedidosTimeService";
 import { PedidoType } from "../../../../shared/types/PedidoType";
 export const ProgressbarPedidoComponent: React.FC<{ pedido: PedidoType }> = ({ pedido }) => {
 
-    let despacho = new Date(PedidosTimeService.subtractTenMinutes(pedido.horaDespacho));
+    let despacho = new Date(PedidosTimeService.subtractMinutes(pedido.horaDespacho, 10));
     const targetDateTime = (despacho).toISOString();
 
     const [progress, setProgress] = useState(0);

@@ -4,9 +4,6 @@ import { PedidosTimeService } from "../../services/PedidosTimeService";
 import { PedidoType } from "../../../../shared/types/PedidoType";
 export const ProgressbarPedidoComponent: React.FC<{ pedido: PedidoType }> = ({ pedido }) => {
 
-    let despacho = new Date(PedidosTimeService.subtractMinutes(pedido.horaDespacho, 10));
-    const targetDateTime = (despacho).toISOString();
-
     const [progress, setProgress] = useState(0);
     const [restante, setRestante] = useState(0);
     const minAnt = 30;
@@ -14,7 +11,7 @@ export const ProgressbarPedidoComponent: React.FC<{ pedido: PedidoType }> = ({ p
     useEffect(() => {
         const interval = setInterval(() => {
             const currentDateTime = new Date();
-            const targetDateTimeObj = new Date(targetDateTime);
+            const targetDateTimeObj = new Date(PedidosTimeService.subtractMinutes(pedido.horaDespacho, 10));
             const diffMilliseconds = targetDateTimeObj.getTime() - currentDateTime.getTime();
             const diffMinutes = Math.floor(diffMilliseconds / (1000 * 60));
 
@@ -34,7 +31,7 @@ export const ProgressbarPedidoComponent: React.FC<{ pedido: PedidoType }> = ({ p
         return () => {
             clearInterval(interval);
         };
-    }, [targetDateTime]);
+    }, []);
 
     const variant = progress > 50 ? "danger" : "info";
     const barStyle = {

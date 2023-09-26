@@ -31,7 +31,7 @@ export const ProgressbarPedidoComponent: React.FC<{ pedido: PedidoType }> = ({ p
         return () => {
             clearInterval(interval);
         };
-    }, []);
+    }, [pedido.horaDespacho]);
 
     const variant = progress > 50 ? "danger" : "info";
     const barStyle = {

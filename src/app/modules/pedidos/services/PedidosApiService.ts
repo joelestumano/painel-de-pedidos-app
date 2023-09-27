@@ -9,7 +9,7 @@ let dateStart = new Date();
 let dateEnd = new Date();
 
 dateStart.setHours(-3, 0, 0, 0);
-dateEnd.setHours(-3, 0, 0, 0);
+dateEnd.setHours(24, 0, 0, 0);
 
 dateStart.setHours(dateStart.getHours() - 3);
 //dateEnd.setHours(dateEnd.getHours()+3);

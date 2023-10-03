@@ -10,7 +10,7 @@ import { PedidoType } from "../../../../shared/types/PedidoType";
 
 const TextTitle = ({ ...props }) => {
     return (
-        <p className="p-1 px-2 fw-bold rounded-2 bg-primary bg-opacity-25 width-fit-content font-size-custom mb-2">
+        <p className="p-0 px-2 fw-bold rounded-2 bg-primary bg-opacity-25 width-fit-content font-size-custom mb-2 ff-cookie text-captalize fs-2">
             {props.cliente}
         </p>
     );

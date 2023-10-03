@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import PedidosPage from "./modules/pedidos/pages/PedidosList/PedidosPage";
-import { LoginPage } from "./modules/login/pages/Login";
+import { LoginPage } from "./modules/login/pages/LoginPage";
 
 export const AppRoutes = () => {
     return (
@@ -9,7 +9,7 @@ export const AppRoutes = () => {
             <Route
                 path="/"
                 element={<Navigate to="/pedidos" />}
-            /> 
+            />
             <Route Component={LoginPage} path="/login" />
             <Route path="*" element={<Navigate to="/" />} />
         </Routes>

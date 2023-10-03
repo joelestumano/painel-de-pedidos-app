@@ -57,7 +57,7 @@ export const LoginPage: React.FC<{}> = () => {
                     className={`form-control my-3 my-lg-3 border border-primary fw-semibold ${errors.password ? "is-invalid" : ""
                         }`}
                     type="password"
-                    {...register("password", { required: true })}
+                    {...register("password", { required: true, minLength: 6 })}
                     placeholder={"Senha"}
                 />
 

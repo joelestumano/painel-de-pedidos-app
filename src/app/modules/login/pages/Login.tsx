@@ -50,13 +50,13 @@ export const LoginPage: React.FC<{}> = () => {
                     className={`form-control my-3 my-lg-3 border border-primary fw-semibold ${errors.email ? "is-invalid" : ""
                         }`}
                     type="text"
-                    {...register("email", { required: true })}
+                    {...register("email", { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })}
                     placeholder={"E-mail"}
                 />
                 <input
                     className={`form-control my-3 my-lg-3 border border-primary fw-semibold ${errors.password ? "is-invalid" : ""
                         }`}
-                    type="text"
+                    type="password"
                     {...register("password", { required: true })}
                     placeholder={"Senha"}
                 />

@@ -1,8 +1,8 @@
 import axios, { AxiosInstance } from "axios";
 
 const baseURL = (): string => {
-  //return "http://localhost:3000/";
-  return "https://sg-api-b7fl.onrender.com/";
+  return "http://localhost:3000/v1/";
+  //return "https://sg-api-b7fl.onrender.com/";
 };
 
 const create = (): AxiosInstance => {

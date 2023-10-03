@@ -36,25 +36,25 @@ export const LoginPage: React.FC<{}> = () => {
     }
 
     return (
-        <Container fluid={true} className={`min-vh-100 d-flex flex-column align-items-center justify-content-start justify-content-md-center
+        <Container fluid={true} className={`min-vh-100 d-flex flex-column align-items-center justify-content-start justify-content-md-center py-4 py-md-0
          ${true ? '' : 'bg-danger bg-opacity-25'}`}>
-            <Row className="justify-content-center">
+            <Row className="justify-content-center mb-2">
                 <Col className="col-sm-12">
-                    <h2 className="text-center px-2 p-lg-0 text-uppercase fs-bebas-neue lh-1 fs-custom_a">
+                    <h2 className="text-center px-2 p-lg-0 text-uppercase fs-bebas-neue lh-1">
                         Login
                     </h2>
                 </Col>
             </Row>
-            <Form onSubmit={handleSubmit(onSubmit)} className="text-center">
+            <Form onSubmit={handleSubmit(onSubmit)} className="text-center bg-primary bg-opacity-25 p-4 rounded shadow">
                 <input
-                    className={`form-control my-3 my-lg-2 border border-primary fw-semibold ${errors.email ? "is-invalid" : ""
+                    className={`form-control my-3 my-lg-3 border border-primary fw-semibold ${errors.email ? "is-invalid" : ""
                         }`}
                     type="text"
                     {...register("email", { required: true })}
                     placeholder={"E-mail"}
                 />
                 <input
-                    className={`form-control my-3 my-lg-2 border border-primary fw-semibold ${errors.password ? "is-invalid" : ""
+                    className={`form-control my-3 my-lg-3 border border-primary fw-semibold ${errors.password ? "is-invalid" : ""
                         }`}
                     type="text"
                     {...register("password", { required: true })}

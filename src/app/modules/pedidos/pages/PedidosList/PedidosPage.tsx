@@ -13,10 +13,14 @@ import { PaginateType } from "../../../../shared/types/PaginateType";
 import { PedidoType } from "../../../../shared/types/PedidoType";
 import { UseDocumentTitle } from "../../../../shared/hooks/UseDocumentTitleHook";
 import { ApiService } from "../../../../services/ApiService";
+import { error } from "console";
+import { useNavigate } from "react-router-dom";
 
 const PedidosPage: React.FC<{}> = () => {
 
     UseDocumentTitle("SG - Pedidos");
+
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
     const { pedidos } = useSelector((rootReducer: any) => rootReducer.PedidosReducer);
@@ -46,7 +50,9 @@ const PedidosPage: React.FC<{}> = () => {
                     }, 1000);
                 })
                 .catch((err) => {
-                    console.error(err);
+                    if (err?.response?.status === 401) {
+                        navigate("/login");
+                    }
                 });
         }
 

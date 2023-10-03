@@ -13,7 +13,6 @@ import { PaginateType } from "../../../../shared/types/PaginateType";
 import { PedidoType } from "../../../../shared/types/PedidoType";
 import { UseDocumentTitle } from "../../../../shared/hooks/UseDocumentTitleHook";
 import { ApiService } from "../../../../services/ApiService";
-import { error } from "console";
 import { useNavigate } from "react-router-dom";
 
 const PedidosPage: React.FC<{}> = () => {
@@ -74,7 +73,7 @@ const PedidosPage: React.FC<{}> = () => {
         return () => {
             eventSource.close();
         };
-    }, [isOnline, dispatch]);
+    }, [isOnline, dispatch, navigate]);
 
     return (
         <>

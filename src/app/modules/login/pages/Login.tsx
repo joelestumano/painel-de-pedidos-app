@@ -26,7 +26,6 @@ export const LoginPage: React.FC<{}> = () => {
         try {
             setEnviando(true);
             const response = await ApiService.create().post('/v1/auth/login', data);
-            console.log(response.data);
             //navigate("/");
         } catch (error) {
             console.log(error);

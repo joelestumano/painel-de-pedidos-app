@@ -10,6 +10,7 @@ const create = (): AxiosInstance => {
     baseURL: baseURL(),
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${''}`
     },
   });
 };

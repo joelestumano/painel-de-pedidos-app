@@ -9,8 +9,7 @@ const create = (): AxiosInstance => {
   return axios.create({
     baseURL: baseURL(),
     headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${''}`
+      "Content-Type": "application/json"
     },
   });
 };

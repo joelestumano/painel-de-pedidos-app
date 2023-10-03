@@ -25,7 +25,7 @@ export const LoginPage: React.FC<{}> = () => {
     const onSubmit: SubmitHandler<inputs> = async (data) => {
         try {
             setEnviando(true);
-            const response = await ApiService.create().post('/auth/login', data);
+            const response = await ApiService.create().post('/v1/auth/login', data);
             console.log(response.data);
             //navigate("/");
         } catch (error) {
@@ -76,3 +76,4 @@ export const LoginPage: React.FC<{}> = () => {
         </Container>
     )
 }
+

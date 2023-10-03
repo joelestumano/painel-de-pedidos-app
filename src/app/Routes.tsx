@@ -9,7 +9,7 @@ export const AppRoutes = () => {
             <Route
                 path="/"
                 element={<Navigate to="/pedidos" />}
-            />
+            /> 
             <Route Component={LoginPage} path="/login" />
             <Route path="*" element={<Navigate to="/" />} />
         </Routes>

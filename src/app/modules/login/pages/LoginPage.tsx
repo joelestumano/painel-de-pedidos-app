@@ -4,39 +4,20 @@ import { Col, Container, Form, Row, Spinner } from "react-bootstrap";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { SgButton } from "../../../shared/components/SgButton/SgButton";
-import axios from "axios";
 import { LoginService, LoginType } from "../services/LoginService";
 import { useSelector } from "react-redux";
 
 export const LoginPage: React.FC<{}> = () => {
+    const { isOnline } = useSelector(
+        (rootReducer: any) => rootReducer.EventosReducer
+    );
 
-    const { isOnline } = useSelector((rootReducer: any) => rootReducer.EventosReducer);
-    
     const navigate = useNavigate();
     const [enviando, setEnviando] = useState(false);
-    const [token, setToken] = useState("");
 
     useEffect(() => {
-        const obterEToken = async () => {
-            await configAxiosWithToken(token);
-        };
-
-        obterEToken().then(() => {
-            if (token && token.length) {
-                navigate("/");
-            }
-        })
-    }, [token, navigate]);
-
-    const configAxiosWithToken = async (token: string) => {
-        return new Promise<void>((resolve) => {
-            axios.defaults.headers.common = {
-                ...axios.defaults.headers.common,
-                Authorization: `Bearer ${token}`,
-            };
-            resolve();
-        });
-    };
+     
+    }, []);
 
     const {
         register,
@@ -48,8 +29,13 @@ export const LoginPage: React.FC<{}> = () => {
     const onSubmit: SubmitHandler<LoginType> = async (data) => {
         try {
             setEnviando(true);
-            const response = await LoginService.login(data);
-            setToken(response.access_token);
+            await LoginService.login(data).then(() => {
+
+                setTimeout(() => {
+                    navigate("/");
+                }, 500);
+               
+            });
         } catch (error) {
             console.log(error);
         } finally {
@@ -68,7 +54,6 @@ export const LoginPage: React.FC<{}> = () => {
                     <Container fluid={false}>
                         <Row className="d-flex justify-content-center">
                             <Col className="col-12 col-md-6 ">
-
                                 <Row className="justify-content-center mb-2">
                                     <Col className="col-sm-12">
                                         <h2 className="text-center px-2 p-lg-0 text-captalize fs-bebas-neue lh-1 title-login">
@@ -121,9 +106,7 @@ export const LoginPage: React.FC<{}> = () => {
                         </Row>
                     </Container>
                 </Col>
-                <Col className="col-md-6 d-none d-md-block bg-primary bg-opacity-25 vh-100">
-
-                </Col>
+                <Col className="col-md-6 d-none d-md-block bg-primary bg-opacity-25 vh-100"></Col>
             </Row>
         </Container>
     );

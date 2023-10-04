@@ -11,35 +11,38 @@ const create = (): AxiosInstance => {
     baseURL: baseURL(),
     headers: {
       "Content-Type": "application/json",
+      Authorization: "",
     },
   });
 
   // Adiciona um interceptador na requisição
   axios_.interceptors.request.use(
-    function (config) {
+    (config: any) => {
       // Faz alguma coisa antes da requisição ser enviada
-      config.headers.common = {
-        ...config.headers.common,
+      config.headers = {
+        ...config.headers,
         Authorization: `Bearer ${LoginService.getToken()}`,
       };
       return config;
     },
-    function (error) {
+    (error) => {
       // Faz alguma coisa com o erro da requisição
       return Promise.reject(error);
     }
   );
-
   // Adiciona um interceptador na resposta
   axios_.interceptors.response.use(
-    function (response) {
+    (response) => {
       // Qualquer código de status que dentro do limite de 2xx faz com que está função seja acionada
       // Faz alguma coisa com os dados de resposta
       return response;
     },
-    function (error) {
+    (error) => {
       // Qualquer código de status que não esteja no limite do código 2xx faz com que está função seja acionada
       // Faz alguma coisa com o erro da resposta
+      if (error?.response?.status === 401) {
+        window.location.href = "/login";
+      }
       return Promise.reject(error);
     }
   );

@@ -49,9 +49,9 @@ const PedidosPage: React.FC<{}> = () => {
                     }, 1000);
                 })
                 .catch((err) => {
-                    if (err?.response?.status === 401) {
-                        navigate("/login");
-                    }
+                    /*   if (err?.response?.status === 401) {
+                          navigate("/login");
+                      } */
                 });
         }
 

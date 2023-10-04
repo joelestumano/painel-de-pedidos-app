@@ -15,9 +15,7 @@ export const LoginPage: React.FC<{}> = () => {
     const navigate = useNavigate();
     const [enviando, setEnviando] = useState(false);
 
-    useEffect(() => {
-     
-    }, []);
+    useEffect(() => { }, []);
 
     const {
         register,
@@ -30,11 +28,7 @@ export const LoginPage: React.FC<{}> = () => {
         try {
             setEnviando(true);
             await LoginService.login(data).then(() => {
-
-                setTimeout(() => {
-                    navigate("/");
-                }, 500);
-               
+                navigate("/");
             });
         } catch (error) {
             console.log(error);

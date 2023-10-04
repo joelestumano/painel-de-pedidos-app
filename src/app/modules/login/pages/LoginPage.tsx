@@ -5,15 +5,22 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { SgButton } from "../../../shared/components/SgButton/SgButton";
 import { LoginService, LoginType } from "../services/LoginService";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import jwt_decode from "jwt-decode";
+import { UsuarioActionTypeEnum } from "../../../../redux/usuario/UsuarioActionTypeEnum";
+import { UseDocumentTitle } from "../../../shared/hooks/UseDocumentTitleHook";
 
 export const LoginPage: React.FC<{}> = () => {
+
+    UseDocumentTitle("SG - Login");
+
     const { isOnline } = useSelector(
         (rootReducer: any) => rootReducer.EventosReducer
     );
 
     const navigate = useNavigate();
     const [enviando, setEnviando] = useState(false);
+    const dispatch = useDispatch();
 
     useEffect(() => { }, []);
 
@@ -27,7 +34,12 @@ export const LoginPage: React.FC<{}> = () => {
     const onSubmit: SubmitHandler<LoginType> = async (data) => {
         try {
             setEnviando(true);
-            await LoginService.login(data).then(() => {
+            await LoginService.login(data).then((res) => {
+                var userDecoded = jwt_decode(res.access_token);
+                dispatch({
+                    type: UsuarioActionTypeEnum.SET_USUARIO,
+                    payload: userDecoded
+                })
                 navigate("/");
             });
         } catch (error) {

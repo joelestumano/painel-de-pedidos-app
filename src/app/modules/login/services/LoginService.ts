@@ -1,6 +1,5 @@
 import { ApiService } from "../../../services/ApiService";
 import { LocalStorageService } from "../../../services/LocalStorageServide";
-import jwt_decode from "jwt-decode";
 
 export type AccessTokenType = {
     access_token: string;
@@ -16,10 +15,6 @@ const baseURL: string = "/v1/auth/";
 const login = async (login: LoginType): Promise<AccessTokenType> => {
     const { data } = await ApiService.create().post(`${baseURL}login`, login);
     setToken(data);
-
-    var decoded = jwt_decode(data.access_token);
-
-    console.log(decoded);
     return data;
 };
 

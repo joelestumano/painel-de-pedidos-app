@@ -59,9 +59,9 @@ const PedidosPage: React.FC<{}> = () => {
                 carregarDadosPedidos();
             }
         };
-        eventSource.onerror = (error) => {
+       /*  eventSource.onerror = (error) => {
             console.error(error);
-        };
+        }; */
 
         if (isOnline) {
             carregarDadosPedidos();

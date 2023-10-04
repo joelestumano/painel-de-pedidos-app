@@ -43,18 +43,18 @@ export const OffCanvasComponent: React.FC<{}> = () => {
             <Offcanvas placement="end" show={show} onHide={handleClose} {...props}>
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>
-                        <BsIconComponent
-                            iconName="Gear"
-                            size={32}
-                            className="align-middle me-1"
-                        />
+                        <div className="d-flex flex-row">
+                            <BsIconComponent
+                                iconName="Gear"
+                                size={32}
+                                className="align-middle me-2"
+                            />
+                            <h2 className="mb-0">Opções & configurações</h2>
+                        </div>
                     </Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <Row>
-                        <Col className="col-12">
-                            <h2 className="">Opções & configurações</h2>
-                        </Col>
                         {usuario ? (
                             <Col className="col-12">
                                 <p className="fs-2">{usuario.nome}</p>

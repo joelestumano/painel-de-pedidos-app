@@ -23,7 +23,7 @@ export const OffCanvasComponent: React.FC<{}> = () => {
         <>
             <Button
                 type="button"
-                title="offcanvas"
+                title="Opções & configurações"
                 variant="primary"
                 style={{ zIndex: 100 }}
                 onClick={toggleShow}

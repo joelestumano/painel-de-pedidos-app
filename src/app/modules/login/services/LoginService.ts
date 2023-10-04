@@ -1,4 +1,5 @@
 import { ApiService } from "../../../services/ApiService";
+import { LocalStorageService } from "../../../services/LocalStorageServide";
 
 export type AccessTokenType = {
     access_token: string;
@@ -10,7 +11,6 @@ export type LoginType = {
 };
 
 const baseURL: string = "/v1/auth/";
-let dataToken: AccessTokenType = { access_token: "" };
 
 const login = async (login: LoginType): Promise<AccessTokenType> => {
     const { data } = await ApiService.create().post(`${baseURL}login`, login);
@@ -18,19 +18,22 @@ const login = async (login: LoginType): Promise<AccessTokenType> => {
     return data;
 };
 
-const setToken = (dataToken_: AccessTokenType) => {
-    dataToken = {
-        ...dataToken,
-        access_token: dataToken_?.access_token,
-    };
+const setToken = (dataToken: AccessTokenType) => {
+    LocalStorageService.setStorage("access_token", dataToken.access_token);
 };
 
 const getToken = (): string => {
-    return dataToken?.access_token;
+    return LocalStorageService.getStorage("access_token");
+};
+
+const logout = () => {
+    LocalStorageService.deleteStorage("access_token");
+    window.location.href = "/login";
 };
 
 export const LoginService = {
     login,
     setToken,
     getToken,
+    logout
 };

@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 import { LoginService } from "../modules/login/services/LoginService";
+import { LocalStorageService } from "./LocalStorageServide";
 
 const baseURL = (): string => {
   return "http://localhost:3000/";
@@ -41,7 +42,7 @@ const create = (): AxiosInstance => {
       // Qualquer código de status que não esteja no limite do código 2xx faz com que está função seja acionada
       // Faz alguma coisa com o erro da resposta
       if (error?.response?.status === 401) {
-        window.location.href = "/login";
+        LoginService.logout();
       }
       return Promise.reject(error);
     }

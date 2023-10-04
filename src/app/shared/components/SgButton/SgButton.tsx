@@ -6,7 +6,7 @@ interface SgButtonProps {
     child?: any;
     onClick?: () => void;
     onSubmit?: () => void;
-    variant?: "black" | "primary";
+    variant?: "primary" | "danger";
     disabled?: boolean;
 }
 
@@ -32,11 +32,7 @@ export const SgButton: React.FC<SgButtonProps> = ({
     return (
         <button
             type={type}
-            className={`btn text-uppercase fw-semibold px-4 esf-button
-      ${variant === "primary"
-                    ? "btn-primary"
-                    : "btn-black text-primary bg-black"
-                } `}
+            className={`btn text-uppercase fw-semibold px-4 esf-button text-white btn-${variant} bg-${variant}`}
             onClick={handleClick}
             onSubmit={handleSubmit}
             disabled={disabled}

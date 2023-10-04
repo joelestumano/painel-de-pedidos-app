@@ -1,6 +1,8 @@
 import { Button, Col, Offcanvas, Row } from "react-bootstrap";
 import { useState } from "react";
 import { BsIconComponent } from "../bs-icon/BsIconComponent";
+import { SgButton } from "../SgButton/SgButton";
+import { LoginService } from "../../../modules/login/services/LoginService";
 
 export const OffCanvasComponent: React.FC<{}> = () => {
 
@@ -12,6 +14,10 @@ export const OffCanvasComponent: React.FC<{}> = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const toggleShow = () => setShow((s) => !s);
+
+    const onLogout = () => {
+        LoginService.logout();
+    }
 
     return (
         <>
@@ -33,8 +39,11 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <Row>
-                        <Col>
+                        <Col className="col-12">
                             <h4>Área para configurações</h4>
+                        </Col>
+                        <Col>
+                            <SgButton type={"button"} variant="danger" text="sair" onClick={onLogout} />
                         </Col>
                     </Row>
                 </Offcanvas.Body>

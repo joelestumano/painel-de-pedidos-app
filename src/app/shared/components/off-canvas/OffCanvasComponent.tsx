@@ -40,9 +40,9 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                 <Offcanvas.Body>
                     <Row>
                         <Col className="col-12">
-                            <h4>Área para configurações</h4>
+                            <h2 className="">Opções & configurações</h2>
                         </Col>
-                        <Col>
+                        <Col className="col-12">
                             <SgButton type={"button"} variant="danger" text="sair" onClick={onLogout} />
                         </Col>
                     </Row>

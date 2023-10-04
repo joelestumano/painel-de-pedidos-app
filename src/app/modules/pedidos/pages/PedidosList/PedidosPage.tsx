@@ -48,22 +48,19 @@ const PedidosPage: React.FC<{}> = () => {
                         setOnUpdate(false);
                     }, 1000);
                 })
-                .catch((err) => {
-                    /*   if (err?.response?.status === 401) {
-                          navigate("/login");
-                      } */
-                });
+                .catch((err) => { });
         }
-
-        //carregarDadosPedidos();
         const eventSource = new EventSource(
             `${ApiService.baseURL()}v1/app/changed-collection`
         );
-        eventSource.onmessage = function (event) {
+        eventSource.onmessage = (event) => {
             const eventName = JSON.parse(event.data).event.eventName;
             if (eventName === "changed-collection-pedidos") {
                 carregarDadosPedidos();
             }
+        };
+        eventSource.onerror = (error) => {
+            console.error(error);
         };
 
         if (isOnline) {

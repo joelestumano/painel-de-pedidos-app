@@ -43,7 +43,7 @@ export const SgButton: React.FC<SgButtonProps> = ({
                     <div className="d-flex align-items-center ms-2">{child}</div>
                 </div>
             ) : (
-                <span className="mx-3">{text}</span>
+                <span className="mx-0 mx-md-3">{text}</span>
             )}
         </button>
     );

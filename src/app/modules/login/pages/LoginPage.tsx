@@ -20,7 +20,7 @@ export const LoginPage: React.FC<{}> = () => {
     );
 
     const navigate = useNavigate();
-    const [btnSubmit, setBtnSubmit] = useState<'parado' | 'enviando' | 'checado' | 'falhou'>('parado');
+    const [btnSubmit, setBtnSubmit] = useState<'parado' | 'enviando' | 'checado' | 'unauthorized' | 'falhou'>('parado');
     const dispatch = useDispatch();
 
     useEffect(() => { }, []);
@@ -33,24 +33,64 @@ export const LoginPage: React.FC<{}> = () => {
     } = useForm<LoginType>();
 
     const onSubmit: SubmitHandler<LoginType> = async (data) => {
-        try {
-            setBtnSubmit('enviando');
-            await LoginService.login(data).then((res) => {
-                setBtnSubmit("checado");
-                setTimeout(() => {
-                    var userDecoded = jwt_decode(res.access_token);
-                    dispatch({
-                        type: UsuarioActionTypeEnum.SET_USUARIO,
-                        payload: userDecoded
-                    })
-                    LoginService.setToken(res);
-                    navigate("/");
-                }, 750);
-            });
-        } catch (error) {
-            setBtnSubmit("falhou");
-        } finally { }
+        setBtnSubmit('enviando');
+        await LoginService.login(data).then((res) => {
+            setBtnSubmit("checado");
+            setTimeout(() => {
+                var userDecoded = jwt_decode(res.access_token);
+                dispatch({
+                    type: UsuarioActionTypeEnum.SET_USUARIO,
+                    payload: userDecoded
+                })
+                LoginService.setToken(res);
+                navigate("/");
+            }, 750);
+        }).catch((error) => {
+            if (error?.response?.status === 401) {
+                setBtnSubmit('unauthorized')
+            } else {
+                setBtnSubmit('falhou')
+            }
+        }).finally(() => { });
     };
+
+    const getTextBtnSubmit = (): string => {
+        switch (btnSubmit) {
+            case 'enviando':
+                return 'enviando...'
+            case 'checado':
+                return 'conectado!'
+            case 'unauthorized':
+                return 'não autorizado!'
+            case 'falhou':
+                return 'um erro ocorreu'
+            default: return 'enviar'
+        }
+    }
+
+    const getVariantBtnSubmit = (): "success" | "danger" | "primary" => {
+        switch (btnSubmit) {
+            case 'checado':
+                return 'success'
+            case 'unauthorized':
+                return 'danger'
+            case 'falhou':
+                return 'danger'
+            default: return 'primary'
+        }
+    }
+
+    const getBsIconBtnSubmit = (): JSX.Element | null => {
+        switch (btnSubmit) {
+            case 'checado':
+                return <BsIconComponent iconName="CheckLg" />
+            case 'unauthorized':
+                return <BsIconComponent iconName="XOctagon" />
+            case 'falhou':
+                return <BsIconComponent iconName="BugFill" />
+            default: return null
+        }
+    }
 
     return (
         <Container
@@ -94,10 +134,10 @@ export const LoginPage: React.FC<{}> = () => {
 
                                     <SgButton
                                         type="submit"
-                                        text={btnSubmit === "enviando" ? "enviando..." : btnSubmit === "checado" ? "conectado!" : btnSubmit === 'falhou' ? 'tentar novamente' : "enviar"}
+                                        text={getTextBtnSubmit()}
                                         onSubmit={() => { }}
                                         disabled={btnSubmit === 'enviando'}
-                                        variant={btnSubmit === "checado" ? 'success' : btnSubmit === 'falhou' ? 'danger' : 'primary'}
+                                        variant={getVariantBtnSubmit()}
                                         child={
                                             btnSubmit === 'enviando' ?
                                                 <Spinner
@@ -108,8 +148,7 @@ export const LoginPage: React.FC<{}> = () => {
                                                     role="status"
                                                     aria-hidden="true"
                                                 />
-                                                : btnSubmit === 'checado' ? <BsIconComponent iconName="CheckLg" /> :
-                                                    btnSubmit === 'falhou' ? <BsIconComponent iconName="XLg" /> : null
+                                                : getBsIconBtnSubmit()
                                         }
                                     />
                                 </Form>

@@ -5,6 +5,7 @@ import useLocalStorage from "@rehooks/local-storage";
 import jwt_decode from "jwt-decode";
 import { useDispatch } from "react-redux";
 import { UsuarioActionTypeEnum } from "../redux/usuario/UsuarioActionTypeEnum";
+import { useEffect } from "react";
 
 const RequireAuth: React.FC<{ children: any; redirectTo: any }> = ({
     children,
@@ -13,10 +14,14 @@ const RequireAuth: React.FC<{ children: any; redirectTo: any }> = ({
     const [isToken] = useLocalStorage("access_token");
     const dispatch = useDispatch();
     const userDecoded = isToken ? jwt_decode(isToken) : undefined;
-    dispatch({
-        type: UsuarioActionTypeEnum.SET_USUARIO,
-        payload: userDecoded,
-    });
+
+    useEffect(() => {
+        dispatch({
+            type: UsuarioActionTypeEnum.SET_USUARIO,
+            payload: userDecoded,
+        });
+    }, [dispatch, userDecoded]);
+
     return isToken ? children : <Navigate to={redirectTo} />;
 };
 

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import jwt_decode from "jwt-decode";
 import { UsuarioActionTypeEnum } from "../../../../redux/usuario/UsuarioActionTypeEnum";
 import { UseDocumentTitle } from "../../../shared/hooks/UseDocumentTitleHook";
+import { BsIconComponent } from "../../../shared/components/bs-icon/BsIconComponent";
 
 export const LoginPage: React.FC<{}> = () => {
 
@@ -19,7 +20,7 @@ export const LoginPage: React.FC<{}> = () => {
     );
 
     const navigate = useNavigate();
-    const [enviando, setEnviando] = useState(false);
+    const [btnSubmit, setBtnSubmit] = useState<'parado' | 'enviando' | 'checado' | 'falhou'>('parado');
     const dispatch = useDispatch();
 
     useEffect(() => { }, []);
@@ -33,20 +34,22 @@ export const LoginPage: React.FC<{}> = () => {
 
     const onSubmit: SubmitHandler<LoginType> = async (data) => {
         try {
-            setEnviando(true);
+            setBtnSubmit('enviando');
             await LoginService.login(data).then((res) => {
-                var userDecoded = jwt_decode(res.access_token);
-                dispatch({
-                    type: UsuarioActionTypeEnum.SET_USUARIO,
-                    payload: userDecoded
-                })
-                navigate("/");
+                setBtnSubmit("checado");
+                setTimeout(() => {
+                    var userDecoded = jwt_decode(res.access_token);
+                    dispatch({
+                        type: UsuarioActionTypeEnum.SET_USUARIO,
+                        payload: userDecoded
+                    })
+                    LoginService.setToken(res);
+                    navigate("/");
+                }, 750);
             });
         } catch (error) {
-            console.log(error);
-        } finally {
-            setEnviando(false);
-        }
+            setBtnSubmit("falhou");
+        } finally { }
     };
 
     return (
@@ -91,11 +94,12 @@ export const LoginPage: React.FC<{}> = () => {
 
                                     <SgButton
                                         type="submit"
-                                        text={enviando ? "enviando..." : "enviar"}
+                                        text={btnSubmit === "enviando" ? "enviando..." : btnSubmit === "checado" ? "conectado!" : btnSubmit === 'falhou' ? 'tentar novamente' : "enviar"}
                                         onSubmit={() => { }}
-                                        disabled={enviando}
+                                        disabled={btnSubmit === 'enviando'}
+                                        variant={btnSubmit === "checado" ? 'success' : btnSubmit === 'falhou' ? 'danger' : 'primary'}
                                         child={
-                                            enviando ? (
+                                            btnSubmit === 'enviando' ?
                                                 <Spinner
                                                     className=""
                                                     as="span"
@@ -104,7 +108,8 @@ export const LoginPage: React.FC<{}> = () => {
                                                     role="status"
                                                     aria-hidden="true"
                                                 />
-                                            ) : null
+                                                : btnSubmit === 'checado' ? <BsIconComponent iconName="CheckLg" /> :
+                                                    btnSubmit === 'falhou' ? <BsIconComponent iconName="XLg" /> : null
                                         }
                                     />
                                 </Form>

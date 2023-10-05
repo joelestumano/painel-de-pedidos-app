@@ -14,7 +14,6 @@ const baseURL: string = "/v1/auth/";
 
 const login = async (login: LoginType): Promise<AccessTokenType> => {
     const { data } = await ApiService.create().post(`${baseURL}login`, login);
-    setToken(data);
     return data;
 };
 

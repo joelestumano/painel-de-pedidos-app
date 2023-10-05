@@ -6,7 +6,7 @@ interface SgButtonProps {
     child?: any;
     onClick?: () => void;
     onSubmit?: () => void;
-    variant?: "primary" | "danger";
+    variant?: "primary" | "success" | "danger";
     disabled?: boolean;
 }
 

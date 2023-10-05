@@ -4,9 +4,6 @@ import { useDispatch } from "react-redux";
 import { EventosActionTypeEnum } from "./redux/eventos/EventosActionTypeEnum";
 import { AppRoutes } from "./app/Routes";
 import { BrowserRouter } from "react-router-dom";
-import jwt_decode from "jwt-decode";
-import { UsuarioActionTypeEnum } from "./redux/usuario/UsuarioActionTypeEnum";
-import { LocalStorageService } from "./app/services/LocalStorageServide";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,14 +34,7 @@ function App() {
     };
 
     window.addEventListener("online", handleOnline);
-    window.addEventListener("offline", handleOffline);
-
-    const localToken = LocalStorageService.getStorage("access_token");
-    const userDecoded = localToken ? jwt_decode(localToken) : undefined;
-    dispatch({
-      type: UsuarioActionTypeEnum.SET_USUARIO,
-      payload: userDecoded,
-    });
+    window.addEventListener("offline", handleOffline);  
 
     return () => {
       window.removeEventListener("online", handleOnline);

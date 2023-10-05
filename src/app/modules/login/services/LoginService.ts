@@ -28,7 +28,6 @@ const getToken = (): string => {
 
 const logout = () => {
     LocalStorageService.deleteStorage("access_token");
-    window.location.href = "/login";
 };
 
 export const LoginService = {

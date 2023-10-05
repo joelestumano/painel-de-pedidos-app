@@ -62,7 +62,7 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                                     type={"button"}
                                     variant="danger"
                                     text="sair"
-                                    onClick={onLogout}
+                                    onClick={() => { onLogout(); handleClose() }}
                                 />
                             </Col>
                         ) : null}

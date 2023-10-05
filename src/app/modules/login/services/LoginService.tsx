@@ -1,5 +1,5 @@
 import { ApiService } from "../../../services/ApiService";
-import { LocalStorageService } from "../../../services/LocalStorageServide";
+import { writeStorage, deleteFromStorage } from "@rehooks/local-storage";
 
 export type AccessTokenType = {
     access_token: string;
@@ -19,15 +19,15 @@ const login = async (login: LoginType): Promise<AccessTokenType> => {
 };
 
 const setToken = (dataToken: AccessTokenType) => {
-    LocalStorageService.setStorage("access_token", dataToken.access_token);
+    writeStorage("access_token", dataToken.access_token);
 };
 
-const getToken = (): string => {
-    return LocalStorageService.getStorage("access_token");
+const getToken = (): string | null => {
+    return localStorage.getItem("access_token");
 };
 
 const logout = () => {
-    LocalStorageService.deleteStorage("access_token");
+    deleteFromStorage("access_token");
 };
 
 export const LoginService = {

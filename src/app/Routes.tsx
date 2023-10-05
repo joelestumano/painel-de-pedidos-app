@@ -24,9 +24,7 @@ export const AppRoutes = () => {
     return (
         <Routes>
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/pedidos" element={<PedidosPage />} />
             <Route path="*" element={<Navigate to="/" />} />
-
             <Route
                 path="/"
                 element={

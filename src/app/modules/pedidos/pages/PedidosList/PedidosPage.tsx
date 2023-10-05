@@ -13,10 +13,13 @@ import { PaginateType } from "../../../../shared/types/PaginateType";
 import { PedidoType } from "../../../../shared/types/PedidoType";
 import { UseDocumentTitle } from "../../../../shared/hooks/UseDocumentTitleHook";
 import { ApiService } from "../../../../services/ApiService";
+import { useNavigate } from "react-router-dom";
 
 const PedidosPage: React.FC<{}> = () => {
 
     UseDocumentTitle("SG - Pedidos");
+
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
     const { pedidos } = useSelector((rootReducer: any) => rootReducer.PedidosReducer);
@@ -45,21 +48,20 @@ const PedidosPage: React.FC<{}> = () => {
                         setOnUpdate(false);
                     }, 1000);
                 })
-                .catch((err) => {
-                    console.error(err);
-                });
+                .catch((err) => { });
         }
-
-        //carregarDadosPedidos();
         const eventSource = new EventSource(
             `${ApiService.baseURL()}v1/app/changed-collection`
         );
-        eventSource.onmessage = function (event) {
+        eventSource.onmessage = (event) => {
             const eventName = JSON.parse(event.data).event.eventName;
             if (eventName === "changed-collection-pedidos") {
                 carregarDadosPedidos();
             }
         };
+       /*  eventSource.onerror = (error) => {
+            console.error(error);
+        }; */
 
         if (isOnline) {
             carregarDadosPedidos();
@@ -68,7 +70,7 @@ const PedidosPage: React.FC<{}> = () => {
         return () => {
             eventSource.close();
         };
-    }, [isOnline, dispatch]);
+    }, [isOnline, dispatch, navigate]);
 
     return (
         <>

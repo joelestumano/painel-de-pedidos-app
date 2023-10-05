@@ -58,7 +58,7 @@ export const ProgressbarPedidoComponent: React.FC<{ pedido: PedidoType }> = ({ p
             <ProgressBar
                 now={progress}
                 variant={variant}
-                className="mt-1"
+                className="mx-1"
                 style={barStyle}
             />
             {progress === 100 ? (

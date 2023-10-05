@@ -11,10 +11,6 @@ const PedidosReducer = (state = initialState, action: { type: string, payload: P
     switch (action.type) {
         case PedidosActionTypeEnum.LISTAR_PEDIDOS:
             return { ...state, pedidos: action.payload };
-
-        case PedidosActionTypeEnum.INCREMENTAR_PEDIDOS_ATRASADOS:
-            return { ...state, pedidosAtrasados: state.pedidosAtrasados + 1 };
-
         default:
             return state;
     }

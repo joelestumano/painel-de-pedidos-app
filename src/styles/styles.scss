@@ -8,4 +8,18 @@ $danger: #ff0000 !default;
 $dark: $body-bg !default;
 
 // Import Bootstrap and its default variables
+
+@import url("https://fonts.googleapis.com/css2?family=Cookie&display=swap");
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.ff-cookie {
+  font-family: "Cookie";
+  line-height: initial;
+}
+
 @import "~bootstrap/scss/bootstrap.scss";

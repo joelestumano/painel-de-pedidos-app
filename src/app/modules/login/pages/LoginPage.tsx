@@ -57,11 +57,11 @@ export const LoginPage: React.FC<{}> = () => {
     const getTextBtnSubmit = (): string => {
         switch (btnSubmit) {
             case 'enviando':
-                return 'enviando...'
+                return 'enviando'
             case 'checado':
-                return 'conectado!'
+                return 'conectado'
             case 'unauthorized':
-                return 'não autorizado!'
+                return 'não autorizado'
             case 'falhou':
                 return 'um erro ocorreu'
             default: return 'enviar'
@@ -125,12 +125,14 @@ export const LoginPage: React.FC<{}> = () => {
                                         placeholder={"E-mail"}
                                     />
                                     <input
-                                        className={`form-control my-3 my-lg-3 border border-primary fw-semibold ${errors.password ? "is-invalid" : ""
+                                        className={`form-control mt-3 mt-lg-3 mb-2 border border-primary fw-semibold ${errors.password ? "is-invalid" : ""
                                             }`}
                                         type="password"
                                         {...register("password", { required: true, minLength: 6 })}
                                         placeholder={"Senha"}
                                     />
+
+                                    <a href="/account" className="nav-link mb-4 text-md-end text-decoration-underline">esqueceu sua senha?</a>
 
                                     <SgButton
                                         type="submit"

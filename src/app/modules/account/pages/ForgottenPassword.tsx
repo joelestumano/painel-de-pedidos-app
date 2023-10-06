@@ -1,8 +1,12 @@
 import { useSelector } from "react-redux";
 import { UseDocumentTitle } from "../../../shared/hooks/UseDocumentTitleHook";
 import { useEffect, useState } from "react";
-import { Col, Container, Form, Row } from "react-bootstrap";
+import { Col, Container, Form, Row, Spinner } from "react-bootstrap";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { SgButton } from "../../../shared/components/SgButton/SgButton";
+import { BsIconComponent } from "../../../shared/components/bs-icon/BsIconComponent";
+import { AccountService } from "../service/AccountService";
+import { useNavigate } from "react-router-dom";
 
 export const ForgottenPasswordPage: React.FC<{}> = () => {
 
@@ -12,7 +16,8 @@ export const ForgottenPasswordPage: React.FC<{}> = () => {
         (rootReducer: any) => rootReducer.EventosReducer
     );
 
-    const [btnSubmit, setBtnSubmit] = useState<'parado' | 'enviando' | 'checado' | 'unauthorized' | 'falhou'>('parado');
+    const [btnSubmit, setBtnSubmit] = useState<'parado' | 'enviando' | 'checado' | 'not-found' | 'falhou'>('parado');
+    const navigate = useNavigate();
     useEffect(() => { }, []);
 
     const {
@@ -22,7 +27,59 @@ export const ForgottenPasswordPage: React.FC<{}> = () => {
         formState: { errors },
     } = useForm<{ email: string }>();
 
-    const onSubmit: SubmitHandler<{ email: string }> = async (data) => { }
+    const onSubmit: SubmitHandler<{ email: string }> = async (data) => {
+        setBtnSubmit('enviando');
+        await AccountService.forgottenPassword(data).then((res) => {
+            setBtnSubmit("checado");
+            setTimeout(() => {
+                navigate("/");
+            }, 750);
+        }).catch((error) => {
+            if (error?.response?.status === 404) {
+                setBtnSubmit('not-found')
+            } else {
+                setBtnSubmit('falhou')
+            }
+        }).finally(() => { });
+    }
+
+    const getTextBtnSubmit = (): string => {
+        switch (btnSubmit) {
+            case 'enviando':
+                return 'enviando'
+            case 'checado':
+                return 'email enviado'
+            case 'not-found':
+                return 'email não encontrado'
+            case 'falhou':
+                return 'um erro ocorreu'
+            default: return 'enviar'
+        }
+    }
+
+    const getVariantBtnSubmit = (): "success" | "danger" | "primary" => {
+        switch (btnSubmit) {
+            case 'checado':
+                return 'success'
+            case 'not-found':
+                return 'danger'
+            case 'falhou':
+                return 'danger'
+            default: return 'primary'
+        }
+    }
+
+    const getBsIconBtnSubmit = (): JSX.Element | null => {
+        switch (btnSubmit) {
+            case 'checado':
+                return <BsIconComponent iconName="CheckLg" />
+            case 'not-found':
+                return <BsIconComponent iconName="XOctagon" />
+            case 'falhou':
+                return <BsIconComponent iconName="BugFill" />
+            default: return null
+        }
+    }
 
     return (
         <Container
@@ -60,6 +117,26 @@ export const ForgottenPasswordPage: React.FC<{}> = () => {
                                             pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                                         })}
                                         placeholder={"E-mail"}
+                                    />
+
+                                    <SgButton
+                                        type="submit"
+                                        text={getTextBtnSubmit()}
+                                        onSubmit={() => { }}
+                                        disabled={btnSubmit === 'enviando'}
+                                        variant={getVariantBtnSubmit()}
+                                        child={
+                                            btnSubmit === 'enviando' ?
+                                                <Spinner
+                                                    className=""
+                                                    as="span"
+                                                    animation="border"
+                                                    size="sm"
+                                                    role="status"
+                                                    aria-hidden="true"
+                                                />
+                                                : getBsIconBtnSubmit()
+                                        }
                                     />
                                 </Form>
 

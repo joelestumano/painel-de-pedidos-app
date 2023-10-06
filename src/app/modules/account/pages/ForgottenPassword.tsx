@@ -84,14 +84,14 @@ export const ForgottenPasswordPage: React.FC<{}> = () => {
     return (
         <Container
             fluid={true}
-            className={`min-vh-100 d-flex flex-column justify-content-start justify-content-md-center py-4 py-md-0
+            className={`min-vh-100 d-flex flex-column justify-content-start justify-content-md-center
             ${isOnline ? "" : "bg-danger bg-opacity-25"}`}
         >
             <Row className="flex-row-reverse">
-                <Col className="col-12 col-md-6 d-flex align-items-md-center">
+                <Col className="col-12 col-md-6 d-flex align-items-md-center py-4">
                     <Container fluid={false}>
                         <Row className="d-flex justify-content-center">
-                            <Col className="col-12 col-md-6 ">
+                            <Col className="col-12 col-md-8">
 
                                 <h1 className="">
                                     Prezado(a) usuário(a)
@@ -150,7 +150,7 @@ export const ForgottenPasswordPage: React.FC<{}> = () => {
                         </Row>
                     </Container>
                 </Col>
-                <Col className="col-md-6 d-none d-md-block bg-primary bg-opacity-25 vh-100"></Col>
+                <Col className="col-md-6 d-none d-md-block bg-primary bg-opacity-25 min-vh-100"></Col>
             </Row>
         </Container>
     );

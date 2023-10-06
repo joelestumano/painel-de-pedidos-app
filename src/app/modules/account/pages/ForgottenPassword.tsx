@@ -1,28 +1,23 @@
-import "./LoginPage.scss";
+import { useSelector } from "react-redux";
+import { UseDocumentTitle } from "../../../shared/hooks/UseDocumentTitleHook";
 import { useEffect, useState } from "react";
 import { Col, Container, Form, Row, Spinner } from "react-bootstrap";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { SgButton } from "../../../shared/components/SgButton/SgButton";
-import { LoginService, LoginType } from "../services/LoginService";
-import { useDispatch, useSelector } from "react-redux";
-import jwt_decode from "jwt-decode";
-import { UsuarioActionTypeEnum } from "../../../../redux/usuario/UsuarioActionTypeEnum";
-import { UseDocumentTitle } from "../../../shared/hooks/UseDocumentTitleHook";
 import { BsIconComponent } from "../../../shared/components/bs-icon/BsIconComponent";
+import { AccountService } from "../service/AccountService";
+import { useNavigate } from "react-router-dom";
 
-export const LoginPage: React.FC<{}> = () => {
+export const ForgottenPasswordPage: React.FC<{}> = () => {
 
-    UseDocumentTitle("SG - Login");
+    UseDocumentTitle("SG - Conta de usuário");
 
     const { isOnline } = useSelector(
         (rootReducer: any) => rootReducer.EventosReducer
     );
 
+    const [btnSubmit, setBtnSubmit] = useState<'parado' | 'enviando' | 'checado' | 'not-found' | 'falhou'>('parado');
     const navigate = useNavigate();
-    const [btnSubmit, setBtnSubmit] = useState<'parado' | 'enviando' | 'checado' | 'unauthorized' | 'falhou'>('parado');
-    const dispatch = useDispatch();
-
     useEffect(() => { }, []);
 
     const {
@@ -30,38 +25,32 @@ export const LoginPage: React.FC<{}> = () => {
         handleSubmit,
         //watch,
         formState: { errors },
-    } = useForm<LoginType>();
+    } = useForm<{ email: string }>();
 
-    const onSubmit: SubmitHandler<LoginType> = async (data) => {
+    const onSubmit: SubmitHandler<{ email: string }> = async (data) => {
         setBtnSubmit('enviando');
-        await LoginService.login(data).then((res) => {
+        await AccountService.forgottenPassword(data).then((res) => {
             setBtnSubmit("checado");
             setTimeout(() => {
-                var userDecoded = jwt_decode(res.access_token);
-                dispatch({
-                    type: UsuarioActionTypeEnum.SET_USUARIO,
-                    payload: userDecoded
-                })
-                LoginService.setToken(res);
                 navigate("/");
             }, 750);
         }).catch((error) => {
-            if (error?.response?.status === 401) {
-                setBtnSubmit('unauthorized')
+            if (error?.response?.status === 404) {
+                setBtnSubmit('not-found')
             } else {
                 setBtnSubmit('falhou')
             }
         }).finally(() => { });
-    };
+    }
 
     const getTextBtnSubmit = (): string => {
         switch (btnSubmit) {
             case 'enviando':
                 return 'enviando'
             case 'checado':
-                return 'conectado'
-            case 'unauthorized':
-                return 'não autorizado'
+                return 'email enviado'
+            case 'not-found':
+                return 'email não encontrado'
             case 'falhou':
                 return 'um erro ocorreu'
             default: return 'enviar'
@@ -72,7 +61,7 @@ export const LoginPage: React.FC<{}> = () => {
         switch (btnSubmit) {
             case 'checado':
                 return 'success'
-            case 'unauthorized':
+            case 'not-found':
                 return 'danger'
             case 'falhou':
                 return 'danger'
@@ -84,7 +73,7 @@ export const LoginPage: React.FC<{}> = () => {
         switch (btnSubmit) {
             case 'checado':
                 return <BsIconComponent iconName="CheckLg" />
-            case 'unauthorized':
+            case 'not-found':
                 return <BsIconComponent iconName="XOctagon" />
             case 'falhou':
                 return <BsIconComponent iconName="BugFill" />
@@ -96,19 +85,23 @@ export const LoginPage: React.FC<{}> = () => {
         <Container
             fluid={true}
             className={`min-vh-100 d-flex flex-column justify-content-start justify-content-md-center py-4 py-md-0
-         ${isOnline ? "" : "bg-danger bg-opacity-25"}`}
+            ${isOnline ? "" : "bg-danger bg-opacity-25"}`}
         >
-            <Row className="">
+            <Row className="flex-row-reverse">
                 <Col className="col-12 col-md-6 d-flex align-items-md-center">
                     <Container fluid={false}>
                         <Row className="d-flex justify-content-center">
                             <Col className="col-12 col-md-6 ">
 
-                                <h2 className="text-center px-2 p-lg-0 text-captalize fs-bebas-neue lh-1 title-login">
-                                    Login
-                                </h2>
+                                <h1 className="">
+                                    Prezado(a) usuário(a)
+                                </h1>
+
                                 <p className="">
-                                    Utilize seu <strong> endereço de e-mail e senha cadastrados em seu perfil</strong> para ter acesso ao SG-Painel.
+                                    Se você esqueceu sua senha de acesso ao nosso sistema, você pode facilmente recuperá-la através do seu e-mail.
+                                </p>
+                                <p className="">
+                                    Certifique-se de usar o <strong> endereço de e-mail cadastrado em seu perfil</strong>.
                                 </p>
 
                                 <Form
@@ -125,15 +118,6 @@ export const LoginPage: React.FC<{}> = () => {
                                         })}
                                         placeholder={"E-mail"}
                                     />
-                                    <input
-                                        className={`form-control mt-3 mt-lg-3 mb-2 border border-primary fw-semibold ${errors.password ? "is-invalid" : ""
-                                            }`}
-                                        type="password"
-                                        {...register("password", { required: true, minLength: 6 })}
-                                        placeholder={"Senha"}
-                                    />
-
-                                    <a href="/forgotten-password" className="nav-link mb-4 text-md-end text-decoration-underline">esqueceu sua senha?</a>
 
                                     <SgButton
                                         type="submit"
@@ -155,6 +139,13 @@ export const LoginPage: React.FC<{}> = () => {
                                         }
                                     />
                                 </Form>
+
+                                <p className="mt-3">
+                                    Ao enviar seu e-mail, uma mensagem com instruções para recuperação de senha será enviada para o seu <strong>endereço de e-mail cadastrado em seu perfil.</strong> Por favor, verifique sua caixa de entrada e/ou pasta de spam para encontrar o e-mail. Ele deve chegar em alguns minutos.
+                                </p>
+
+                                <a href="/login" className="nav-link mb-4 text-md-end text-decoration-underline">ir para login</a>
+
                             </Col>
                         </Row>
                     </Container>

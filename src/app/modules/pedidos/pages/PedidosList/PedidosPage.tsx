@@ -15,7 +15,7 @@ import { UseDocumentTitle } from "../../../../shared/hooks/UseDocumentTitleHook"
 import { ApiService } from "../../../../services/ApiService";
 import { useNavigate } from "react-router-dom";
 
-const PedidosPage: React.FC<{}> = () => {
+export const PedidosPage: React.FC<{}> = () => {
 
     UseDocumentTitle("SG - Pedidos");
 
@@ -115,5 +115,3 @@ const PedidosPage: React.FC<{}> = () => {
         </>
     );
 };
-
-export default PedidosPage;

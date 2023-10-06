@@ -103,13 +103,14 @@ export const LoginPage: React.FC<{}> = () => {
                     <Container fluid={false}>
                         <Row className="d-flex justify-content-center">
                             <Col className="col-12 col-md-6 ">
-                                <Row className="justify-content-center mb-2">
-                                    <Col className="col-sm-12">
-                                        <h2 className="text-center px-2 p-lg-0 text-captalize fs-bebas-neue lh-1 title-login">
-                                            Login
-                                        </h2>
-                                    </Col>
-                                </Row>
+
+                                <h2 className="text-center px-2 p-lg-0 text-captalize fs-bebas-neue lh-1 title-login">
+                                    Login
+                                </h2>
+                                <p className="">
+                                    Utilize seu <strong> endereço de e-mail e senha cadastrados em seu perfil</strong> para ter acesso ao SG-Painel.
+                                </p>
+
                                 <Form
                                     onSubmit={handleSubmit(onSubmit)}
                                     className="text-center bg-primary bg-opacity-25 p-4 rounded shadow"

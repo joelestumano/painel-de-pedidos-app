@@ -141,10 +141,13 @@ export const ForgottenPasswordPage: React.FC<{}> = () => {
                                 </Form>
 
                                 <p className="mt-3">
-                                    Ao enviar seu e-mail, uma mensagem com instruções para recuperação de senha será enviada para o seu <strong>endereço de e-mail cadastrado em seu perfil.</strong> Por favor, verifique sua caixa de entrada e/ou pasta de spam para encontrar o e-mail. Ele deve chegar em alguns minutos.
+                                    Ao enviar seu e-mail, uma mensagem com instruções para recuperação de senha será enviada para o seu <strong>endereço de e-mail cadastrado em seu perfil.</strong>  Portanto, é importante verificar em seguida sua caixa de entrada e/ou pasta de spam para encontrar o e-mail. Ele deve chegar em alguns minutos.
                                 </p>
 
-                                <a href="/login" className="nav-link mb-4 text-md-end text-decoration-underline">ir para login</a>
+                                <a href="/login" className="nav-link mb-4 text-md-end text-decoration-underline">
+                                    <span className="me-1">ir para login</span>
+                                    <BsIconComponent iconName="PersonFillLock" />
+                                </a>
 
                             </Col>
                         </Row>

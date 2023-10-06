@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { LoginPage } from "./modules/login/pages/LoginPage";
-import { AccountPage } from "./modules/account/pages/Account";
+import { ForgottenPasswordPage } from "./modules/account/pages/ForgottenPassword";
 import { PedidosPage } from "./modules/pedidos/pages/PedidosList/PedidosPage";
 import useLocalStorage from "@rehooks/local-storage";
 import jwt_decode from "jwt-decode";
@@ -31,7 +31,7 @@ export const AppRoutes = () => {
         <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="*" element={<Navigate to="/" />} />
-            <Route path="/account" element={<AccountPage />} />
+            <Route path="/forgotten-password" element={<ForgottenPasswordPage />} />
             <Route
                 path="/"
                 element={

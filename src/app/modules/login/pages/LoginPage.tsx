@@ -132,7 +132,7 @@ export const LoginPage: React.FC<{}> = () => {
                                         placeholder={"Senha"}
                                     />
 
-                                    <a href="/account" className="nav-link mb-4 text-md-end text-decoration-underline">esqueceu sua senha?</a>
+                                    <a href="/forgotten-password" className="nav-link mb-4 text-md-end text-decoration-underline">esqueceu sua senha?</a>
 
                                     <SgButton
                                         type="submit"

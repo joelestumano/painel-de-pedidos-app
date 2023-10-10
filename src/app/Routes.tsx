@@ -31,7 +31,7 @@ export const AppRoutes = () => {
         <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="*" element={<Navigate to="/" />} />
-            <Route path="/forgotten-password" element={<ForgottenPasswordPage />} />
+            <Route path="/forgot-password" element={<ForgottenPasswordPage />} />
             <Route
                 path="/"
                 element={

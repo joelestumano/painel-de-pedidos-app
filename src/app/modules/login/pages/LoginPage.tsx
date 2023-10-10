@@ -133,7 +133,7 @@ export const LoginPage: React.FC<{}> = () => {
                                         placeholder={"Senha"}
                                     />
 
-                                    <a href="/forgotten-password" className="nav-link mb-4 text-md-end text-decoration-underline">
+                                    <a href="/forgot-password" className="nav-link mb-4 text-md-end text-decoration-underline">
                                         <span className="me-1">esqueceu sua senha?</span>
                                         <BsIconComponent iconName="PersonFillExclamation" />
                                     </a>

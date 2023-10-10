@@ -3,7 +3,7 @@ import { PaginateType } from "../../../shared/types/PaginateType";
 
 const limit: number = 1000;
 const status: string = "pendente";
-const baseURL: string = "v1/pedidos/";
+const baseURL: string = "pedidos/";
 
 let dateStart = new Date();
 let dateEnd = new Date();

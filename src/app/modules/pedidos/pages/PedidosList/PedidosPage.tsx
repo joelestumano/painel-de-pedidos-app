@@ -51,7 +51,7 @@ export const PedidosPage: React.FC<{}> = () => {
                 .catch((err) => { });
         }
         const eventSource = new EventSource(
-            `${ApiService.baseURL()}v1/app/changed-collection`
+            `${ApiService.baseURL()}app/changed-collection`
         );
         eventSource.onmessage = (event) => {
             const eventName = JSON.parse(event.data).event.eventName;

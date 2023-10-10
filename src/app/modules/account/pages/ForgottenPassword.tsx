@@ -98,7 +98,7 @@ export const ForgottenPasswordPage: React.FC<{}> = () => {
                                 </h1>
 
                                 <p className="">
-                                    Se você esqueceu sua senha de acesso ao nosso sistema, você pode facilmente recuperá-la através do seu e-mail.
+                                    Se você esqueceu sua senha de acesso ao nosso sistema, você pode redefini-la através do seu e-mail.
                                 </p>
                                 <p className="">
                                     Certifique-se de usar o <strong> endereço de e-mail cadastrado em seu perfil</strong>.
@@ -141,7 +141,7 @@ export const ForgottenPasswordPage: React.FC<{}> = () => {
                                 </Form>
 
                                 <p className="mt-3">
-                                    Ao enviar seu e-mail, uma mensagem com instruções para recuperação de senha será enviada para o seu <strong>endereço de e-mail cadastrado em seu perfil.</strong>  Portanto, é importante verificar em seguida sua caixa de entrada e/ou pasta de spam para encontrar o e-mail. Ele deve chegar em alguns minutos.
+                                    Ao enviar seu e-mail, uma mensagem com instruções para redefinição de senha será enviada para o seu <strong>endereço de e-mail cadastrado em seu perfil.</strong>  Portanto, é importante verificar em seguida sua caixa de entrada e/ou pasta de spam para encontrar o e-mail. Ele deve chegar em alguns minutos.
                                 </p>
 
                                 <a href="/login" className="nav-link mb-4 text-md-end text-decoration-underline">

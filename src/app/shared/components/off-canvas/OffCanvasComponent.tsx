@@ -67,7 +67,7 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                             </Col>
                         ) : null}
 
-                        <Col className="col-12">
+                        <Col className="col-12 mt-3">
                             <a href="/forgot-password" className="nav-link mb-2 text-md-start text-decoration-underline">
                                 <span className="me-1">esqueceu sua senha?</span>
                                 <BsIconComponent iconName="PersonFillExclamation" />

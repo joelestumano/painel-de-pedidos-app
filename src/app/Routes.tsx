@@ -7,6 +7,7 @@ import jwt_decode from "jwt-decode";
 import { useDispatch } from "react-redux";
 import { UsuarioActionTypeEnum } from "../redux/usuario/UsuarioActionTypeEnum";
 import { useEffect } from "react";
+import { ResetPasswordPage } from "./modules/account/pages/ResetPassword";
 
 const RequireAuth: React.FC<{ children: any; redirectTo: any }> = ({
     children,
@@ -32,6 +33,7 @@ export const AppRoutes = () => {
             <Route path="/login" element={<LoginPage />} />
             <Route path="*" element={<Navigate to="/" />} />
             <Route path="/forgot-password" element={<ForgottenPasswordPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route
                 path="/"
                 element={

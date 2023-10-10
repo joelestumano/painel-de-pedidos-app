@@ -66,6 +66,18 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                                 />
                             </Col>
                         ) : null}
+
+                        <Col className="col-12">
+                            <a href="/forgot-password" className="nav-link mb-2 text-md-start text-decoration-underline">
+                                <span className="me-1">esqueceu sua senha?</span>
+                                <BsIconComponent iconName="PersonFillExclamation" />
+                            </a>
+
+                            <a href="/reset-password" className="nav-link mb-2 text-md-start text-decoration-underline">
+                                <span className="me-1">redefinir senha</span>
+                                <BsIconComponent iconName="PersonFillUp" />
+                            </a>
+                        </Col>
                     </Row>
                 </Offcanvas.Body>
             </Offcanvas>

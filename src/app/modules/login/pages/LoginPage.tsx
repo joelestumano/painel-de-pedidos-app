@@ -126,17 +126,12 @@ export const LoginPage: React.FC<{}> = () => {
                                         placeholder={"E-mail"}
                                     />
                                     <input
-                                        className={`form-control mt-3 mt-lg-3 mb-2 border border-primary fw-semibold ${errors.password ? "is-invalid" : ""
+                                        className={`form-control my-3 my-lg-3 border border-primary fw-semibold ${errors.password ? "is-invalid" : ""
                                             }`}
                                         type="password"
                                         {...register("password", { required: true, minLength: 6 })}
                                         placeholder={"Senha"}
                                     />
-
-                                    <a href="/forgot-password" className="nav-link mb-4 text-md-end text-decoration-underline">
-                                        <span className="me-1">esqueceu sua senha?</span>
-                                        <BsIconComponent iconName="PersonFillExclamation" />
-                                    </a>
 
                                     <SgButton
                                         type="submit"
@@ -158,6 +153,14 @@ export const LoginPage: React.FC<{}> = () => {
                                         }
                                     />
                                 </Form>
+
+                                <p className="mt-3">
+                                </p>
+
+                                <a href="/forgot-password" className="mb-4 text-md-end text-decoration-underline float-end">
+                                        <span className="me-1">esqueceu sua senha?</span>
+                                        <BsIconComponent iconName="PersonFillExclamation" />
+                                    </a> 
                             </Col>
                         </Row>
                     </Container>

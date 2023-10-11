@@ -1,10 +1,12 @@
-import { Col, Container, Form, Row } from "react-bootstrap";
+import { Col, Container, Form, Row, Spinner } from "react-bootstrap";
 import { UseDocumentTitle } from "../../../shared/hooks/UseDocumentTitleHook";
 import { useSelector } from "react-redux";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AccountService, ResetPassType } from "../service/AccountService";
 import { useNavigate } from "react-router-dom";
 import { BsIconComponent } from "../../../shared/components/bs-icon/BsIconComponent";
+import { SgButton } from "../../../shared/components/SgButton/SgButton";
+import { useState } from "react";
 
 export const ResetPasswordPage: React.FC<{}> = () => {
 
@@ -14,6 +16,7 @@ export const ResetPasswordPage: React.FC<{}> = () => {
         (rootReducer: any) => rootReducer.EventosReducer
     );
 
+    const [btnSubmit, setBtnSubmit] = useState<'parado' | 'enviando' | 'checado' | 'invalid-token' | 'falhou'>('parado');
     const navigate = useNavigate();
 
     const {
@@ -24,22 +27,58 @@ export const ResetPasswordPage: React.FC<{}> = () => {
     } = useForm<ResetPassType>();
 
     const onSubmit: SubmitHandler<ResetPassType> = async (data) => {
-        //setBtnSubmit('enviando');
+        setBtnSubmit('enviando');
         await AccountService.resetPassword(data).then((res) => {
-            //setBtnSubmit("checado");
+            setBtnSubmit("checado");
             setTimeout(() => {
-
-                //LoginService.setToken(res);
-                //navigate("/");
+                navigate("/");
             }, 750);
         }).catch((error) => {
-            if (error?.response?.status === 401) {
-                // setBtnSubmit('unauthorized')
+            if (error?.response?.status === 400) {
+                setBtnSubmit('invalid-token');
             } else {
-                // setBtnSubmit('falhou')
+                setBtnSubmit('falhou')
             }
         }).finally(() => { });
     };
+
+    const getTextBtnSubmit = (): string => {
+        switch (btnSubmit) {
+            case 'enviando':
+                return 'enviando'
+            case 'checado':
+                return 'senha redefinida'
+            case 'invalid-token':
+                return 'token inválido'
+            case 'falhou':
+                return 'um erro ocorreu'
+            default: return 'enviar'
+        }
+    }
+
+    const getVariantBtnSubmit = (): "success" | "danger" | "primary" => {
+        switch (btnSubmit) {
+            case 'checado':
+                return 'success'
+            case 'invalid-token':
+                return 'danger'
+            case 'falhou':
+                return 'danger'
+            default: return 'primary'
+        }
+    }
+
+    const getBsIconBtnSubmit = (): JSX.Element | null => {
+        switch (btnSubmit) {
+            case 'checado':
+                return <BsIconComponent iconName="CheckLg" />
+            case 'invalid-token':
+                return <BsIconComponent iconName="XOctagon" />
+            case 'falhou':
+                return <BsIconComponent iconName="BugFill" />
+            default: return null
+        }
+    }
 
     return (
         <Container
@@ -76,7 +115,7 @@ export const ResetPasswordPage: React.FC<{}> = () => {
                                         placeholder={"E-mail"}
                                     />
                                     <input
-                                        className={`form-control mt-3 mt-lg-3 mb-2 border border-primary fw-semibold ${errors.password ? "is-invalid" : ""
+                                        className={`form-control my-3 my-lg-3 border border-primary fw-semibold ${errors.password ? "is-invalid" : ""
                                             }`}
                                         type="password"
                                         {...register("password", { required: true, minLength: 6 })}
@@ -84,7 +123,7 @@ export const ResetPasswordPage: React.FC<{}> = () => {
                                     />
 
                                     <input
-                                        className={`form-control mt-3 mt-lg-3 mb-2 border border-primary fw-semibold ${errors.confirmPassword ? "is-invalid" : ""
+                                        className={`form-control my-3 my-lg-3 border border-primary fw-semibold ${errors.confirmPassword ? "is-invalid" : ""
                                             }`}
                                         type="password"
                                         {...register("confirmPassword", { required: true, minLength: 6 })}
@@ -92,19 +131,19 @@ export const ResetPasswordPage: React.FC<{}> = () => {
                                     />
 
                                     <input
-                                        className={`form-control mt-3 mt-lg-3 mb-2 border border-primary fw-semibold ${errors.token ? "is-invalid" : ""
+                                        className={`form-control my-3 my-lg-3 border border-primary fw-semibold ${errors.token ? "is-invalid" : ""
                                             }`}
                                         type="text"
                                         {...register("token", { required: true })}
                                         placeholder={"Token"}
                                     />
 
-                                    {/*  <a href="/forgot-password" className="nav-link mb-4 text-md-end text-decoration-underline">
+                                    {/*  <a href="/forgot-password" className="mb-4 text-md-end text-decoration-underline">
                                         <span className="me-1">esqueceu sua senha?</span>
                                         <BsIconComponent iconName="PersonFillExclamation" />
                                     </a> */}
 
-                                    {/* <SgButton
+                                    {<SgButton
                                         type="submit"
                                         text={getTextBtnSubmit()}
                                         onSubmit={() => { }}
@@ -122,14 +161,13 @@ export const ResetPasswordPage: React.FC<{}> = () => {
                                                 />
                                                 : getBsIconBtnSubmit()
                                         }
-                                    /> */}
+                                    />}
                                 </Form>
 
                                 <p className="mt-3">
-
                                 </p>
 
-                                <a href="/login" className="nav-link mb-4 text-md-end text-decoration-underline">
+                                <a href="/login" className="mb-4 text-md-end text-decoration-underline float-end">
                                     <span className="me-1">ir para login</span>
                                     <BsIconComponent iconName="PersonFillLock" />
                                 </a>

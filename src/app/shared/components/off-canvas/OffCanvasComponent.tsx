@@ -68,15 +68,20 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                         ) : null}
 
                         <Col className="col-12 mt-3">
-                            <a href="/forgot-password" className="nav-link mb-2 text-md-start text-decoration-underline">
-                                <span className="me-1">esqueceu sua senha?</span>
-                                <BsIconComponent iconName="PersonFillExclamation" />
-                            </a>
-
-                            <a href="/reset-password" className="nav-link mb-2 text-md-start text-decoration-underline">
-                                <span className="me-1">redefinir senha</span>
-                                <BsIconComponent iconName="PersonFillUp" />
-                            </a>
+                            <ul className="list-group list-group-flush">
+                                <li className="list-group-item">
+                                    <a href="/forgot-password" className="mb-2 text-md-start text-decoration-underline">
+                                        <span className="me-1">esqueceu sua senha?</span>
+                                        <BsIconComponent iconName="PersonFillExclamation" />
+                                    </a>
+                                </li>
+                                <li className="list-group-item">
+                                    <a href="/reset-password" className="mb-2 text-md-start text-decoration-underline">
+                                        <span className="me-1">redefinir senha</span>
+                                        <BsIconComponent iconName="PersonFillUp" />
+                                    </a>
+                                </li>
+                            </ul>
                         </Col>
                     </Row>
                 </Offcanvas.Body>

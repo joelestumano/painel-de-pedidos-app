@@ -4,6 +4,7 @@ import { BsIconComponent } from "../bs-icon/BsIconComponent";
 import { SgButton } from "../SgButton/SgButton";
 import { LoginService } from "../../../modules/login/services/LoginService";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const OffCanvasComponent: React.FC<{}> = () => {
     const props = {
@@ -14,6 +15,7 @@ export const OffCanvasComponent: React.FC<{}> = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const toggleShow = () => setShow((s) => !s);
+    const navigate = useNavigate();
 
     const onLogout = () => {
         LoginService.logout();
@@ -54,19 +56,31 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                     </Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
+                    {usuario ? (<Row>
+                        <Col className="col-12">
+                            <p className="fs-2">{usuario.nome}</p>
+                            <SgButton
+                                type={"button"}
+                                variant="danger"
+                                text="sair"
+                                onClick={() => { onLogout(); handleClose() }}
+                            />
+                        </Col>
+                        <Col className="col-12 mt-3">
+                            <ul className="list-group list-group-flush">
+                                <li className="list-group-item p-0">
+                                    <SgButton
+                                        type={"button"}
+                                        variant="primary"
+                                        text="novo pedido"
+                                        onClick={() => { navigate("/novo-pedido"); handleClose() }}
+                                    />
+                                </li>
+                            </ul>
+                        </Col>
+                    </Row>
+                    ) : null}
                     <Row>
-                        {usuario ? (
-                            <Col className="col-12">
-                                <p className="fs-2">{usuario.nome}</p>
-                                <SgButton
-                                    type={"button"}
-                                    variant="danger"
-                                    text="sair"
-                                    onClick={() => { onLogout(); handleClose() }}
-                                />
-                            </Col>
-                        ) : null}
-
                         <Col className="col-12 mt-3">
                             <ul className="list-group list-group-flush">
                                 <li className="list-group-item">

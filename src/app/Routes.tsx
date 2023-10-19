@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 import { UsuarioActionTypeEnum } from "../redux/usuario/UsuarioActionTypeEnum";
 import { useEffect } from "react";
 import { ResetPasswordPage } from "./modules/account/pages/ResetPassword";
-import { NovoPedidoPage } from "./modules/pedidos/pages/NovoPedido/NovoPedido";
 
 const RequireAuth: React.FC<{ children: any; redirectTo: any }> = ({
     children,
@@ -41,12 +40,12 @@ export const AppRoutes = () => {
                 </RequireAuth>
             }>
             </Route>
-            <Route path="/novo-pedido" element={
+            {/* <Route path="/novo-pedido" element={
                 <RequireAuth redirectTo="/login">
                     <NovoPedidoPage />
                 </RequireAuth>
             }>
-            </Route>
+            </Route> */}
         </Routes>
     );
 };

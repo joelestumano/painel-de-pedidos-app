@@ -31,12 +31,12 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                 variant="primary"
                 style={{ zIndex: 100 }}
                 onClick={toggleShow}
-                className="position-fixed top-0 end-0 rounded-end-0 rounded-start-3 mt-5 px-2 shadow"
+                className="position-fixed top-0 end-0 rounded-end-0 rounded-start-5 mt-5 pe-1 shadow"
             >
                 <BsIconComponent
                     iconName="List"
                     color="white"
-                    size={32}
+                    size={24}
                     className="align-top"
                 />
             </Button>
@@ -70,7 +70,7 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                     {usuario ?
                         <div className="d-flex justify-content-end fixed-bottom position-absolute p-2 bg-danger bg-opacity-25">
                             <div className="d-flex justify-content-between align-items-center w-100">
-                                <span className="px-2 fw-semibold">{usuario.nome}</span>
+                                <span className="px-2">{usuario.nome}</span>
                                 <SgButton
                                     type={"button"}
                                     variant="danger"

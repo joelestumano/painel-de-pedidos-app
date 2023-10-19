@@ -1,13 +1,14 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { LoginPage } from "./modules/login/pages/LoginPage";
 import { ForgottenPasswordPage } from "./modules/account/pages/ForgottenPassword";
-import { PedidosPage } from "./modules/pedidos/pages/PedidosList/PedidosPage";
+import { ListPedidosPage } from "./modules/pedidos/pages/list/ListPedidosPage";
 import useLocalStorage from "@rehooks/local-storage";
 import jwt_decode from "jwt-decode";
 import { useDispatch } from "react-redux";
 import { UsuarioActionTypeEnum } from "../redux/usuario/UsuarioActionTypeEnum";
 import { useEffect } from "react";
 import { ResetPasswordPage } from "./modules/account/pages/ResetPassword";
+import { AddPedidoPage } from "./modules/pedidos/pages/add/AddPedidoPage";
 
 const RequireAuth: React.FC<{ children: any; redirectTo: any }> = ({
     children,
@@ -36,16 +37,16 @@ export const AppRoutes = () => {
             <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route path="/" element={
                 <RequireAuth redirectTo="/login">
-                    <PedidosPage />
+                    <ListPedidosPage />
                 </RequireAuth>
             }>
             </Route>
-            {/* <Route path="/novo-pedido" element={
+            <Route path="/add" element={
                 <RequireAuth redirectTo="/login">
-                    <NovoPedidoPage />
+                    <AddPedidoPage />
                 </RequireAuth>
             }>
-            </Route> */}
+            </Route>
         </Routes>
     );
 };

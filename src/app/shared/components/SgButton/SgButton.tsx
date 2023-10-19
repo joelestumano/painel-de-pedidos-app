@@ -38,7 +38,7 @@ export const SgButton: React.FC<SgButtonProps> = ({
             disabled={disabled}
         >
             {child ? (
-                <div className="d-flex flex-row">
+                <div className="d-flex flex-row justify-content-center">
                     <span className="ms-2 me-0">{text}</span>
                     <div className="d-flex align-items-center ms-1 me-2">{child}</div>
                 </div>

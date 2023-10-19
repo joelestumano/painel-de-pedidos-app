@@ -1,4 +1,4 @@
-import "./PedidosPage.scss";
+import "./ListPedidosPage.scss";
 import React, { useState, useEffect } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import { LoadingComponent } from "../../../../shared/components/loading/LoadingComponent";
@@ -15,7 +15,7 @@ import { UseDocumentTitle } from "../../../../shared/hooks/UseDocumentTitleHook"
 import { ApiService } from "../../../../services/ApiService";
 import { useNavigate } from "react-router-dom";
 
-export const PedidosPage: React.FC<{}> = () => {
+export const ListPedidosPage: React.FC<{}> = () => {
 
     UseDocumentTitle("SG - Pedidos");
 

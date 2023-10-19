@@ -4,6 +4,7 @@ import { BsIconComponent } from "../bs-icon/BsIconComponent";
 import { SgButton } from "../SgButton/SgButton";
 import { LoginService } from "../../../modules/login/services/LoginService";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const OffCanvasComponent: React.FC<{}> = () => {
     const props = {
@@ -14,6 +15,7 @@ export const OffCanvasComponent: React.FC<{}> = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const toggleShow = () => setShow((s) => !s);
+    const navigate = useNavigate();
 
     const onLogout = () => {
         LoginService.logout();
@@ -55,6 +57,17 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                 <Offcanvas.Body className="d-flex flex-column">
                     <Row>
                         <Col className="col-12">
+                            <nav className="d-flex flex-column mb-4">
+                            {usuario ?
+                                    <SgButton
+                                        type={"button"}
+                                        variant="primary"
+                                        text="adicionar pedido"
+                                        onClick={() => { navigate('/add'); handleClose() }}
+                                        child={<BsIconComponent iconName="CartPlus" />}
+                                    />
+                                    : null}
+                            </nav>
                             <nav className="d-flex flex-column">
                                 <a href="/forgot-password" className="my-1 text-md-start text-decoration-underline">
                                     <span className="me-1">esqueceu sua senha?</span>

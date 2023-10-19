@@ -4,9 +4,19 @@ import { useDispatch } from "react-redux";
 import { EventosActionTypeEnum } from "./redux/eventos/EventosActionTypeEnum";
 import { AppRoutes } from "./app/Routes";
 import { BrowserRouter } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import useLocalStorage from "@rehooks/local-storage";
+import { UsuarioActionTypeEnum } from "./redux/usuario/UsuarioActionTypeEnum";
 
 function App() {
   const dispatch = useDispatch();
+  const [isToken] = useLocalStorage("access_token");
+  const userDecoded = isToken ? jwt_decode(isToken) : undefined;
+
+  dispatch({
+    type: UsuarioActionTypeEnum.SET_USUARIO,
+    payload: userDecoded,
+  });
 
   const getOnLineStatus = () =>
     typeof navigator !== "undefined" && typeof navigator.onLine === "boolean"
@@ -34,13 +44,13 @@ function App() {
     };
 
     window.addEventListener("online", handleOnline);
-    window.addEventListener("offline", handleOffline);  
+    window.addEventListener("offline", handleOffline);
 
     return () => {
       window.removeEventListener("online", handleOnline);
       window.removeEventListener("offline", handleOffline);
     };
-  }, [dispatch]);
+  }, [dispatch, userDecoded]);
 
   return (
     <BrowserRouter>

@@ -4,7 +4,6 @@ import { BsIconComponent } from "../bs-icon/BsIconComponent";
 import { SgButton } from "../SgButton/SgButton";
 import { LoginService } from "../../../modules/login/services/LoginService";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 export const OffCanvasComponent: React.FC<{}> = () => {
     const props = {
@@ -15,7 +14,6 @@ export const OffCanvasComponent: React.FC<{}> = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const toggleShow = () => setShow((s) => !s);
-    const navigate = useNavigate();
 
     const onLogout = () => {
         LoginService.logout();
@@ -29,7 +27,7 @@ export const OffCanvasComponent: React.FC<{}> = () => {
         <>
             <Button
                 type="button"
-                title="Opções & configurações"
+                title="SG - Painel"
                 variant="primary"
                 style={{ zIndex: 100 }}
                 onClick={toggleShow}
@@ -44,60 +42,44 @@ export const OffCanvasComponent: React.FC<{}> = () => {
             </Button>
             <Offcanvas placement="end" show={show} onHide={handleClose} {...props}>
                 <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>
-                        <div className="d-flex flex-row">
+                    <Offcanvas.Title className="">
+                        <a className="text-md-start text-decoration-none bg-warning rounded-circle" href="/">
                             <BsIconComponent
-                                iconName="Gear"
+                                iconName="HouseFill"
                                 size={32}
                                 className="align-middle me-2"
                             />
-                            <h2 className="mb-0">Opções & configurações</h2>
-                        </div>
+                        </a>
                     </Offcanvas.Title>
                 </Offcanvas.Header>
-                <Offcanvas.Body>
-                    {usuario ? (<Row>
-                        <Col className="col-12">
-                            <p className="fs-2">{usuario.nome}</p>
-                            <SgButton
-                                type={"button"}
-                                variant="danger"
-                                text="sair"
-                                onClick={() => { onLogout(); handleClose() }}
-                            />
-                        </Col>
-                        <Col className="col-12 mt-3">
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item p-0">
-                                    <SgButton
-                                        type={"button"}
-                                        variant="primary"
-                                        text="novo pedido"
-                                        onClick={() => { navigate("/novo-pedido"); handleClose() }}
-                                    />
-                                </li>
-                            </ul>
-                        </Col>
-                    </Row>
-                    ) : null}
+                <Offcanvas.Body className="d-flex flex-column">
                     <Row>
-                        <Col className="col-12 mt-3">
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item">
-                                    <a href="/forgot-password" className="mb-2 text-md-start text-decoration-underline">
-                                        <span className="me-1">esqueceu sua senha?</span>
-                                        <BsIconComponent iconName="PersonFillExclamation" />
-                                    </a>
-                                </li>
-                                <li className="list-group-item">
-                                    <a href="/reset-password" className="mb-2 text-md-start text-decoration-underline">
-                                        <span className="me-1">redefinir senha</span>
-                                        <BsIconComponent iconName="PersonFillUp" />
-                                    </a>
-                                </li>
-                            </ul>
+                        <Col className="col-12">
+                            <nav className="d-flex flex-column">
+                                <a href="/forgot-password" className="my-1 text-md-start text-decoration-underline">
+                                    <span className="me-1">esqueceu sua senha?</span>
+                                    <BsIconComponent iconName="PersonFillExclamation" />
+                                </a>
+                                <a href="/reset-password" className="my-1 text-md-start text-decoration-underline">
+                                    <span className="me-1">redefinir senha</span>
+                                    <BsIconComponent iconName="PersonFillUp" />
+                                </a>
+                            </nav>
                         </Col>
                     </Row>
+                    {usuario ?
+                        <div className="d-flex justify-content-end fixed-bottom position-absolute p-2 bg-danger bg-opacity-25">
+                            <div className="d-flex justify-content-between align-items-center w-100">
+                                <span className="px-2 fw-semibold">{usuario.nome}</span>
+                                <SgButton
+                                    type={"button"}
+                                    variant="danger"
+                                    text="sair"
+                                    onClick={() => { onLogout(); handleClose() }}
+                                />
+                            </div>
+                        </div>
+                        : null}
                 </Offcanvas.Body>
             </Offcanvas>
         </>

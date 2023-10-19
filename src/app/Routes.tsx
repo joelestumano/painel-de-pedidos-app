@@ -34,14 +34,18 @@ export const AppRoutes = () => {
             <Route path="*" element={<Navigate to="/" />} />
             <Route path="/forgot-password" element={<ForgottenPasswordPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
-            <Route
-                path="/"
-                element={
-                    <RequireAuth redirectTo="/login">
-                        <PedidosPage />
-                    </RequireAuth>
-                }
-            />
+            <Route path="/" element={
+                <RequireAuth redirectTo="/login">
+                    <PedidosPage />
+                </RequireAuth>
+            }>
+            </Route>
+            {/* <Route path="/novo-pedido" element={
+                <RequireAuth redirectTo="/login">
+                    <NovoPedidoPage />
+                </RequireAuth>
+            }>
+            </Route> */}
         </Routes>
     );
 };

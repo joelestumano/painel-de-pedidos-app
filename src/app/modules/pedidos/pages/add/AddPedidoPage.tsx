@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { PedidosApiService } from "../../services/PedidosApiService";
 import { PaginateType } from "../../../../shared/types/PaginateType";
 import { ClienteType } from "../../../../shared/types/ClienteType";
+import { SgButton } from "../../../../shared/components/SgButton/SgButton";
 
 type addPedidoType = {
     cliente: string;
@@ -129,59 +130,68 @@ export const AddPedidoPage: React.FC<{}> = () => {
                                 <Form.Group className="my-2 text-start">
                                     <label>Pix</label>
                                     <div className="input-group">
-                                        <span className="input-group-text">
-                                            <BsIconComponent iconName="CurrencyExchange" />
+                                        <span className="input-group-text border border-primary">
+                                            <BsIconComponent iconName="Coin" />
                                         </span>
                                         <input type="text" className="form-control border border-primary fw-semibold"
                                             {...register("pagamento.pix", { required: true })} />
-                                        {/*  <span className="input-group-text">.00</span> */}
                                     </div>
                                 </Form.Group>
                                 <Form.Group className="my-2 text-start">
                                     <label>Dinheiro</label>
                                     <div className="input-group">
-                                        <span className="input-group-text">
-                                            <BsIconComponent iconName="CurrencyExchange" />
+                                        <span className="input-group-text border border-primary">
+                                            <BsIconComponent iconName="Cash" />
                                         </span>
                                         <input type="text" className="form-control border border-primary fw-semibold"
                                             {...register("pagamento.dinheiro", { required: true })} />
-                                        {/*  <span className="input-group-text">.00</span> */}
                                     </div>
                                 </Form.Group>
                                 <Form.Group className="my-2 text-start">
                                     <label>Cratão de débito</label>
-                                    <input type="text" className="form-control border border-primary fw-semibold"
-                                        {...register("pagamento.cartaoDebito", { required: true })} />
+                                    <div className="input-group">
+                                        <span className="input-group-text border border-primary">
+                                            <BsIconComponent iconName="CreditCard" />
+                                        </span>
+                                        <input type="text" className="form-control border border-primary fw-semibold"
+                                            {...register("pagamento.cartaoDebito", { required: true })} />
+                                        <span className="input-group-text border border-primary">+ taxa: R$ 1</span>
+                                    </div>
                                 </Form.Group>
                                 <Form.Group className="my-2 text-start">
                                     <label>Cratão de crédito</label>
-                                    <input type="text" className="form-control border border-primary fw-semibold"
-                                        {...register("pagamento.cartaoDebito", { required: true })} />
+                                    <div className="input-group">
+                                        <span className="input-group-text border border-primary">
+                                            <BsIconComponent iconName="CreditCardFill" />
+                                        </span>
+                                        <input type="text" className="form-control border border-primary fw-semibold"
+                                            {...register("pagamento.cartaoCredito", { required: true })} />
+                                        <span className="input-group-text border border-primary">+ taxa: R$ 2.50</span>
+                                    </div>
                                 </Form.Group>
 
-
-
-                                {/*  <SgButton
+                                <SgButton
                                     type="submit"
-                                    text={getTextBtnSubmit()}
+                                    /*  text={'getTextBtnSubmit()'} */
+                                    text={'enviar'}
                                     onSubmit={() => { }}
-                                    disabled={btnSubmit === 'enviando'}
-                                    variant={getVariantBtnSubmit()}
-                                    child={
-                                        btnSubmit === 'enviando' ?
-                                            <Spinner
-                                                className=""
-                                                as="span"
-                                                animation="border"
-                                                size="sm"
-                                                role="status"
-                                                aria-hidden="true"
-                                            />
-                                            : getBsIconBtnSubmit()
-                                    }
-                                /> */}
+                                    /*  disabled={btnSubmit === 'enviando'}
+                                     variant={getVariantBtnSubmit()} */
+                                    variant={'primary'}
+                                /*  child={
+                                     btnSubmit === 'enviando' ?
+                                         <Spinner
+                                             className=""
+                                             as="span"
+                                             animation="border"
+                                             size="sm"
+                                             role="status"
+                                             aria-hidden="true"
+                                         />
+                                         : getBsIconBtnSubmit()
+                                 } */
+                                />
                             </Form>
-
 
                             <a href="/" className="mb-4 text-md-end text-decoration-underline float-end mt-3">
                                 <span className="me-1">ir para início</span>

@@ -50,7 +50,6 @@ export const AddPedidoPage: React.FC<{}> = () => {
         const carregarClientes = () => {
             PedidosApiService.getClientes()
                 .then((resp: PaginateType) => {
-                    console.log(resp)
                     setClientes(resp.documentos);
                 })
                 .catch((err) => { });
@@ -62,12 +61,40 @@ export const AddPedidoPage: React.FC<{}> = () => {
         register,
         handleSubmit,
         watch,
+        setValue,
+        getValues,
+        resetField,
         formState: { errors },
     } = useForm<addPedidoType>();
 
     const onSubmit: SubmitHandler<addPedidoType> = async (data) => { }
 
-    console.log(watch("endereco"));
+    const clienteChange = (event: any) => {
+        const cliente = clientes.find((c: ClienteType) => c._id === event.target.value);
+        if (cliente && getValues().isDeliver) {
+            setValue('endereco', cliente.enderecos[0]);
+
+        } else {
+            resetField('endereco.logradouro');
+            resetField('endereco.bairro');
+            resetField('endereco.numero');
+            resetField('endereco.complemento');
+        }
+    }
+
+    const isDeliverChange = (event: any) => {
+        if (event.target.checked) {
+            const cliente = clientes.find((c: ClienteType) => c._id === getValues().cliente);
+            if (cliente) {
+                setValue('endereco', cliente.enderecos[0]);
+            }
+        } else {
+            resetField('endereco.logradouro');
+            resetField('endereco.bairro');
+            resetField('endereco.numero');
+            resetField('endereco.complemento');
+        }
+    }
 
     return (<Container
         fluid={true}
@@ -90,6 +117,7 @@ export const AddPedidoPage: React.FC<{}> = () => {
                             >
                                 <Form.Group className="my-2">
                                     <Form.Select className="form-control border border-primary fw-semibold" aria-label="select"
+                                        onChangeCapture={(event) => clienteChange(event)}
                                         {...register("cliente", {
                                             required: true,
                                         })}>
@@ -100,11 +128,13 @@ export const AddPedidoPage: React.FC<{}> = () => {
                                     </Form.Select>
                                 </Form.Group>
                                 <Form.Group className="my-2">
-                                    <Form.Check type="checkbox" label="Entrega?" className="text-start"
+                                    <Form.Check type="checkbox" label="Entrega?" className="text-start" onChangeCapture={(event) => isDeliverChange(event)}
                                         {...register("isDeliver", {
                                             required: true,
-                                        })} />
+                                        })}
+                                    />
                                 </Form.Group>
+
                                 <hr />
                                 <Form.Group className="my-2 text-start">
                                     <label>Logradouro</label>
@@ -126,6 +156,7 @@ export const AddPedidoPage: React.FC<{}> = () => {
                                     <input type="text" className="form-control border border-primary fw-semibold"
                                         {...register("endereco.complemento", { required: true })} />
                                 </Form.Group>
+
                                 <hr />
                                 <Form.Group className="my-2 text-start">
                                     <label>Pix</label>
@@ -169,6 +200,7 @@ export const AddPedidoPage: React.FC<{}> = () => {
                                         <span className="input-group-text border border-primary">+ taxa: R$ 2.50</span>
                                     </div>
                                 </Form.Group>
+
 
                                 <SgButton
                                     type="submit"

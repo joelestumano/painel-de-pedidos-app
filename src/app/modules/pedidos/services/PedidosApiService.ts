@@ -21,6 +21,14 @@ const getPaginate = async (): Promise<PaginateType> => {
   return data;
 };
 
+const getClientes = async (): Promise<PaginateType> => {
+  const { data } = await ApiService.create().get(
+    `clientes/paginate`
+  );
+  return data;
+};
+
 export const PedidosApiService = {
   getPaginate,
+  getClientes
 };

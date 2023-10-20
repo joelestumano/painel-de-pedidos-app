@@ -69,31 +69,31 @@ export const AddPedidoPage: React.FC<{}> = () => {
 
     const onSubmit: SubmitHandler<addPedidoType> = async (data) => { }
 
-    const clienteChange = (event: any) => {
+    const handleClienteChange = (event: any) => {
         const cliente = clientes.find((c: ClienteType) => c._id === event.target.value);
         if (cliente && getValues().isDeliver) {
             setValue('endereco', cliente.enderecos[0]);
-
         } else {
-            resetField('endereco.logradouro');
-            resetField('endereco.bairro');
-            resetField('endereco.numero');
-            resetField('endereco.complemento');
+            resetFieldsEndereco();
         }
     }
 
-    const isDeliverChange = (event: any) => {
+    const handleIsDeliverChange = (event: any) => {
         if (event.target.checked) {
             const cliente = clientes.find((c: ClienteType) => c._id === getValues().cliente);
             if (cliente) {
                 setValue('endereco', cliente.enderecos[0]);
             }
         } else {
-            resetField('endereco.logradouro');
-            resetField('endereco.bairro');
-            resetField('endereco.numero');
-            resetField('endereco.complemento');
+            resetFieldsEndereco();
         }
+    }
+
+    const resetFieldsEndereco = () => {
+        resetField('endereco.logradouro');
+        resetField('endereco.bairro');
+        resetField('endereco.numero');
+        resetField('endereco.complemento');
     }
 
     return (<Container
@@ -101,7 +101,7 @@ export const AddPedidoPage: React.FC<{}> = () => {
         className={`min-vh-100 d-flex flex-column justify-content-start justify-content-md-center
     ${isOnline ? "" : "bg-danger bg-opacity-25"}`}
     >
-        <Row className="flex-row-reverse">
+        <Row className="flex-row-reverse_">
             <Col className="col-12 col-md-6 d-flex align-items-md-center py-4">
                 <Container fluid={false}>
                     <Row className="d-flex justify-content-center">
@@ -117,7 +117,7 @@ export const AddPedidoPage: React.FC<{}> = () => {
                             >
                                 <Form.Group className="my-2">
                                     <Form.Select className="form-control border border-primary fw-semibold" aria-label="select"
-                                        onChangeCapture={(event) => clienteChange(event)}
+                                        onChangeCapture={(event) => handleClienteChange(event)}
                                         {...register("cliente", {
                                             required: true,
                                         })}>
@@ -128,7 +128,7 @@ export const AddPedidoPage: React.FC<{}> = () => {
                                     </Form.Select>
                                 </Form.Group>
                                 <Form.Group className="my-2">
-                                    <Form.Check type="checkbox" label="Entrega?" className="text-start" onChangeCapture={(event) => isDeliverChange(event)}
+                                    <Form.Check type="checkbox" label="Entrega?" className="text-start" onChangeCapture={(event) => handleIsDeliverChange(event)}
                                         {...register("isDeliver", {
                                             required: true,
                                         })}

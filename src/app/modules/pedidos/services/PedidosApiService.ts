@@ -28,7 +28,15 @@ const getClientes = async (): Promise<PaginateType> => {
   return data;
 };
 
+const getTaxas = async (): Promise<PaginateType> => {
+  const { data } = await ApiService.create().get(
+    `taxas-e-servicos/paginate`
+  );
+  return data;
+};
+
 export const PedidosApiService = {
   getPaginate,
-  getClientes
+  getClientes,
+  getTaxas
 };

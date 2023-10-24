@@ -7,6 +7,7 @@ import { ProgressbarPedidoComponent } from "../progressbar-pedido/ProgressbarPed
 import { PedidosTimeService } from "../../services/PedidosTimeService";
 import { BsIconComponent } from "../../../../shared/components/bs-icon/BsIconComponent";
 import { PedidoType } from "../../../../shared/types/PedidoType";
+import { PedidoItemType } from "../../../../shared/types/ItemPedidoType";
 
 const TextTitle = ({ ...props }) => {
     return (
@@ -19,7 +20,7 @@ const TextTitle = ({ ...props }) => {
 export const CardPedidoComponent = ({ ...props }) => {
 
     function getImgs(pedido: PedidoType): string[] {
-        return pedido.items.map((item: any, index: number) => item.bannerUrl);
+        return pedido.items.map((item: PedidoItemType, index: number) => item._id.bannerUrl);
     }
 
     let despacho = new Date(PedidosTimeService.subtractMinutes(props.pedido?.horaDespacho, 10));
@@ -49,7 +50,7 @@ export const CardPedidoComponent = ({ ...props }) => {
                             <ul className="list-group">
                                 {props.pedido.items.map((item: any, index: number) => (
                                     <li className="list-group-item border-0 bg-transparent p-0" key={index}>
-                                        <TextTitle cliente={`${item.descricao} R$: ${item.valor.toFixed(2).replace(".", ",")}`} />
+                                        <TextTitle cliente={`${item._id.descricao} R$: ${item.valor.toFixed(2).replace(".", ",")}`} />
                                     </li>
                                 ))}
                             </ul>

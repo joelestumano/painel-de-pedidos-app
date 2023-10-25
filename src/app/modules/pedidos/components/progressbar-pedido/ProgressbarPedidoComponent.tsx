@@ -60,11 +60,13 @@ export const ProgressbarPedidoComponent: React.FC<{ pedido: PedidoType }> = ({ p
                 variant={variant}
                 className="mx-1"
                 style={barStyle}
+                striped={progress !== 100}
+                animated={progress !== 100}
             />
             {progress === 100 ? (
                 <span className="fw-semibold px-1 mt-2 text-danger">Tempo esgotado!</span>
             ) : (
-                <span className="fw-semibold px-1 mt-2">{transformarEmHorasMinutos(restante)}</span>
+                <span className="fw-semibold px-1 mt-2 ">{transformarEmHorasMinutos(restante)}</span>
             )}
         </div>
     );

@@ -108,7 +108,7 @@ export const PedidosPage: React.FC<{}> = () => {
                             </Row>
                         </Container>
                     ) : (
-                        <NadaPorAquiComponent titulo={'Nada por aqui!'} />
+                        <NadaPorAquiComponent titulo="Nada por aqui!" />
                     )}
                 </>
             )}

@@ -31,7 +31,7 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                 variant="primary"
                 style={{ zIndex: 100 }}
                 onClick={toggleShow}
-                className="position-fixed top-0 end-0 rounded-end-0 rounded-start-5 mt-5 pe-1 shadow"
+                className="position-fixed top-0 end-0 rounded-end-0 rounded-start-3 mt-5 pe-2 shadow"
             >
                 <BsIconComponent
                     iconName="List"

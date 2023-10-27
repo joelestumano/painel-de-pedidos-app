@@ -6,7 +6,7 @@ import jwt_decode from "jwt-decode";
 import useLocalStorage from "@rehooks/local-storage";
 import { UsuarioActionTypeEnum } from "./redux/usuario/UsuarioActionTypeEnum";
 import { Container } from "react-bootstrap";
-import { SGPainelPage } from "./app/modules/painel/pages/SGPainelPage";
+import { RequireAuth, SGPainelPage } from "./app/modules/painel/pages/SGPainelPage";
 import { SGAdminPage } from "./app/modules/admin/pages/SGAdminPage";
 import { LoginPage } from "./app/modules/login/pages/LoginPage";
 import { ForgottenPasswordPage } from "./app/modules/account/pages/ForgottenPassword";
@@ -20,24 +20,6 @@ function IndexApp() {
     </Container>
   );
 }
-
-const RequireAuth: React.FC<{ children: any; redirectTo: any }> = ({
-  children,
-  redirectTo,
-}) => {
-  const [isToken] = useLocalStorage("access_token");
-  const dispatch = useDispatch();
-  const userDecoded = isToken ? jwt_decode(isToken) : undefined;
-
-  useEffect(() => {
-    dispatch({
-      type: UsuarioActionTypeEnum.SET_USUARIO,
-      payload: userDecoded,
-    });
-  }, [dispatch, userDecoded]);
-
-  return isToken ? children : <Navigate to={redirectTo} />;
-};
 
 function App() {
   const dispatch = useDispatch();
@@ -86,10 +68,22 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<IndexApp />}>
+        <Route path="" element={<IndexApp />}>
 
-          <Route path="sg-painel" element={<SGPainelPage />} ></Route>
-          <Route path="sg-admin" element={<SGAdminPage />} ></Route>
+          <Route path="sg-painel" element={<SGPainelPage />} >
+            <Route path="login" element={<LoginPage />} />
+            <Route path="forgot-password" element={<ForgottenPasswordPage />} />
+            <Route path="reset-password" element={<ResetPasswordPage />} />
+            <Route path="" element={
+              <RequireAuth redirectTo="login">
+                <PedidosPage />
+              </RequireAuth>
+            } />
+          </Route>
+
+          <Route path="sg-admin" element={<SGAdminPage />} >
+
+          </Route>
 
         </Route>
         <Route index element={<Navigate to='sg-painel' />}></Route>

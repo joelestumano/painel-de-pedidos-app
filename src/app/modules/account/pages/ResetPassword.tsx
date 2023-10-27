@@ -167,7 +167,7 @@ export const ResetPasswordPage: React.FC<{}> = () => {
                                 <p className="mt-3">
                                 </p>
 
-                                <a href="/login" className="mb-4 text-md-end text-decoration-underline float-end">
+                                <a href="/sg-painel/login" className="mb-4 text-md-end text-decoration-underline float-end">
                                     <span className="me-1">ir para login</span>
                                     <BsIconComponent iconName="PersonFillLock" />
                                 </a>

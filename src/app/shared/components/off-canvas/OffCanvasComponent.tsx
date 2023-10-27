@@ -31,7 +31,7 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                 variant="primary"
                 style={{ zIndex: 100 }}
                 onClick={toggleShow}
-                className="position-fixed top-0 end-0 rounded-end-0 rounded-start-3 mt-5 pe-2 shadow"
+                className="position-fixed top-0 end-0 rounded-end-0 rounded-start-3 mt-5 shadow"
             >
                 <BsIconComponent
                     iconName="List"
@@ -43,7 +43,7 @@ export const OffCanvasComponent: React.FC<{}> = () => {
             <Offcanvas placement="end" show={show} onHide={handleClose} {...props}>
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title className="">
-                        <a className="text-md-start text-decoration-none bg-warning rounded-circle" href="/">
+                        <a className="text-md-start text-decoration-none bg-warning rounded-circle" href="/sg-painel">
                             <BsIconComponent
                                 iconName="HouseFill"
                                 size={32}
@@ -56,11 +56,11 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                     <Row>
                         <Col className="col-12">
                             <nav className="d-flex flex-column">
-                                <a href="/forgot-password" className="my-1 text-md-start text-decoration-underline">
+                                <a href="/sg-painel/forgot-password" className="my-1 text-md-start text-decoration-underline">
                                     <span className="me-1">esqueceu sua senha?</span>
                                     <BsIconComponent iconName="PersonFillExclamation" />
                                 </a>
-                                <a href="/reset-password" className="my-1 text-md-start text-decoration-underline">
+                                <a href="/sg-painel/reset-password" className="my-1 text-md-start text-decoration-underline">
                                     <span className="me-1">redefinir senha</span>
                                     <BsIconComponent iconName="PersonFillUp" />
                                 </a>

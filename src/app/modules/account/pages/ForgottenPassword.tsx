@@ -144,7 +144,7 @@ export const ForgottenPasswordPage: React.FC<{}> = () => {
                                     Ao enviar seu e-mail, uma mensagem com instruções para redefinição de senha será enviada para o seu <strong>endereço de e-mail cadastrado em seu perfil.</strong>  Portanto, é importante verificar em seguida sua caixa de entrada e/ou pasta de spam para encontrar o e-mail. Ele deve chegar em alguns minutos.
                                 </p>
 
-                                <a href="/login" className="mb-4 text-md-end text-decoration-underline float-end">
+                                <a href="/sg-painel/login" className="mb-4 text-md-end text-decoration-underline float-end">
                                     <span className="me-1">ir para login</span>
                                     <BsIconComponent iconName="PersonFillLock" />
                                 </a>

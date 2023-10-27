@@ -157,7 +157,7 @@ export const LoginPage: React.FC<{}> = () => {
                                 <p className="mt-3">
                                 </p>
 
-                                <a href="/forgot-password" className="mb-4 text-md-end text-decoration-underline float-end">
+                                <a href="/sg-painel/forgot-password" className="mb-4 text-md-end text-decoration-underline float-end">
                                         <span className="me-1">esqueceu sua senha?</span>
                                         <BsIconComponent iconName="PersonFillExclamation" />
                                     </a> 

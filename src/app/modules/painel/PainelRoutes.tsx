@@ -1,14 +1,13 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { LoginPage } from "./modules/login/pages/LoginPage";
-import { ForgottenPasswordPage } from "./modules/account/pages/ForgottenPassword";
-import { PedidosPage } from "./modules/pedidos/pages/PedidosList/PedidosPage";
+import { LoginPage } from "../login/pages/LoginPage";
+import { ForgottenPasswordPage } from "../account/pages/ForgottenPassword";
+import { PedidosPage } from "../pedidos/pages/PedidosList/PedidosPage";
 import useLocalStorage from "@rehooks/local-storage";
 import jwt_decode from "jwt-decode";
 import { useDispatch } from "react-redux";
-import { UsuarioActionTypeEnum } from "../redux/usuario/UsuarioActionTypeEnum";
+import { UsuarioActionTypeEnum } from "../../../redux/usuario/UsuarioActionTypeEnum";
 import { useEffect } from "react";
-import { ResetPasswordPage } from "./modules/account/pages/ResetPassword";
-import { AdminDashboardPage } from "./modules/admin/pages/AdminDashboardPage";
+import { ResetPasswordPage } from "../account/pages/ResetPassword";
 
 const RequireAuth: React.FC<{ children: any; redirectTo: any }> = ({
     children,
@@ -28,7 +27,7 @@ const RequireAuth: React.FC<{ children: any; redirectTo: any }> = ({
     return isToken ? children : <Navigate to={redirectTo} />;
 };
 
-export const AppRoutes = () => {
+export const PainelAppRoutes = () => {
     return (
         <Routes>
             <Route path="/login" element={<LoginPage />} />
@@ -38,12 +37,6 @@ export const AppRoutes = () => {
             <Route path="/" element={
                 <RequireAuth redirectTo="/login">
                     <PedidosPage />
-                </RequireAuth>
-            }>
-            </Route>
-            <Route path="/admin" element={
-                <RequireAuth redirectTo="/login">
-                    <AdminDashboardPage />
                 </RequireAuth>
             }>
             </Route>

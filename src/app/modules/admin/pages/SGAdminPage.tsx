@@ -3,11 +3,11 @@ import { UseDocumentTitle } from "../../../shared/hooks/UseDocumentTitleHook";
 import { useEffect, useState } from "react";
 import { LoadingComponent } from "../../../shared/components/loading/LoadingComponent";
 import { NadaPorAquiComponent } from "../../pedidos/components/nada-por-aqui/NadaPorAquiComponent";
-import { Col, Container, Nav, NavDropdown, Navbar, Row } from "react-bootstrap";
+import { Container, Nav, NavDropdown, Navbar, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
-export const AdminDashboardPage: React.FC<{}> = () => {
-    UseDocumentTitle("SG Admin - Dashboard");
+export const SGAdminPage: React.FC<{}> = () => {
+    UseDocumentTitle("SG Admin");
 
     const { isOnline } = useSelector(
         (rootReducer: any) => rootReducer.EventosReducer
@@ -30,7 +30,7 @@ export const AdminDashboardPage: React.FC<{}> = () => {
             ) : (
                 <>
                     {true ? (
-                        <Navbar expand="lg" className="bg-black navbar-dark">
+                        <Navbar expand="lg" className="bg-black navbar-dark m-0">
                             <Container>
                                 <Navbar.Brand onClick={() => { navigate('/admin') }} role="button">SG - Admin</Navbar.Brand>
                                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

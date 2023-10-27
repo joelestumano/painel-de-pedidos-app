@@ -65,7 +65,7 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                                     <BsIconComponent iconName="PersonFillUp" />
                                 </a>
 
-                                <a href="/admin" className="my-1 text-md-start text-decoration-underline">
+                                <a href="/sg-admin" className="my-1 text-md-start text-decoration-underline">
                                     <span className="me-1">admin</span>
                                     <BsIconComponent iconName="PersonBoundingBox" />
                                 </a>

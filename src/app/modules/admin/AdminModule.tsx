@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { UseDocumentTitle } from "../../../shared/hooks/UseDocumentTitleHook";
+import { UseDocumentTitle } from "../../shared/hooks/UseDocumentTitleHook";
 import { useEffect, useState } from "react";
-import { LoadingComponent } from "../../../shared/components/loading/LoadingComponent";
+import { LoadingComponent } from "../../shared/components/loading/LoadingComponent";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { NadaPorAquiComponent } from "../../painel/pedidos/components/nada-por-aqui/NadaPorAquiComponent";
+import { NadaPorAquiComponent } from "../painel/pedidos/components/nada-por-aqui/NadaPorAquiComponent";
 
-export const SGAdminPage: React.FC<{}> = () => {
+export const AdminModule: React.FC<{}> = () => {
     UseDocumentTitle("SG Admin");
 
     const { isOnline } = useSelector(

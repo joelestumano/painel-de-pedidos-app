@@ -6,12 +6,12 @@ import jwt_decode from "jwt-decode";
 import useLocalStorage from "@rehooks/local-storage";
 import { UsuarioActionTypeEnum } from "./redux/usuario/UsuarioActionTypeEnum";
 import { Container } from "react-bootstrap";
-import { SGAdminPage } from "./app/modules/admin/pages/SGAdminPage";
+import { AdminModule } from "./app/modules/admin/AdminModule";
 import { LoginPage } from "./app/modules/painel/login/pages/LoginPage";
 import { ForgottenPasswordPage } from "./app/modules/account/pages/ForgottenPassword";
 import { ResetPasswordPage } from "./app/modules/account/pages/ResetPassword";
 import { PedidosPage } from "./app/modules/painel/pedidos/pages/PedidosList/PedidosPage";
-import { RequireAuth, SGPainelModule } from "./app/modules/painel/SGPainelModule";
+import { RequireAuth, PainelModule } from "./app/modules/painel/PainelModule";
 
 function IndexApp() {
   return (
@@ -70,7 +70,7 @@ function App() {
       <Routes>
         <Route path="" element={<IndexApp />}>
 
-          <Route path="sg-painel" element={<SGPainelModule />} >
+          <Route path="sg-painel" element={<PainelModule />} >
             <Route path="login" element={<LoginPage />} />
             <Route path="forgot-password" element={<ForgottenPasswordPage />} />
             <Route path="reset-password" element={<ResetPasswordPage />} />
@@ -81,7 +81,7 @@ function App() {
             } />
           </Route>
 
-          <Route path="sg-admin" element={<SGAdminPage />} >
+          <Route path="sg-admin" element={<AdminModule />} >
 
           </Route>
 

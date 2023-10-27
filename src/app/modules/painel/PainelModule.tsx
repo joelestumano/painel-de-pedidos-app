@@ -25,7 +25,7 @@ export const RequireAuth: React.FC<{ children: any; redirectTo: any }> = ({
     return isToken ? children : <Navigate to={redirectTo} />;
 };
 
-export const SGPainelModule: React.FC<{}> = () => {
+export const PainelModule: React.FC<{}> = () => {
     UseDocumentTitle("SG");
     return (
         <>

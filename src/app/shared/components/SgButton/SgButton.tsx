@@ -1,5 +1,3 @@
-import "./SgButton.scss";
-
 interface SgButtonProps {
     type: "button" | "submit";
     text: string;

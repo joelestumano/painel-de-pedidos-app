@@ -55,17 +55,16 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                 <Offcanvas.Body className="d-flex flex-column">
                     <Row>
                         <Col className="col-12">
-                            <nav className="d-flex flex-column">
-                                <a href="/sg-painel/forgot-password" className="my-1 text-md-start text-decoration-underline">
+                            <nav className="d-flex flex-column text-start">
+                                <a className="me-auto my-1 px-1 text-decoration-underline" href="/sg-painel/forgot-password">
                                     <span className="me-1">esqueceu sua senha?</span>
                                     <BsIconComponent iconName="PersonFillExclamation" />
                                 </a>
-                                <a href="/sg-painel/reset-password" className="my-1 text-md-start text-decoration-underline">
+                                <a className="me-auto my-1 px-1 text-decoration-underline" href="/sg-painel/reset-password">
                                     <span className="me-1">redefinir senha</span>
                                     <BsIconComponent iconName="PersonFillUp" />
                                 </a>
-
-                                <a href="/sg-admin" className="my-1 text-md-start text-decoration-underline">
+                                <a className="me-auto my-1 px-1 text-decoration-underline text-warning bg-black" href="/sg-admin">
                                     <span className="me-1">admin</span>
                                     <BsIconComponent iconName="PersonBoundingBox" />
                                 </a>

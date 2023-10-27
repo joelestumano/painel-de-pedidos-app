@@ -41,13 +41,13 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                 />
             </Button>
             <Offcanvas placement="end" show={show} onHide={handleClose} {...props}>
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title className="">
-                        <a className="text-md-start text-decoration-none bg-warning rounded-circle" href="/sg-painel">
+                <Offcanvas.Header closeButton className="bg-primary shadow" closeVariant="white">
+                    <Offcanvas.Title>
+                        <a className="text-md-start text-decoration-none text-white" href="/sg-painel">
                             <BsIconComponent
                                 iconName="HouseFill"
-                                size={32}
-                                className="align-middle me-2"
+                                size={24}
+                                className="align-middle"
                             />
                         </a>
                     </Offcanvas.Title>
@@ -73,7 +73,7 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                         </Col>
                     </Row>
                     {usuario ?
-                        <div className="d-flex justify-content-end fixed-bottom position-absolute p-2 bg-danger bg-opacity-25">
+                        <div className="d-flex justify-content-end fixed-bottom position-absolute p-2 bg-danger bg-opacity-10">
                             <div className="d-flex justify-content-between align-items-center w-100">
                                 <span className="px-2">{usuario.nome}</span>
                                 <SgButton

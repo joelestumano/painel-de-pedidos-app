@@ -32,12 +32,12 @@ export const SGAdminPage: React.FC<{}> = () => {
                     {true ? (
                         <Navbar expand="lg" className="bg-black navbar-dark m-0">
                             <Container>
-                                <Navbar.Brand onClick={() => { navigate('/admin') }} role="button">SG - Admin</Navbar.Brand>
+                                <Navbar.Brand onClick={() => { navigate('/sg-admin') }} role="button">SG - Admin</Navbar.Brand>
                                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                 <Navbar.Collapse id="basic-navbar-nav">
                                     <Nav className="me-auto">
-                                        <Nav.Link onClick={() => { navigate('/admin') }} >Home</Nav.Link>
-                                        <Nav.Link href="#link">Link</Nav.Link>
+                                        <Nav.Link onClick={() => { navigate('/sg-painel') }} >SG - Painel</Nav.Link>
+                                        {/* <Nav.Link href="#link">Link</Nav.Link>
                                         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                             <NavDropdown.Item href="#action/3.2">
@@ -48,7 +48,7 @@ export const SGAdminPage: React.FC<{}> = () => {
                                             <NavDropdown.Item href="#action/3.4">
                                                 Separated link
                                             </NavDropdown.Item>
-                                        </NavDropdown>
+                                        </NavDropdown> */}
                                     </Nav>
                                 </Navbar.Collapse>
                             </Container>

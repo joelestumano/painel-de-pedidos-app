@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-import { LoginService } from "../modules/login/services/LoginService";
+import { LoginService } from "../modules/painel/login/services/LoginService";
 
 const baseURL = (): string => {
   //return "http://localhost:3000/";

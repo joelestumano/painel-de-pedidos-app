@@ -1,4 +1,4 @@
-import { ApiService } from "../../../services/ApiService";
+import { ApiService } from "../../../../services/ApiService";
 import { writeStorage, deleteFromStorage } from "@rehooks/local-storage";
 
 export type AccessTokenType = {

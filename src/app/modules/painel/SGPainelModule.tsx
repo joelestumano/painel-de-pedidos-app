@@ -1,10 +1,10 @@
-import { UseDocumentTitle } from "../../../shared/hooks/UseDocumentTitleHook";
-import { OffCanvasComponent } from "../../../shared/components/off-canvas/OffCanvasComponent";
+import { UseDocumentTitle } from "../../shared/hooks/UseDocumentTitleHook";
+import { OffCanvasComponent } from "../../shared/components/off-canvas/OffCanvasComponent";
 import { Navigate, Outlet } from "react-router-dom";
 import useLocalStorage from "@rehooks/local-storage";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { UsuarioActionTypeEnum } from "../../../../redux/usuario/UsuarioActionTypeEnum";
+import { UsuarioActionTypeEnum } from "../../../redux/usuario/UsuarioActionTypeEnum";
 import jwt_decode from "jwt-decode";
 
 export const RequireAuth: React.FC<{ children: any; redirectTo: any }> = ({
@@ -25,7 +25,7 @@ export const RequireAuth: React.FC<{ children: any; redirectTo: any }> = ({
     return isToken ? children : <Navigate to={redirectTo} />;
 };
 
-export const SGPainelPage: React.FC<{}> = () => {
+export const SGPainelModule: React.FC<{}> = () => {
     UseDocumentTitle("SG");
     return (
         <>

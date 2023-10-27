@@ -2,7 +2,7 @@ import { Button, Col, Offcanvas, Row } from "react-bootstrap";
 import { useState } from "react";
 import { BsIconComponent } from "../bs-icon/BsIconComponent";
 import { SgButton } from "../SgButton/SgButton";
-import { LoginService } from "../../../modules/login/services/LoginService";
+import { LoginService } from "../../../modules/painel/login/services/LoginService";
 import { useSelector } from "react-redux";
 
 export const OffCanvasComponent: React.FC<{}> = () => {

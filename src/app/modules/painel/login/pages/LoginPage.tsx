@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import { Col, Container, Form, Row, Spinner } from "react-bootstrap";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { SgButton } from "../../../shared/components/SgButton/SgButton";
+import { SgButton } from "../../../../shared/components/SgButton/SgButton";
 import { LoginService, LoginType } from "../services/LoginService";
 import { useDispatch, useSelector } from "react-redux";
 import jwt_decode from "jwt-decode";
-import { UsuarioActionTypeEnum } from "../../../../redux/usuario/UsuarioActionTypeEnum";
-import { UseDocumentTitle } from "../../../shared/hooks/UseDocumentTitleHook";
-import { BsIconComponent } from "../../../shared/components/bs-icon/BsIconComponent";
+import { UsuarioActionTypeEnum } from "../../../../../redux/usuario/UsuarioActionTypeEnum";
+import { UseDocumentTitle } from "../../../../shared/hooks/UseDocumentTitleHook";
+import { BsIconComponent } from "../../../../shared/components/bs-icon/BsIconComponent";
 
 export const LoginPage: React.FC<{}> = () => {
 

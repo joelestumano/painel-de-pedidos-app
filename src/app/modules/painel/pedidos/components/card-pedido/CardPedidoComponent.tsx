@@ -1,13 +1,13 @@
 import "./CardPedidoComponent.scss";
 import { Card, Col, Row } from "react-bootstrap";
-import { ImageGalleryComponent } from "../../../../shared/components/image-gallery/ImageGalleryComponent";
+import { ImageGalleryComponent } from "../../../../../shared/components/image-gallery/ImageGalleryComponent";
 import { NumeroPedidoComponent } from "../numero-pedido/NumeroPedidoComponent";
 import { InfoPedidoComponent } from "../info-pedido/InfoPedidoComponent";
 import { ProgressbarPedidoComponent } from "../progressbar-pedido/ProgressbarPedidoComponent";
 import { PedidosTimeService } from "../../services/PedidosTimeService";
-import { BsIconComponent } from "../../../../shared/components/bs-icon/BsIconComponent";
-import { PedidoType } from "../../../../shared/types/PedidoType";
-import { PedidoItemType } from "../../../../shared/types/ItemPedidoType";
+import { BsIconComponent } from "../../../../../shared/components/bs-icon/BsIconComponent";
+import { PedidoType } from "../../../../../shared/types/PedidoType";
+import { PedidoItemType } from "../../../../../shared/types/ItemPedidoType";
 
 const TextTitle = ({ ...props }) => {
     return (

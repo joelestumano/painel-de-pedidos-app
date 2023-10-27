@@ -2,9 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { UseDocumentTitle } from "../../../shared/hooks/UseDocumentTitleHook";
 import { useEffect, useState } from "react";
 import { LoadingComponent } from "../../../shared/components/loading/LoadingComponent";
-import { NadaPorAquiComponent } from "../../pedidos/components/nada-por-aqui/NadaPorAquiComponent";
-import { Container, Nav, NavDropdown, Navbar, Row } from "react-bootstrap";
+import { Container, Nav, Navbar } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { NadaPorAquiComponent } from "../../painel/pedidos/components/nada-por-aqui/NadaPorAquiComponent";
 
 export const SGAdminPage: React.FC<{}> = () => {
     UseDocumentTitle("SG Admin");

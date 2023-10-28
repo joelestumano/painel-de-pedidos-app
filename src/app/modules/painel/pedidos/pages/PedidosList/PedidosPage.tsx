@@ -11,13 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { PedidosActionTypeEnum } from "../../../../../../redux/pedidos/PedidosActionTypeEnum";
 import { PaginateType } from "../../../../../shared/types/PaginateType";
 import { PedidoType } from "../../../../../shared/types/PedidoType";
-import { UseDocumentTitle } from "../../../../../shared/hooks/UseDocumentTitleHook";
 import { ApiService } from "../../../../../services/ApiService";
 import { useNavigate } from "react-router-dom";
 
 export const PedidosPage: React.FC<{}> = () => {
-
-    UseDocumentTitle("SG - Pedidos");
 
     const navigate = useNavigate();
 

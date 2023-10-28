@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { UseDocumentTitle } from "../../../shared/hooks/UseDocumentTitleHook";
 import { useEffect, useState } from "react";
 import { Col, Container, Form, FormGroup, Row, Spinner } from "react-bootstrap";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -9,8 +8,6 @@ import { AccountService } from "../service/AccountService";
 import { useNavigate } from "react-router-dom";
 
 export const ForgottenPasswordPage: React.FC<{}> = () => {
-
-    UseDocumentTitle("SG - squeceu sua senha");
 
     const { isOnline } = useSelector(
         (rootReducer: any) => rootReducer.EventosReducer

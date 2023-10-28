@@ -1,5 +1,4 @@
 import { Col, Container, Form, FormGroup, InputGroup, Row, Spinner } from "react-bootstrap";
-import { UseDocumentTitle } from "../../../shared/hooks/UseDocumentTitleHook";
 import { useSelector } from "react-redux";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AccountService, ResetPassType } from "../service/AccountService";
@@ -9,8 +8,6 @@ import { SgButton } from "../../../shared/components/SgButton/SgButton";
 import { useState } from "react";
 
 export const ResetPasswordPage: React.FC<{}> = () => {
-
-    UseDocumentTitle("SG - Redefinir senha");
 
     const { isOnline } = useSelector(
         (rootReducer: any) => rootReducer.EventosReducer

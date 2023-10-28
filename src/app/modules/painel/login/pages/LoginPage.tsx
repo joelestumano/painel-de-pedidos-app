@@ -8,12 +8,9 @@ import { LoginService, LoginType } from "../services/LoginService";
 import { useDispatch, useSelector } from "react-redux";
 import jwt_decode from "jwt-decode";
 import { UsuarioActionTypeEnum } from "../../../../../redux/usuario/UsuarioActionTypeEnum";
-import { UseDocumentTitle } from "../../../../shared/hooks/UseDocumentTitleHook";
 import { BsIcon } from "../../../../shared/components/BsIcon/BsIcon";
 
 export const LoginPage: React.FC<{}> = () => {
-
-    UseDocumentTitle("SG - Login");
 
     const { isOnline } = useSelector(
         (rootReducer: any) => rootReducer.EventosReducer

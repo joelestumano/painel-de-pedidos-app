@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { NadaPorAquiComponent } from "../painel/pedidos/components/nada-por-aqui/NadaPorAquiComponent";
 
 export const AdminModule: React.FC<{}> = () => {
-    UseDocumentTitle("SG Admin");
+    UseDocumentTitle("SG - Admin");
 
     const { isOnline } = useSelector(
         (rootReducer: any) => rootReducer.EventosReducer

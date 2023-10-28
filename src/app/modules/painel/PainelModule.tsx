@@ -26,7 +26,7 @@ export const RequireAuth: React.FC<{ children: any; redirectTo: any }> = ({
 };
 
 export const PainelModule: React.FC<{}> = () => {
-    UseDocumentTitle("SG");
+    UseDocumentTitle("SG - Painel");
     return (
         <>
             <OffCanvas />

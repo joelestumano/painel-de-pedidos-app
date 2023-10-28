@@ -148,7 +148,7 @@ export const ResetPasswordPage: React.FC<{}> = () => {
                                             />
                                             <span className="input-group-text border-primary p-0">
                                                 <SgButton type="button" variant="transparent" child={
-                                                    <BsIcon iconName={"PassFill"} />
+                                                    <BsIcon iconName={"ClipboardFill"} />
                                                 } />
                                             </span>
                                         </InputGroup>

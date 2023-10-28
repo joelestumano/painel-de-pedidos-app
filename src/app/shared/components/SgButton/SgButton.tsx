@@ -4,7 +4,7 @@ interface SgButtonProps {
     child?: any;
     onClick?: () => void;
     onSubmit?: () => void;
-    variant?: "primary" | "success" | "danger";
+    variant?: "primary" | "success" | "danger" | "transparent";
     disabled?: boolean;
 }
 
@@ -37,11 +37,11 @@ export const SgButton: React.FC<SgButtonProps> = ({
         >
             {child ? (
                 <div className="d-flex flex-row">
-                    <span className="ms-2 me-0">{text}</span>
+                    <span className={`ms-2 me-0 ${variant === 'transparent' ? 'text-body' : ''}`}>{text}</span>
                     <div className="d-flex align-items-center ms-1 me-2">{child}</div>
                 </div>
             ) : (
-                <span className="mx-3 mx-md-3">{text}</span>
+                <span className={`mx-3 mx-md-3 ${variant === 'transparent' ? 'text-body' : ''}`}>{text}</span>
             )}
         </button>
     );

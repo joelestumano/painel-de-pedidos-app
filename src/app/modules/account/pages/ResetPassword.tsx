@@ -1,4 +1,4 @@
-import { Col, Container, Form, FormGroup, Row, Spinner } from "react-bootstrap";
+import { Col, Container, Form, FormGroup, InputGroup, Row, Spinner } from "react-bootstrap";
 import { UseDocumentTitle } from "../../../shared/hooks/UseDocumentTitleHook";
 import { useSelector } from "react-redux";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -138,12 +138,20 @@ export const ResetPasswordPage: React.FC<{}> = () => {
 
                                     <FormGroup className="mb-2">
                                         <label className="fw-semibold">Token</label>
-                                        <input
-                                            className={`form-control border border-primary ${errors.token ? "is-invalid" : ""
-                                                }`}
-                                            type="text"
-                                            {...register("token", { required: true })}
-                                        />
+
+                                        <InputGroup>
+                                            <input
+                                                className={`form-control border border-primary ${errors.token ? "is-invalid" : ""
+                                                    }`}
+                                                type="text"
+                                                {...register("token", { required: true })}
+                                            />
+                                            <span className="input-group-text border-primary p-0">
+                                                <SgButton type="button" text="colar" variant="transparent"/>
+                                            </span>
+
+                                        </InputGroup>
+
                                     </FormGroup>
 
                                     <FormGroup className="mt-3 text-center">

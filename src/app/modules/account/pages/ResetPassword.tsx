@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AccountService, ResetPassType } from "../service/AccountService";
 import { useNavigate } from "react-router-dom";
-import { BsIconComponent } from "../../../shared/components/bs-icon/BsIconComponent";
+import { BsIcon } from "../../../shared/components/BsIcon/BsIcon";
 import { SgButton } from "../../../shared/components/SgButton/SgButton";
 import { useState } from "react";
 
@@ -71,11 +71,11 @@ export const ResetPasswordPage: React.FC<{}> = () => {
     const getBsIconBtnSubmit = (): JSX.Element | null => {
         switch (btnSubmit) {
             case 'checado':
-                return <BsIconComponent iconName="CheckLg" />
+                return <BsIcon iconName="CheckLg" />
             case 'invalid-token':
-                return <BsIconComponent iconName="XOctagon" />
+                return <BsIcon iconName="XOctagon" />
             case 'falhou':
-                return <BsIconComponent iconName="BugFill" />
+                return <BsIcon iconName="BugFill" />
             default: return null
         }
     }
@@ -147,9 +147,10 @@ export const ResetPasswordPage: React.FC<{}> = () => {
                                                 {...register("token", { required: true })}
                                             />
                                             <span className="input-group-text border-primary p-0">
-                                                <SgButton type="button" text="colar" variant="transparent"/>
+                                                <SgButton type="button" variant="transparent" child={
+                                                    <BsIcon iconName={"PassFill"} />
+                                                } />
                                             </span>
-
                                         </InputGroup>
 
                                     </FormGroup>
@@ -180,7 +181,7 @@ export const ResetPasswordPage: React.FC<{}> = () => {
 
                                 <a href="/sg-painel/login" className="mb-4 text-md-end text-decoration-underline float-end mt-3">
                                     <span className="me-1">Ir para login</span>
-                                    <BsIconComponent iconName="PersonFillLock" />
+                                    <BsIcon iconName="PersonFillLock" />
                                 </a>
                             </Col>
                         </Row>

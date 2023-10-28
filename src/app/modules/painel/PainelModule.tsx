@@ -1,5 +1,5 @@
 import { UseDocumentTitle } from "../../shared/hooks/UseDocumentTitleHook";
-import { OffCanvasComponent } from "../../shared/components/off-canvas/OffCanvasComponent";
+import { OffCanvas } from "../../shared/components/OffCanvas/OffCanvas";
 import { Navigate, Outlet } from "react-router-dom";
 import useLocalStorage from "@rehooks/local-storage";
 import { useDispatch } from "react-redux";
@@ -29,7 +29,7 @@ export const PainelModule: React.FC<{}> = () => {
     UseDocumentTitle("SG");
     return (
         <>
-            <OffCanvasComponent />
+            <OffCanvas />
             <Outlet />
         </>
     );

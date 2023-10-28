@@ -1,11 +1,11 @@
 import { Button, Col, Offcanvas, Row } from "react-bootstrap";
 import { useState } from "react";
-import { BsIconComponent } from "../bs-icon/BsIconComponent";
+import { BsIcon } from "../BsIcon/BsIcon";
 import { SgButton } from "../SgButton/SgButton";
 import { LoginService } from "../../../modules/painel/login/services/LoginService";
 import { useSelector } from "react-redux";
 
-export const OffCanvasComponent: React.FC<{}> = () => {
+export const OffCanvas: React.FC<{}> = () => {
     const props = {
         scroll: true,
         backdrop: true,
@@ -33,7 +33,7 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                 onClick={toggleShow}
                 className="position-fixed top-0 end-0 rounded-end-0 rounded-start-3 mt-5 shadow"
             >
-                <BsIconComponent
+                <BsIcon
                     iconName="List"
                     color="white"
                     size={24}
@@ -44,7 +44,7 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                 <Offcanvas.Header closeButton className="bg-primary shadow" closeVariant="white">
                     <Offcanvas.Title>
                         <a className="text-md-start text-decoration-none text-white" href="/sg-painel">
-                            <BsIconComponent
+                            <BsIcon
                                 iconName="HouseFill"
                                 size={24}
                                 className="align-middle"
@@ -58,15 +58,15 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                             <nav className="d-flex flex-column text-start">
                                 <a className="me-auto my-1 px-1 text-decoration-underline" href="/sg-painel/forgot-password">
                                     <span className="me-1">Esqueceu sua senha?</span>
-                                    <BsIconComponent iconName="PersonFillExclamation" />
+                                    <BsIcon iconName="PersonFillExclamation" />
                                 </a>
                                 <a className="me-auto my-1 px-1 text-decoration-underline" href="/sg-painel/reset-password">
                                     <span className="me-1">Redefinir senha</span>
-                                    <BsIconComponent iconName="PersonFillUp" />
+                                    <BsIcon iconName="PersonFillUp" />
                                 </a>
                                 <a className="me-auto my-1 px-1 text-decoration-underline text-warning bg-black" href="/sg-admin">
                                     <span className="me-1">Admin</span>
-                                    <BsIconComponent iconName="PersonBoundingBox" />
+                                    <BsIcon iconName="PersonBoundingBox" />
                                 </a>
                             </nav>
                         </Col>

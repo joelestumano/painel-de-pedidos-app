@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import jwt_decode from "jwt-decode";
 import { UsuarioActionTypeEnum } from "../../../../../redux/usuario/UsuarioActionTypeEnum";
 import { UseDocumentTitle } from "../../../../shared/hooks/UseDocumentTitleHook";
-import { BsIconComponent } from "../../../../shared/components/bs-icon/BsIconComponent";
+import { BsIcon } from "../../../../shared/components/BsIcon/BsIcon";
 
 export const LoginPage: React.FC<{}> = () => {
 
@@ -83,11 +83,11 @@ export const LoginPage: React.FC<{}> = () => {
     const getBsIconBtnSubmit = (): JSX.Element | null => {
         switch (btnSubmit) {
             case 'checado':
-                return <BsIconComponent iconName="CheckLg" />
+                return <BsIcon iconName="CheckLg" />
             case 'unauthorized':
-                return <BsIconComponent iconName="XOctagon" />
+                return <BsIcon iconName="XOctagon" />
             case 'falhou':
-                return <BsIconComponent iconName="BugFill" />
+                return <BsIcon iconName="BugFill" />
             default: return null
         }
     }
@@ -162,7 +162,7 @@ export const LoginPage: React.FC<{}> = () => {
 
                                 <a href="/sg-painel/forgot-password" className="mb-4 text-md-end text-decoration-underline float-end mt-3">
                                     <span className="me-1">Esqueceu sua senha?</span>
-                                    <BsIconComponent iconName="PersonFillExclamation" />
+                                    <BsIcon iconName="PersonFillExclamation" />
                                 </a>
 
                             </Col>

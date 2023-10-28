@@ -5,7 +5,7 @@ import { NumeroPedidoComponent } from "../numero-pedido/NumeroPedidoComponent";
 import { InfoPedidoComponent } from "../info-pedido/InfoPedidoComponent";
 import { ProgressbarPedidoComponent } from "../progressbar-pedido/ProgressbarPedidoComponent";
 import { PedidosTimeService } from "../../services/PedidosTimeService";
-import { BsIconComponent } from "../../../../../shared/components/bs-icon/BsIconComponent";
+import { BsIcon } from "../../../../../shared/components/BsIcon/BsIcon";
 import { PedidoType } from "../../../../../shared/types/PedidoType";
 import { PedidoItemType } from "../../../../../shared/types/ItemPedidoType";
 
@@ -44,7 +44,7 @@ export const CardPedidoComponent = ({ ...props }) => {
                             ) : null}
                             <NumeroPedidoComponent isPrincipal={props.isPrincipal} value={props.pedido.codigo} />
                             <p className="font-size-custom fw-semibold mb-2">
-                                <BsIconComponent iconName="Clock" className="align-middle me-1" />
+                                <BsIcon iconName="Clock" className="align-middle me-1" />
                                 {despacho.toLocaleTimeString()}
                             </p>
                             <ul className="list-group">

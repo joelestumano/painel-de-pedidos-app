@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Col, Container, Form, FormGroup, Row, Spinner } from "react-bootstrap";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { SgButton } from "../../../shared/components/SgButton/SgButton";
-import { BsIconComponent } from "../../../shared/components/bs-icon/BsIconComponent";
+import { BsIcon } from "../../../shared/components/BsIcon/BsIcon";
 import { AccountService } from "../service/AccountService";
 import { useNavigate } from "react-router-dom";
 
@@ -72,11 +72,11 @@ export const ForgottenPasswordPage: React.FC<{}> = () => {
     const getBsIconBtnSubmit = (): JSX.Element | null => {
         switch (btnSubmit) {
             case 'checado':
-                return <BsIconComponent iconName="CheckLg" />
+                return <BsIcon iconName="CheckLg" />
             case 'not-found':
-                return <BsIconComponent iconName="XOctagon" />
+                return <BsIcon iconName="XOctagon" />
             case 'falhou':
-                return <BsIconComponent iconName="BugFill" />
+                return <BsIcon iconName="BugFill" />
             default: return null
         }
     }
@@ -149,7 +149,7 @@ export const ForgottenPasswordPage: React.FC<{}> = () => {
 
                                 <a href="/sg-painel/login" className="mb-4 text-md-end text-decoration-underline float-end">
                                     <span className="me-1">Ir para login</span>
-                                    <BsIconComponent iconName="PersonFillLock" />
+                                    <BsIcon iconName="PersonFillLock" />
                                 </a>
 
                             </Col>

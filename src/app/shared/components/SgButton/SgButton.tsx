@@ -1,6 +1,6 @@
 interface SgButtonProps {
     type: "button" | "submit";
-    text: string;
+    text?: string;
     child?: any;
     onClick?: () => void;
     onSubmit?: () => void;
@@ -30,14 +30,15 @@ export const SgButton: React.FC<SgButtonProps> = ({
     return (
         <button
             type={type}
-            className={`btn text-uppercase fw-semibold px-2 py-1 esf-button text-white btn-${variant} bg-${variant} rounded-5`}
+            className={`btn text-uppercase fw-semibold px-2 py-1 esf-button text-white btn-${variant} bg-${variant} 
+            ${variant === 'transparent' ? 'text-body border-0' : ''} rounded-5`}
             onClick={handleClick}
             onSubmit={handleSubmit}
             disabled={disabled}
         >
             {child ? (
                 <div className="d-flex flex-row">
-                    <span className={`ms-2 me-0 ${variant === 'transparent' ? 'text-body' : ''}`}>{text}</span>
+                    {text ? <span className={`ms-2 me-0 ${variant === 'transparent' ? 'text-body' : ''}`}>{text}</span> : null}
                     <div className="d-flex align-items-center ms-1 me-2">{child}</div>
                 </div>
             ) : (

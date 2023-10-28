@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { UseDocumentTitle } from "../../../shared/hooks/UseDocumentTitleHook";
 import { useEffect, useState } from "react";
-import { Col, Container, Form, Row, Spinner } from "react-bootstrap";
+import { Col, Container, Form, FormGroup, Row, Spinner } from "react-bootstrap";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { SgButton } from "../../../shared/components/SgButton/SgButton";
 import { BsIconComponent } from "../../../shared/components/bs-icon/BsIconComponent";
@@ -104,40 +104,43 @@ export const ForgottenPasswordPage: React.FC<{}> = () => {
                                     Certifique-se de usar o <strong> endereço de e-mail cadastrado em seu perfil</strong>.
                                 </p>
 
-                                <Form
-                                    onSubmit={handleSubmit(onSubmit)}
-                                    className="text-center bg-primary bg-opacity-25 p-4 rounded shadow"
-                                >
-                                    <input
-                                        className={`form-control my-3 my-lg-3 border border-primary fw-semibold ${errors.email ? "is-invalid" : ""
-                                            }`}
-                                        type="text"
-                                        {...register("email", {
-                                            required: true,
-                                            pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                                        })}
-                                        placeholder={"E-mail"}
-                                    />
+                                <Form onSubmit={handleSubmit(onSubmit)} className="bg-primary bg-opacity-25 p-4 rounded shadow">
 
-                                    <SgButton
-                                        type="submit"
-                                        text={getTextBtnSubmit()}
-                                        onSubmit={() => { }}
-                                        disabled={btnSubmit === 'enviando'}
-                                        variant={getVariantBtnSubmit()}
-                                        child={
-                                            btnSubmit === 'enviando' ?
-                                                <Spinner
-                                                    className=""
-                                                    as="span"
-                                                    animation="border"
-                                                    size="sm"
-                                                    role="status"
-                                                    aria-hidden="true"
-                                                />
-                                                : getBsIconBtnSubmit()
-                                        }
-                                    />
+                                    <FormGroup className="mb-2">
+                                        <label className="text-capitalize fw-semibold">email</label>
+                                        <input
+                                            className={`form-control border border-primary ${errors.email ? "is-invalid" : ""
+                                                }`}
+                                            type="text"
+                                            {...register("email", {
+                                                required: true,
+                                                pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                            })}
+                                            placeholder={"Ex.: seunome@mail.com"}
+                                        />
+                                    </FormGroup>
+
+                                    <FormGroup className="mt-3 text-center">
+                                        <SgButton
+                                            type="submit"
+                                            text={getTextBtnSubmit()}
+                                            onSubmit={() => { }}
+                                            disabled={btnSubmit === 'enviando'}
+                                            variant={getVariantBtnSubmit()}
+                                            child={
+                                                btnSubmit === 'enviando' ?
+                                                    <Spinner
+                                                        className=""
+                                                        as="span"
+                                                        animation="border"
+                                                        size="sm"
+                                                        role="status"
+                                                        aria-hidden="true"
+                                                    />
+                                                    : getBsIconBtnSubmit()
+                                            }
+                                        />
+                                    </FormGroup>
                                 </Form>
 
                                 <p className="mt-3">
@@ -145,7 +148,7 @@ export const ForgottenPasswordPage: React.FC<{}> = () => {
                                 </p>
 
                                 <a href="/sg-painel/login" className="mb-4 text-md-end text-decoration-underline float-end">
-                                    <span className="me-1">ir para login</span>
+                                    <span className="me-1">Ir para login</span>
                                     <BsIconComponent iconName="PersonFillLock" />
                                 </a>
 

@@ -1,6 +1,6 @@
 import "./LoginPage.scss";
 import { useEffect, useState } from "react";
-import { Col, Container, Form, Row, Spinner } from "react-bootstrap";
+import { Col, Container, Form, FormGroup, Row, Spinner } from "react-bootstrap";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { SgButton } from "../../../../shared/components/SgButton/SgButton";
@@ -111,56 +111,60 @@ export const LoginPage: React.FC<{}> = () => {
                                     Utilize seu <strong> endereço de e-mail e senha cadastrados em seu perfil</strong> para ter acesso ao SG-Painel.
                                 </p>
 
-                                <Form
-                                    onSubmit={handleSubmit(onSubmit)}
-                                    className="text-center bg-primary bg-opacity-25 p-4 rounded shadow"
-                                >
-                                    <input
-                                        className={`form-control my-3 my-lg-3 border border-primary fw-semibold ${errors.email ? "is-invalid" : ""
-                                            }`}
-                                        type="text"
-                                        {...register("email", {
-                                            required: true,
-                                            pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                                        })}
-                                        placeholder={"E-mail"}
-                                    />
-                                    <input
-                                        className={`form-control my-3 my-lg-3 border border-primary fw-semibold ${errors.password ? "is-invalid" : ""
-                                            }`}
-                                        type="password"
-                                        {...register("password", { required: true, minLength: 6 })}
-                                        placeholder={"Senha"}
-                                    />
+                                <Form onSubmit={handleSubmit(onSubmit)} className="bg-primary bg-opacity-25 p-4 rounded shadow">
+                                    
+                                    <FormGroup className="mb-2">
+                                        <label className="text-capitalize fw-semibold">email</label>
+                                        <input
+                                            className={`form-control border border-primary ${errors.email ? "is-invalid" : ""
+                                                }`}
+                                            type="text"
+                                            {...register("email", {
+                                                required: true,
+                                                pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                            })}
+                                            placeholder={"Ex.: seunome@mail.com"}
+                                        />
+                                    </FormGroup>
 
-                                    <SgButton
-                                        type="submit"
-                                        text={getTextBtnSubmit()}
-                                        onSubmit={() => { }}
-                                        disabled={btnSubmit === 'enviando'}
-                                        variant={getVariantBtnSubmit()}
-                                        child={
-                                            btnSubmit === 'enviando' ?
-                                                <Spinner
-                                                    className=""
-                                                    as="span"
-                                                    animation="border"
-                                                    size="sm"
-                                                    role="status"
-                                                    aria-hidden="true"
-                                                />
-                                                : getBsIconBtnSubmit()
-                                        }
-                                    />
+                                    <FormGroup className="mb-2">
+                                        <label className="text-capitalize fw-semibold">senha</label>
+                                        <input
+                                            className={`form-control border border-primary  ${errors.password ? "is-invalid" : ""
+                                                }`}
+                                            type="password"
+                                            {...register("password", { required: true, minLength: 6 })}
+                                        />
+                                    </FormGroup>
+
+                                    <FormGroup className="mt-3 text-center">
+                                        <SgButton
+                                            type="submit"
+                                            text={getTextBtnSubmit()}
+                                            onSubmit={() => { }}
+                                            disabled={btnSubmit === 'enviando'}
+                                            variant={getVariantBtnSubmit()}
+                                            child={
+                                                btnSubmit === 'enviando' ?
+                                                    <Spinner
+                                                        className=""
+                                                        as="span"
+                                                        animation="border"
+                                                        size="sm"
+                                                        role="status"
+                                                        aria-hidden="true"
+                                                    />
+                                                    : getBsIconBtnSubmit()
+                                            }
+                                        />
+                                    </FormGroup>
                                 </Form>
 
-                                <p className="mt-3">
-                                </p>
+                                <a href="/sg-painel/forgot-password" className="mb-4 text-md-end text-decoration-underline float-end mt-3">
+                                    <span className="me-1">Esqueceu sua senha?</span>
+                                    <BsIconComponent iconName="PersonFillExclamation" />
+                                </a>
 
-                                <a href="/sg-painel/forgot-password" className="mb-4 text-md-end text-decoration-underline float-end">
-                                        <span className="me-1">esqueceu sua senha?</span>
-                                        <BsIconComponent iconName="PersonFillExclamation" />
-                                    </a> 
                             </Col>
                         </Row>
                     </Container>

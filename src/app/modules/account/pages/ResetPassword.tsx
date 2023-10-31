@@ -1,16 +1,13 @@
-import { Col, Container, Form, Row, Spinner } from "react-bootstrap";
-import { UseDocumentTitle } from "../../../shared/hooks/UseDocumentTitleHook";
+import { Col, Container, Form, FormGroup, InputGroup, Row, Spinner } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AccountService, ResetPassType } from "../service/AccountService";
 import { useNavigate } from "react-router-dom";
-import { BsIconComponent } from "../../../shared/components/bs-icon/BsIconComponent";
+import { BsIcon } from "../../../shared/components/BsIcon/BsIcon";
 import { SgButton } from "../../../shared/components/SgButton/SgButton";
 import { useState } from "react";
 
 export const ResetPasswordPage: React.FC<{}> = () => {
-
-    UseDocumentTitle("SG - Redefinir senha");
 
     const { isOnline } = useSelector(
         (rootReducer: any) => rootReducer.EventosReducer
@@ -71,11 +68,11 @@ export const ResetPasswordPage: React.FC<{}> = () => {
     const getBsIconBtnSubmit = (): JSX.Element | null => {
         switch (btnSubmit) {
             case 'checado':
-                return <BsIconComponent iconName="CheckLg" />
+                return <BsIcon iconName="CheckLg" />
             case 'invalid-token':
-                return <BsIconComponent iconName="XOctagon" />
+                return <BsIcon iconName="XOctagon" />
             case 'falhou':
-                return <BsIconComponent iconName="BugFill" />
+                return <BsIcon iconName="BugFill" />
             default: return null
         }
     }
@@ -100,76 +97,88 @@ export const ResetPasswordPage: React.FC<{}> = () => {
                                     Certifique-se de inserir <strong>corretamente</strong> todas as informações solicitadas para prossiguir com o envio.
                                 </p>
 
-                                <Form
-                                    onSubmit={handleSubmit(onSubmit)}
-                                    className="text-center bg-primary bg-opacity-25 p-4 rounded shadow"
-                                >
-                                    <input
-                                        className={`form-control my-3 my-lg-3 border border-primary fw-semibold ${errors.email ? "is-invalid" : ""
-                                            }`}
-                                        type="text"
-                                        {...register("email", {
-                                            required: true,
-                                            pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                                        })}
-                                        placeholder={"E-mail"}
-                                    />
-                                    <input
-                                        className={`form-control my-3 my-lg-3 border border-primary fw-semibold ${errors.password ? "is-invalid" : ""
-                                            }`}
-                                        type="password"
-                                        {...register("password", { required: true, minLength: 6 })}
-                                        placeholder={"Senha"}
-                                    />
+                                <Form onSubmit={handleSubmit(onSubmit)} className="bg-primary bg-opacity-25 p-4 rounded shadow">
 
-                                    <input
-                                        className={`form-control my-3 my-lg-3 border border-primary fw-semibold ${errors.confirmPassword ? "is-invalid" : ""
-                                            }`}
-                                        type="password"
-                                        {...register("confirmPassword", { required: true, minLength: 6 })}
-                                        placeholder={"Confirme sua senha"}
-                                    />
+                                    <FormGroup className="mb-2">
+                                        <label className="text-capitalize fw-semibold">email</label>
+                                        <input
+                                            className={`form-control border border-primary ${errors.email ? "is-invalid" : ""
+                                                }`}
+                                            type="text"
+                                            {...register("email", {
+                                                required: true,
+                                                pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                            })}
+                                            placeholder={"Ex.: seunome@mail.com"}
+                                        />
+                                    </FormGroup>
 
-                                    <input
-                                        className={`form-control my-3 my-lg-3 border border-primary fw-semibold ${errors.token ? "is-invalid" : ""
-                                            }`}
-                                        type="text"
-                                        {...register("token", { required: true })}
-                                        placeholder={"Token"}
-                                    />
+                                    <FormGroup className="mb-2">
+                                        <label className="fw-semibold">Nova senha</label>
+                                        <input
+                                            className={`form-control border border-primary  ${errors.password ? "is-invalid" : ""
+                                                }`}
+                                            type="password"
+                                            {...register("password", { required: true, minLength: 6 })}
+                                        />
+                                    </FormGroup>
 
-                                    {/*  <a href="/forgot-password" className="mb-4 text-md-end text-decoration-underline">
-                                        <span className="me-1">esqueceu sua senha?</span>
-                                        <BsIconComponent iconName="PersonFillExclamation" />
-                                    </a> */}
+                                    <FormGroup className="mb-2">
+                                        <label className="fw-semibold">Confirme a nova senha</label>
+                                        <input
+                                            className={`form-control border border-primary  ${errors.confirmPassword ? "is-invalid" : ""
+                                                }`}
+                                            type="password"
+                                            {...register("confirmPassword", { required: true, minLength: 6 })}
+                                        />
+                                    </FormGroup>
 
-                                    {<SgButton
-                                        type="submit"
-                                        text={getTextBtnSubmit()}
-                                        onSubmit={() => { }}
-                                        disabled={btnSubmit === 'enviando'}
-                                        variant={getVariantBtnSubmit()}
-                                        child={
-                                            btnSubmit === 'enviando' ?
-                                                <Spinner
-                                                    className=""
-                                                    as="span"
-                                                    animation="border"
-                                                    size="sm"
-                                                    role="status"
-                                                    aria-hidden="true"
-                                                />
-                                                : getBsIconBtnSubmit()
-                                        }
-                                    />}
+                                    <FormGroup className="mb-2">
+                                        <label className="fw-semibold">Token</label>
+
+                                        <InputGroup>
+                                            <input
+                                                className={`form-control border border-primary ${errors.token ? "is-invalid" : ""
+                                                    }`}
+                                                type="text"
+                                                {...register("token", { required: true })}
+                                            />
+                                            <span className="input-group-text border-primary p-0">
+                                                <SgButton type="button" variant="transparent" child={
+                                                    <BsIcon iconName={"ClipboardFill"} title="Colar token"/>
+                                                } />
+                                            </span>
+                                        </InputGroup>
+
+                                    </FormGroup>
+
+                                    <FormGroup className="mt-3 text-center">
+                                        <SgButton
+                                            type="submit"
+                                            text={getTextBtnSubmit()}
+                                            onSubmit={() => { }}
+                                            disabled={btnSubmit === 'enviando'}
+                                            variant={getVariantBtnSubmit()}
+                                            child={
+                                                btnSubmit === 'enviando' ?
+                                                    <Spinner
+                                                        className=""
+                                                        as="span"
+                                                        animation="border"
+                                                        size="sm"
+                                                        role="status"
+                                                        aria-hidden="true"
+                                                    />
+                                                    : getBsIconBtnSubmit()
+                                            }
+                                        />
+                                    </FormGroup>
+
                                 </Form>
 
-                                <p className="mt-3">
-                                </p>
-
-                                <a href="/login" className="mb-4 text-md-end text-decoration-underline float-end">
-                                    <span className="me-1">ir para login</span>
-                                    <BsIconComponent iconName="PersonFillLock" />
+                                <a href="/sg-painel/login" className="mb-4 text-md-end text-decoration-underline float-end mt-3">
+                                    <span className="me-1">Ir para login</span>
+                                    <BsIcon iconName="PersonFillLock" />
                                 </a>
                             </Col>
                         </Row>

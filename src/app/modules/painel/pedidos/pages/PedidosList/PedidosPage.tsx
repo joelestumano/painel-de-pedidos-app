@@ -1,23 +1,20 @@
 import "./PedidosPage.scss";
 import React, { useState, useEffect } from "react";
 import { Row, Col, Container } from "react-bootstrap";
-import { LoadingComponent } from "../../../../shared/components/loading/LoadingComponent";
+import { LoadingComponent } from "../../../../../shared/components/loading/LoadingComponent";
 import { CardPedidoComponent } from "../../components/card-pedido/CardPedidoComponent";
 import { ColunaSistemaComponent } from "../../components/coluna-sistema/ColunaSistemaComponent";
 import { NadaPorAquiComponent } from "../../components/nada-por-aqui/NadaPorAquiComponent";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { PedidosApiService } from "../../services/PedidosApiService";
 import { useDispatch, useSelector } from "react-redux";
-import { PedidosActionTypeEnum } from "../../../../../redux/pedidos/PedidosActionTypeEnum";
-import { PaginateType } from "../../../../shared/types/PaginateType";
-import { PedidoType } from "../../../../shared/types/PedidoType";
-import { UseDocumentTitle } from "../../../../shared/hooks/UseDocumentTitleHook";
-import { ApiService } from "../../../../services/ApiService";
+import { PedidosActionTypeEnum } from "../../../../../../redux/pedidos/PedidosActionTypeEnum";
+import { PaginateType } from "../../../../../shared/types/PaginateType";
+import { PedidoType } from "../../../../../shared/types/PedidoType";
+import { ApiService } from "../../../../../services/ApiService";
 import { useNavigate } from "react-router-dom";
 
 export const PedidosPage: React.FC<{}> = () => {
-
-    UseDocumentTitle("SG - Pedidos");
 
     const navigate = useNavigate();
 
@@ -108,7 +105,7 @@ export const PedidosPage: React.FC<{}> = () => {
                             </Row>
                         </Container>
                     ) : (
-                        <NadaPorAquiComponent titulo={'Nada por aqui!'} />
+                        <NadaPorAquiComponent titulo="Nada por aqui!" />
                     )}
                 </>
             )}

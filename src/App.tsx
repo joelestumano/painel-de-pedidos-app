@@ -1,12 +1,25 @@
-import { OffCanvasComponent } from "./app/shared/components/off-canvas/OffCanvasComponent";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { EventosActionTypeEnum } from "./redux/eventos/EventosActionTypeEnum";
-import { AppRoutes } from "./app/Routes";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import useLocalStorage from "@rehooks/local-storage";
 import { UsuarioActionTypeEnum } from "./redux/usuario/UsuarioActionTypeEnum";
+import { Container } from "react-bootstrap";
+import { AdminModule } from "./app/modules/admin/AdminModule";
+import { LoginPage } from "./app/modules/painel/login/pages/LoginPage";
+import { ForgottenPasswordPage } from "./app/modules/account/pages/ForgottenPassword";
+import { ResetPasswordPage } from "./app/modules/account/pages/ResetPassword";
+import { PedidosPage } from "./app/modules/painel/pedidos/pages/PedidosList/PedidosPage";
+import { RequireAuth, PainelModule } from "./app/modules/painel/PainelModule";
+
+function IndexApp() {
+  return (
+    <Container fluid={true} className="p-0">
+      <Outlet />
+    </Container>
+  );
+}
 
 function App() {
   const dispatch = useDispatch();
@@ -54,8 +67,30 @@ function App() {
 
   return (
     <BrowserRouter>
-      <OffCanvasComponent />
-      <AppRoutes />
+      <Routes>
+        <Route path="" element={<IndexApp />}>
+
+          <Route path="sg-painel" element={<PainelModule />} >
+            <Route path="login" element={<LoginPage />} />
+            <Route path="forgot-password" element={<ForgottenPasswordPage />} />
+            <Route path="reset-password" element={<ResetPasswordPage />} />
+            <Route path="" element={
+              <RequireAuth redirectTo="login">
+                <PedidosPage />
+              </RequireAuth>
+            } />
+          </Route>
+
+          <Route path="sg-admin" element={<AdminModule />} >
+
+          </Route>
+
+        </Route>
+        <Route index element={<Navigate to='sg-painel' />}></Route>
+        <Route path="sg-painel/*" element={<Navigate to="/sg-painel" />} />
+        <Route index element={<Navigate to="/" />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
     </BrowserRouter>
   );
 }

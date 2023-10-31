@@ -1,11 +1,11 @@
 import { Button, Col, Offcanvas, Row } from "react-bootstrap";
 import { useState } from "react";
-import { BsIconComponent } from "../bs-icon/BsIconComponent";
+import { BsIcon } from "../BsIcon/BsIcon";
 import { SgButton } from "../SgButton/SgButton";
-import { LoginService } from "../../../modules/login/services/LoginService";
+import { LoginService } from "../../../modules/painel/login/services/LoginService";
 import { useSelector } from "react-redux";
 
-export const OffCanvasComponent: React.FC<{}> = () => {
+export const OffCanvas: React.FC<{}> = () => {
     const props = {
         scroll: true,
         backdrop: true,
@@ -31,9 +31,9 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                 variant="primary"
                 style={{ zIndex: 100 }}
                 onClick={toggleShow}
-                className="position-fixed top-0 end-0 rounded-end-0 rounded-start-5 mt-5 pe-1 shadow"
+                className="position-fixed top-0 end-0 rounded-end-0 rounded-start-3 mt-5 shadow"
             >
-                <BsIconComponent
+                <BsIcon
                     iconName="List"
                     color="white"
                     size={24}
@@ -41,13 +41,13 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                 />
             </Button>
             <Offcanvas placement="end" show={show} onHide={handleClose} {...props}>
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title className="">
-                        <a className="text-md-start text-decoration-none bg-warning rounded-circle" href="/">
-                            <BsIconComponent
+                <Offcanvas.Header closeButton className="bg-primary shadow" closeVariant="white">
+                    <Offcanvas.Title>
+                        <a className="text-md-start text-decoration-none text-white" href="/sg-painel">
+                            <BsIcon
                                 iconName="HouseFill"
-                                size={32}
-                                className="align-middle me-2"
+                                size={24}
+                                className="align-middle"
                             />
                         </a>
                     </Offcanvas.Title>
@@ -55,20 +55,24 @@ export const OffCanvasComponent: React.FC<{}> = () => {
                 <Offcanvas.Body className="d-flex flex-column">
                     <Row>
                         <Col className="col-12">
-                            <nav className="d-flex flex-column">
-                                <a href="/forgot-password" className="my-1 text-md-start text-decoration-underline">
-                                    <span className="me-1">esqueceu sua senha?</span>
-                                    <BsIconComponent iconName="PersonFillExclamation" />
+                            <nav className="d-flex flex-column text-start">
+                                <a className="me-auto my-1 px-1 text-decoration-underline" href="/sg-painel/forgot-password">
+                                    <span className="me-1">Esqueceu sua senha?</span>
+                                    <BsIcon iconName="PersonFillExclamation" />
                                 </a>
-                                <a href="/reset-password" className="my-1 text-md-start text-decoration-underline">
-                                    <span className="me-1">redefinir senha</span>
-                                    <BsIconComponent iconName="PersonFillUp" />
+                                <a className="me-auto my-1 px-1 text-decoration-underline" href="/sg-painel/reset-password">
+                                    <span className="me-1">Redefinir senha</span>
+                                    <BsIcon iconName="PersonFillUp" />
+                                </a>
+                                <a className="me-auto my-1 px-1 text-decoration-underline text-warning bg-black" href="/sg-admin">
+                                    <span className="me-1">Admin</span>
+                                    <BsIcon iconName="PersonBoundingBox" />
                                 </a>
                             </nav>
                         </Col>
                     </Row>
                     {usuario ?
-                        <div className="d-flex justify-content-end fixed-bottom position-absolute p-2 bg-danger bg-opacity-25">
+                        <div className="d-flex justify-content-end fixed-bottom position-absolute p-2 bg-danger bg-opacity-10">
                             <div className="d-flex justify-content-between align-items-center w-100">
                                 <span className="px-2">{usuario.nome}</span>
                                 <SgButton

@@ -5,7 +5,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { CardPedidoComponent } from "../card-pedido/CardPedidoComponent";
 import React from "react";
 import { useSelector } from "react-redux";
-import { PedidoType } from "../../../../shared/types/PedidoType";
+import { PedidoType } from "../../../../../shared/types/PedidoType";
 
 export const ColunaSistemaComponent: React.FC<{ onUpdate: boolean }> = ({ onUpdate }) => {
 
